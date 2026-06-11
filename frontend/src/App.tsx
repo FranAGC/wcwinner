@@ -8,7 +8,8 @@ import {
   Info, 
   Award,
   ChevronRight,
-  Settings
+  Settings,
+  Download
 } from 'lucide-react';
 import './App.css';
 import { EloChart } from './charts/EloChart';
@@ -87,6 +88,7 @@ export default function App() {
   const [simulating, setSimulating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [phaseFilter, setPhaseFilter] = useState<string>('All');
+  const [isBracketVisible, setIsBracketVisible] = useState(false);
 
   // Mappings
   const teamsMap = useMemo(() => {
@@ -213,6 +215,55 @@ export default function App() {
     } finally {
       setSimulating(false);
     }
+  };
+
+  const handleDownloadCSV = () => {
+    const validMatches = matches.filter(m => m.status === 'Simulated' || m.status === 'Completed');
+    
+    // Define phase order for grouping/sorting
+    const phaseOrder: Record<string, number> = {
+      'Group': 1,
+      'Round of 32': 2,
+      'Round of 16': 3,
+      'Quarterfinals': 4,
+      'Semifinals': 5,
+      'Final': 6
+    };
+
+    // Sort by phase then date
+    const sortedMatches = [...validMatches].sort((a, b) => {
+      const phaseDiff = (phaseOrder[a.match_phase] || 99) - (phaseOrder[b.match_phase] || 99);
+      if (phaseDiff !== 0) return phaseDiff;
+      return new Date(a.match_date).getTime() - new Date(b.match_date).getTime();
+    });
+
+    // Generate CSV
+    const headers = ['Fecha', 'Fase', 'Local', 'Goles Local', 'Goles Visitante', 'Visitante', 'Penales Local', 'Penales Visitante', 'Estado'];
+    const rows = sortedMatches.map(m => [
+      m.match_date,
+      m.match_phase,
+      m.home_team?.team_name || 'TBD',
+      m.home_score !== undefined ? m.home_score : '',
+      m.away_score !== undefined ? m.away_score : '',
+      m.away_team?.team_name || 'TBD',
+      m.home_penalty_score !== undefined && m.home_penalty_score !== null ? m.home_penalty_score : '',
+      m.away_penalty_score !== undefined && m.away_penalty_score !== null ? m.away_penalty_score : '',
+      m.status
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob(['\\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' }); // Added BOM for Excel
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'resultados_wc26.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // Determine current phase status for simulation panel
@@ -380,9 +431,14 @@ export default function App() {
                 <>
                   {/* Simulation flow controller */}
                   <div className="glass-panel" style={{ padding: '20px' }}>
-                    <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', marginBottom: '16px', color: '#fff', borderBottom: '1px solid var(--border-color)', paddingBottom: '10px' }}>
-                      Panel de Simulación de Fases
-                    </h2>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid var(--border-color)', paddingBottom: '10px' }}>
+                      <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', color: '#fff', margin: 0 }}>
+                        Panel de Simulación de Fases
+                      </h2>
+                      <button className="glow-btn" onClick={handleDownloadCSV} style={{ padding: '6px 12px', fontSize: '0.85rem' }}>
+                        <Download size={14} style={{ marginRight: '6px' }} /> Exportar CSV
+                      </button>
+                    </div>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
                       
                       {/* Step 1: Group Stage */}
@@ -471,107 +527,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Matches list */}
-                  <div className="glass-panel" style={{ padding: '20px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid var(--border-color)', paddingBottom: '12px' }}>
-                      <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', color: '#fff' }}>
-                        Calendario de Partidos
-                      </h2>
-                      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                        {['All', 'Group', 'Round of 32', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Final'].map(f => {
-                          let label = f === 'All' ? 'Todos' : f === 'Group' ? 'Grupos' : f === 'Round of 32' ? '16avos' : f === 'Round of 16' ? 'Octavos' : f === 'Quarterfinals' ? 'Cuartos' : f === 'Semifinals' ? 'Semis' : 'Final';
-                          return (
-                            <button 
-                              key={f} 
-                              style={{ padding: '4px 10px', borderRadius: '6px', border: '1px solid var(--border-color)', background: phaseFilter === f ? 'var(--bg-tertiary)' : 'transparent', color: phaseFilter === f ? 'var(--accent-neon)' : 'var(--text-secondary)', cursor: 'pointer', fontSize: '0.8rem' }}
-                              onClick={() => setPhaseFilter(f)}
-                            >
-                              {label}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                    
-                    <TournamentBracket matches={matches} />
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '550px', overflowY: 'auto', paddingRight: '4px', marginTop: '16px' }}>
-                      {filteredMatches.length === 0 ? (
-                        <p style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-secondary)' }}>
-                          No hay partidos disponibles para esta fase. Avance en la simulación.
-                        </p>
-                      ) : (
-                        filteredMatches.map(m => {
-                          const isSelected = m.match_id === selectedMatchId;
-                          return (
-                            <div 
-                              key={m.match_id}
-                              className="glass-panel"
-                              style={{ 
-                                padding: '14px', 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                justifyContent: 'space-between',
-                                cursor: 'pointer',
-                                background: isSelected ? 'rgba(0, 255, 170, 0.04)' : 'var(--glass-bg)',
-                                borderColor: isSelected ? 'var(--accent-neon)' : 'var(--glass-border)'
-                              } as React.CSSProperties}
-                              onClick={() => handleSelectMatch(m.match_id)}
-                            >
-                              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '30%' }}>
-                                <Calendar size={14} style={{ color: 'var(--text-muted)' }} />
-                                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.match_date}</span>
-                                  <span style={{ fontSize: '0.85rem', color: 'var(--accent-cyan)' }}>{m.match_phase}</span>
-                                </div>
-                              </div>
-
-                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', width: '50%' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%', justifyContent: 'flex-end' }}>
-                                  <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.home_team?.team_name || 'TBD'}</span>
-                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.home_team?.team_code || '---'}</span>
-                                </div>
-
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'var(--bg-primary)', padding: '4px 12px', borderRadius: '8px', border: '1px solid var(--border-color)', minWidth: '60px', justifyContent: 'center' }}>
-                                  {m.status === 'Scheduled' ? (
-                                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>VS</span>
-                                  ) : (
-                                    <>
-                                      <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--accent-neon)' }}>{m.home_score}</span>
-                                      <span style={{ color: 'var(--text-muted)' }}>-</span>
-                                      <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--accent-neon)' }}>{m.away_score}</span>
-                                    </>
-                                  )}
-                                </div>
-
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%' }}>
-                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.away_team?.team_code || '---'}</span>
-                                  <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.away_team?.team_name || 'TBD'}</span>
-                                </div>
-                              </div>
-
-                              <div style={{ width: '20%', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '8px' }}>
-                                {m.home_penalty_score !== null && m.home_penalty_score !== undefined && (
-                                  <span style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', marginRight: '6px' }}>
-                                    (Pen: {m.home_penalty_score}-{m.away_penalty_score})
-                                  </span>
-                                )}
-                                <span style={{ 
-                                  fontSize: '0.7rem', 
-                                  padding: '2px 6px', 
-                                  borderRadius: '4px', 
-                                  background: m.status === 'Completed' ? (m.tournament_id === 'WC26' ? 'rgba(74, 222, 128, 0.1)' : 'rgba(255,255,255,0.05)') : m.status === 'Simulated' ? 'rgba(255,215,0,0.1)' : 'rgba(0,240,255,0.1)', 
-                                  color: m.status === 'Completed' ? (m.tournament_id === 'WC26' ? '#4ade80' : 'var(--text-secondary)') : m.status === 'Simulated' ? 'var(--accent-gold)' : 'var(--accent-cyan)' 
-                                }}>
-                                  {m.status === 'Completed' ? (m.tournament_id === 'WC26' ? 'Real' : 'Histórico') : m.status === 'Simulated' ? 'Simulado' : 'Predicción'}
-                                </span>
-                              </div>
-                            </div>
-                          );
-                        })
-                      )}
-                    </div>
-                  </div>
                 </>
               )}
 
@@ -840,6 +795,127 @@ export default function App() {
             </div>
 
           </div>
+          {/* Full width Matches list (Calendario de Partidos) */}
+          {activeTab === 'matches' && (
+            <div style={{ marginTop: '24px' }}>
+                  {/* Matches list */}
+                  <div className="glass-panel" style={{ padding: '20px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid var(--border-color)', paddingBottom: '12px' }}>
+                      <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', color: '#fff' }}>
+                        Calendario de Partidos
+                      </h2>
+                      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                        {['All', 'Group', 'Round of 32', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Final'].map(f => {
+                          let label = f === 'All' ? 'Todos' : f === 'Group' ? 'Grupos' : f === 'Round of 32' ? '16avos' : f === 'Round of 16' ? 'Octavos' : f === 'Quarterfinals' ? 'Cuartos' : f === 'Semifinals' ? 'Semis' : 'Final';
+                          return (
+                            <button 
+                              key={f} 
+                              style={{ padding: '4px 10px', borderRadius: '6px', border: '1px solid var(--border-color)', background: phaseFilter === f ? 'var(--bg-tertiary)' : 'transparent', color: phaseFilter === f ? 'var(--accent-neon)' : 'var(--text-secondary)', cursor: 'pointer', fontSize: '0.8rem' }}
+                              onClick={() => setPhaseFilter(f)}
+                            >
+                              {label}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                    
+                    <div style={{ marginBottom: '16px' }}>
+                      <button 
+                        className="glow-btn" 
+                        onClick={() => setIsBracketVisible(!isBracketVisible)}
+                        style={{ width: '100%', justifyContent: 'center', padding: '12px' }}
+                      >
+                        <Layers size={18} style={{ marginRight: '8px' }}/> 
+                        {isBracketVisible ? 'Ocultar Cuadro del Torneo' : 'Ver Cuadro del Torneo (Knockout Bracket)'}
+                      </button>
+                    </div>
+
+                    {isBracketVisible && (
+                      <div style={{ padding: '10px 0', borderBottom: '1px solid var(--border-color)', marginBottom: '16px', overflowX: 'auto' }}>
+                        <TournamentBracket matches={matches} />
+                      </div>
+                    )}
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '550px', overflowY: 'auto', paddingRight: '4px', marginTop: '16px' }}>
+                      {filteredMatches.length === 0 ? (
+                        <p style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-secondary)' }}>
+                          No hay partidos disponibles para esta fase. Avance en la simulación.
+                        </p>
+                      ) : (
+                        filteredMatches.map(m => {
+                          const isSelected = m.match_id === selectedMatchId;
+                          return (
+                            <div 
+                              key={m.match_id}
+                              className="glass-panel"
+                              style={{ 
+                                padding: '14px', 
+                                display: 'flex', 
+                                alignItems: 'center', 
+                                justifyContent: 'space-between',
+                                cursor: 'pointer',
+                                background: isSelected ? 'rgba(0, 255, 170, 0.04)' : 'var(--glass-bg)',
+                                borderColor: isSelected ? 'var(--accent-neon)' : 'var(--glass-border)'
+                              } as React.CSSProperties}
+                              onClick={() => handleSelectMatch(m.match_id)}
+                            >
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '30%' }}>
+                                <Calendar size={14} style={{ color: 'var(--text-muted)' }} />
+                                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.match_date}</span>
+                                  <span style={{ fontSize: '0.85rem', color: 'var(--accent-cyan)' }}>{m.match_phase}</span>
+                                </div>
+                              </div>
+
+                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', width: '50%' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%', justifyContent: 'flex-end' }}>
+                                  <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.home_team?.team_name || 'TBD'}</span>
+                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.home_team?.team_code || '---'}</span>
+                                </div>
+
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'var(--bg-primary)', padding: '4px 12px', borderRadius: '8px', border: '1px solid var(--border-color)', minWidth: '60px', justifyContent: 'center' }}>
+                                  {m.status === 'Scheduled' ? (
+                                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>VS</span>
+                                  ) : (
+                                    <>
+                                      <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--accent-neon)' }}>{m.home_score}</span>
+                                      <span style={{ color: 'var(--text-muted)' }}>-</span>
+                                      <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--accent-neon)' }}>{m.away_score}</span>
+                                    </>
+                                  )}
+                                </div>
+
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%' }}>
+                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.away_team?.team_code || '---'}</span>
+                                  <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.away_team?.team_name || 'TBD'}</span>
+                                </div>
+                              </div>
+
+                              <div style={{ width: '20%', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '8px' }}>
+                                {m.home_penalty_score !== null && m.home_penalty_score !== undefined && (
+                                  <span style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', marginRight: '6px' }}>
+                                    (Pen: {m.home_penalty_score}-{m.away_penalty_score})
+                                  </span>
+                                )}
+                                <span style={{ 
+                                  fontSize: '0.7rem', 
+                                  padding: '2px 6px', 
+                                  borderRadius: '4px', 
+                                  background: m.status === 'Completed' ? (m.tournament_id === 'WC26' ? 'rgba(74, 222, 128, 0.1)' : 'rgba(255,255,255,0.05)') : m.status === 'Simulated' ? 'rgba(255,215,0,0.1)' : 'rgba(0,240,255,0.1)', 
+                                  color: m.status === 'Completed' ? (m.tournament_id === 'WC26' ? '#4ade80' : 'var(--text-secondary)') : m.status === 'Simulated' ? 'var(--accent-gold)' : 'var(--accent-cyan)' 
+                                }}>
+                                  {m.status === 'Completed' ? (m.tournament_id === 'WC26' ? 'Real' : 'Histórico') : m.status === 'Simulated' ? 'Simulado' : 'Predicción'}
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        })
+                      )}
+                    </div>
+                  </div>
+            </div>
+          )}
         </>
       )}
 

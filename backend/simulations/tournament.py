@@ -351,7 +351,7 @@ class TournamentSimulator:
         return self._advance_knockout_phase(tournament_id, "Quarterfinals", "Semifinals", "SF_M")
 
     def advance_semifinals_to_final(self, tournament_id: str) -> List[Match]:
-        return self._advance_knockout_phase(tournament_id, "Semifinals", "Final", "Final_M")
+        return self._advance_knockout_phase(tournament_id, "Semifinals", "Final", "F_M")
 
     # ------------------------------------------------------------------ #
     #  Pre-calculate features for new knockout matches                    #
