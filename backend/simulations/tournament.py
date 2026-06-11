@@ -18,6 +18,7 @@ from typing import List, Dict, Any, Tuple
 from backend.database.repository import FootballRepository
 from backend.models.domain import Match, TeamMatchStats
 from backend.services.probability import MatchProbabilityService
+from backend.services.elo_updater import EloUpdaterService
 
 # Official WC2026 group composition (same as load_matches.py)
 GROUPS: Dict[str, List[str]] = {
@@ -72,6 +73,7 @@ class TournamentSimulator:
     def __init__(self, repo: FootballRepository = None):
         self.repo = repo or FootballRepository()
         self.prob_service = MatchProbabilityService(self.repo)
+        self.elo_updater = EloUpdaterService(self.repo)
 
     # ------------------------------------------------------------------ #
     #  Stat generation (correlated with xG)                               #
@@ -162,6 +164,9 @@ class TournamentSimulator:
             a_stats = self._generate_stats(m.away_team_id, m.match_id, a_score, lambda_a, lambda_h)
             self.repo.save_team_match_stats(h_stats)
             self.repo.save_team_match_stats(a_stats)
+            
+            # Dynamic ELO & Form Update
+            self.elo_updater.update_after_match(m)
 
             winner = (m.home_team_id if (h_score > a_score or (h_pen and h_pen > a_pen))
                       else m.away_team_id)
@@ -257,27 +262,25 @@ class TournamentSimulator:
         third_place.sort(key=lambda x: (x[1], x[2], x[3], x[4]), reverse=True)
         best_thirds = [t[0] for t in third_place[:8]]
 
-        # Schedule 32 knockout matches
-        # Official WC2026 R32 pairing (simplified symmetric bracket):
-        # Pairs: W_A-R_B, W_C-R_D, W_E-R_F, W_G-R_H, W_I-R_J, W_K-R_L
-        #        W_B-R_A, W_D-R_C, W_F-R_E, W_H-R_G, W_J-R_I, W_L-R_K
-        # The 8 best 3rd-place vs positions TBD (fill into remaining slots)
-        r32_pairings_winners = [
-            (winners["A"], runners["B"]), (winners["C"], runners["D"]),
-            (winners["E"], runners["F"]), (winners["G"], runners["H"]),
-            (winners["I"], runners["J"]), (winners["K"], runners["L"]),
-            (winners["B"], runners["A"]), (winners["D"], runners["C"]),
-            (winners["F"], runners["E"]), (winners["H"], runners["G"]),
-            (winners["J"], runners["I"]), (winners["L"], runners["K"]),
-        ]
-        # Best thirds fill remaining 4 spots paired with 4 lowest-seeded group winners
-        lower_winners = sorted(
-            [winners["C"], winners["D"], winners["I"], winners["J"]],
-            key=lambda t: elo_map.get(t, 1500.0)
-        )
-        third_pairings = list(zip(lower_winners, best_thirds[:4]))
-
-        all_pairings = r32_pairings_winners + third_pairings   # 16 matches
+        # Schedule 32 knockout matches (16 matches)
+        # 12 Group Winners, 12 Runners-up, 8 Best Thirds
+        winners_list = [winners[g] for g in ["A","B","C","D","E","F","G","H","I","J","K","L"]]
+        runners_list = [runners[g] for g in ["A","B","C","D","E","F","G","H","I","J","K","L"]]
+        
+        all_pairings = []
+        
+        # Match 1-8: 8 Winners vs 8 Best Thirds
+        for i in range(8):
+            # To reduce chance of same-group matchup, we can reverse the thirds
+            all_pairings.append((winners_list[i], best_thirds[7 - i]))
+            
+        # Match 9-12: Remaining 4 Winners vs 4 Runners-up
+        for i in range(4):
+            all_pairings.append((winners_list[8 + i], runners_list[i]))
+            
+        # Match 13-16: Remaining 8 Runners-up vs each other
+        for i in range(4):
+            all_pairings.append((runners_list[4 + 2*i], runners_list[4 + 2*i + 1]))
 
         match_date = PHASE_DATES["Round of 32"]
         new_matches = []
@@ -293,7 +296,7 @@ class TournamentSimulator:
             )
             new_matches.append(m)
 
-        self._upsert_knockout_features(new_matches)
+        self._upsert_match_features(new_matches)
         for m in new_matches:
             self.repo.save_match(m)
         print(f"Scheduled {len(new_matches)} Round of 32 matches for {tournament_id}")
@@ -335,7 +338,7 @@ class TournamentSimulator:
             )
             new_matches.append(m)
 
-        self._upsert_knockout_features(new_matches)
+        self._upsert_match_features(new_matches)
         for m in new_matches:
             self.repo.save_match(m)
         print(f"Scheduled {len(new_matches)} {to_phase} matches for {tournament_id}")
@@ -354,9 +357,9 @@ class TournamentSimulator:
         return self._advance_knockout_phase(tournament_id, "Semifinals", "Final", "F_M")
 
     # ------------------------------------------------------------------ #
-    #  Pre-calculate features for new knockout matches                    #
+    #  Pre-calculate features for new matches                                 #
     # ------------------------------------------------------------------ #
-    def _upsert_knockout_features(self, matches: List[Match]) -> None:
+    def _upsert_match_features(self, matches: List[Match]) -> None:
         import polars as pl
         with self.repo.conn_factory(read_only=True) as conn:
             tf_rows = conn.execute(
@@ -403,3 +406,30 @@ class TournamentSimulator:
             conn.execute("BEGIN TRANSACTION")
             conn.execute("INSERT OR REPLACE INTO match_features SELECT * FROM df")
             conn.execute("COMMIT")
+
+    # ------------------------------------------------------------------ #
+    #  Recalculate Tournament Features (Handles pre-completed matches)    #
+    # ------------------------------------------------------------------ #
+    def recalculate_tournament_features(self, tournament_id: str) -> None:
+        """
+        Iterates over all matches chronologically.
+        If Scheduled: generates match_features.
+        If Completed/Simulated: generates match_features THEN applies the result
+        to update team_features and ELO (simulating the progression up to now).
+        """
+        all_matches = self.repo.get_matches()
+        t_matches = [m for m in all_matches if m.tournament_id == tournament_id]
+        
+        # Sort chronologically by date and then phase/id
+        t_matches.sort(key=lambda x: (x.match_date, x.match_id))
+        
+        for m in t_matches:
+            # First, generate match_features for this match based on current ELO
+            self._upsert_match_features([m])
+            
+            # If the match has a result, update the ELO and form so the next matches use the new values
+            if m.status in ("Completed", "Simulated") and m.home_score is not None:
+                self.elo_updater.update_after_match(m)
+        
+        print(f"Recalculated match_features and team_features for {len(t_matches)} matches in {tournament_id}.")
+

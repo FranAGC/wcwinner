@@ -74,6 +74,41 @@ export const TournamentBracket: React.FC<TournamentBracketProps> = ({ matches })
         else aWinner = true;
       }
     }
+    let scoreFontSize = "inherit";
+    let cardWidth = "120px";
+    let cardPadding = "4px";
+    
+    switch (m.match_phase) {
+      case "Round of 32":
+        scoreFontSize = "inherit";
+        cardWidth = "120px";
+        cardPadding = "4px";
+        break;
+      case "Round of 16":
+        scoreFontSize = "1.0rem";
+        cardWidth = "130px";
+        cardPadding = "5px";
+        break;
+      case "Quarterfinals":
+        scoreFontSize = "1.15rem";
+        cardWidth = "140px";
+        cardPadding = "6px";
+        break;
+      case "Semifinals":
+        scoreFontSize = "1.3rem";
+        cardWidth = "150px";
+        cardPadding = "7px";
+        break;
+      case "Final":
+        scoreFontSize = "1.5rem";
+        cardWidth = "170px";
+        cardPadding = "8px";
+        break;
+      default:
+        break;
+    }
+    
+    const scoreFontWeight = m.match_phase === "Round of 32" ? (hWinner || aWinner ? "bold" : "normal") : "bold";
 
     return (
       <div 
@@ -82,26 +117,30 @@ export const TournamentBracket: React.FC<TournamentBracketProps> = ({ matches })
           background: 'rgba(255,255,255,0.02)', 
           border: '1px solid var(--border-color)', 
           borderRadius: '4px', 
-          padding: '4px',
-          width: '120px',
+          padding: cardPadding,
+          width: cardWidth,
           fontSize: '0.75rem',
           margin: '4px 0',
           position: 'relative'
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: hWinner ? 'bold' : 'normal', color: hWinner ? '#fff' : 'var(--text-secondary)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: hWinner ? 'bold' : 'normal', color: hWinner ? '#fff' : 'var(--text-secondary)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             {m.home_team && getFlagUrl(m.home_team.team_code) && <img src={getFlagUrl(m.home_team.team_code)!} alt="" width="16" height="12" />}
             {m.home_team?.team_code || 'TBD'}
           </div>
-          <span>{hScore} {m.home_penalty_score !== null && m.home_penalty_score !== undefined ? `(${m.home_penalty_score})` : ''}</span>
+          <span style={{ fontSize: scoreFontSize, fontWeight: hWinner ? 'bold' : scoreFontWeight }}>
+            {hScore} {m.home_penalty_score !== null && m.home_penalty_score !== undefined ? <span style={{ fontSize: '0.7em' }}>({m.home_penalty_score})</span> : ''}
+          </span>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: aWinner ? 'bold' : 'normal', color: aWinner ? '#fff' : 'var(--text-secondary)', marginTop: '2px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontWeight: aWinner ? 'bold' : 'normal', color: aWinner ? '#fff' : 'var(--text-secondary)', marginTop: '2px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             {m.away_team && getFlagUrl(m.away_team.team_code) && <img src={getFlagUrl(m.away_team.team_code)!} alt="" width="16" height="12" />}
             {m.away_team?.team_code || 'TBD'}
           </div>
-          <span>{aScore} {m.away_penalty_score !== null && m.away_penalty_score !== undefined ? `(${m.away_penalty_score})` : ''}</span>
+          <span style={{ fontSize: scoreFontSize, fontWeight: aWinner ? 'bold' : scoreFontWeight }}>
+            {aScore} {m.away_penalty_score !== null && m.away_penalty_score !== undefined ? <span style={{ fontSize: '0.7em' }}>({m.away_penalty_score})</span> : ''}
+          </span>
         </div>
       </div>
     );

@@ -44,6 +44,12 @@ def seed_wc26():
         # Count the matches
         count = conn.execute("SELECT count(*) FROM matches WHERE tournament_id = 'WC26'").fetchone()[0]
         print(f"Successfully re-seeded {count} scheduled matches for WC26.")
+        
+    print("Recalculating tournament features and ELO...")
+    from backend.simulations.tournament import TournamentSimulator
+    sim = TournamentSimulator()
+    sim.recalculate_tournament_features("WC26")
+    print("Tournament features recalculation complete.")
 
 if __name__ == "__main__":
     seed_wc26()

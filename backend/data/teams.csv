@@ -9,7 +9,6 @@ ENG,England,ENG,UEFA
 GER,Germany,GER,UEFA
 ESP,Spain,ESP,UEFA
 POR,Portugal,POR,UEFA
-ITA,Italy,ITA,UEFA
 NED,Netherlands,NED,UEFA
 CRO,Croatia,CRO,UEFA
 BEL,Belgium,BEL,UEFA
@@ -25,11 +24,11 @@ RSA,South Africa,RSA,CAF
 CZE,Czechia,CZE,UEFA
 QAT,Qatar,QAT,AFC
 SUI,Switzerland,SUI,UEFA
-HAI,Haiti,HAI,CONACAF
+HAI,Haiti,HAI,CONCACAF
 SCO,Scotland,SCO,UEFA
 PAR,Paraguay,PAR,CONMEBOL
 TUR,Turkey,TUR,UEFA
-CUW,Curaçao,CUW,CONACAF
+CUW,Curaçao,CUW,CONCACAF
 CIV,Ivory Coast,CIV,CAF
 SWE,Sweden,SWE,UEFA
 TUN,Tunisia,TUN,CAF
@@ -43,9 +42,8 @@ NOR,Norway,NOR,UEFA
 ALG,Algeria,ALG,CAF
 AUT,Austria,AUT,UEFA
 JOR,Jordan,JOR,AFC
-JAM,Jamaica,JAM,CONACAF
 UZB,Uzbekistan,UZB,AFC
 GHA,Ghana,GHA,CAF
-PAN,Panama,PAN,CONACAF
+PAN,Panama,PAN,CONCACAF
 BIH,Bosnia and Herzegovina,BIH,UEFA
 COD,DR Congo,COD,CAF
