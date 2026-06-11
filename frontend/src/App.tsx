@@ -7,11 +7,13 @@ import {
   BarChart2, 
   Info, 
   Award,
-  ChevronRight
+  ChevronRight,
+  Settings
 } from 'lucide-react';
 import './App.css';
 import { EloChart } from './charts/EloChart';
 import { PredictionChart } from './charts/PredictionChart';
+import { TournamentBracket } from './charts/TournamentBracket';
 
 const API_URL = 'http://localhost:8000';
 
@@ -73,7 +75,7 @@ interface PredictionData {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'matches' | 'rankings' | 'standings'>('matches');
+  const [activeTab, setActiveTab] = useState<'matches' | 'rankings' | 'standings' | 'config'>('matches');
   const [teams, setTeams] = useState<Team[]>([]);
   const [matches, setMatches] = useState<MatchDetail[]>([]);
   const [eloRankings, setEloRankings] = useState<EloHistory[]>([]);
@@ -179,16 +181,16 @@ export default function App() {
     }
   };
 
-  const handleReset = async () => {
-    if (!confirm('¿Está seguro de que desea reiniciar la base de datos de simulación al estado inicial?')) {
+  const handleResetWc26 = async () => {
+    if (!confirm('¿Está seguro de que desea reiniciar los partidos del torneo WC26 al estado inicial?')) {
       return;
     }
     try {
       setSimulating(true);
-      const res = await fetch(`${API_URL}/reset`, { method: 'POST' });
-      if (!res.ok) throw new Error('Error al reiniciar base de datos');
+      const res = await fetch(`${API_URL}/reset/wc26`, { method: 'POST' });
+      if (!res.ok) throw new Error('Error al reiniciar base de datos de WC26');
       await fetchAllData(true);
-      alert('Base de datos restablecida correctamente.');
+      alert('Torneo WC26 restablecido correctamente a Fase de Grupos.');
     } catch (err: any) {
       alert(`Error al reiniciar: ${err.message}`);
     } finally {
@@ -196,12 +198,38 @@ export default function App() {
     }
   };
 
+  const handleResetAll = async () => {
+    if (!confirm('ADVERTENCIA: Esto borrará TODOS los datos y volverá a descargar y procesar todo el historial mundial. Puede tomar varios minutos. ¿Desea continuar?')) {
+      return;
+    }
+    try {
+      setSimulating(true);
+      const res = await fetch(`${API_URL}/reset/all`, { method: 'POST' });
+      if (!res.ok) throw new Error('Error al restaurar base de datos completa');
+      await fetchAllData(true);
+      alert('Base de datos histórica restablecida correctamente.');
+    } catch (err: any) {
+      alert(`Error crítico al restaurar BD: ${err.message}`);
+    } finally {
+      setSimulating(false);
+    }
+  };
+
   // Determine current phase status for simulation panel
   const groupMatches = matches.filter(m => m.match_phase === 'Group');
+  const r32Matches = matches.filter(m => m.match_phase === 'Round of 32');
+  const r16Matches = matches.filter(m => m.match_phase === 'Round of 16');
+  const qfMatches = matches.filter(m => m.match_phase === 'Quarterfinals');
   const sfMatches = matches.filter(m => m.match_phase === 'Semifinals');
   const finalMatches = matches.filter(m => m.match_phase === 'Final');
 
   const groupsCompleted = groupMatches.length > 0 && groupMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
+  const r32Exists = r32Matches.length > 0;
+  const r32Completed = r32Exists && r32Matches.every(m => m.status === 'Simulated' || m.status === 'Completed');
+  const r16Exists = r16Matches.length > 0;
+  const r16Completed = r16Exists && r16Matches.every(m => m.status === 'Simulated' || m.status === 'Completed');
+  const qfExists = qfMatches.length > 0;
+  const qfCompleted = qfExists && qfMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
   const sfExists = sfMatches.length > 0;
   const sfCompleted = sfExists && sfMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
   const finalExists = finalMatches.length > 0;
@@ -306,8 +334,8 @@ export default function App() {
               Estado: {groupsCompleted ? (finalCompleted ? 'Completado' : 'Fases Eliminatorias') : 'Fase de Grupos'}
             </span>
           </div>
-          <button onClick={handleReset} className="glow-btn" style={{ background: 'rgba(239, 68, 68, 0.2)', border: '1px solid rgba(239, 68, 68, 0.4)', color: '#ef4444', boxShadow: 'none' }} disabled={simulating}>
-            <RotateCcw size={16} /> Reiniciar DB
+          <button onClick={handleResetWc26} className="glow-btn" style={{ background: 'rgba(239, 68, 68, 0.2)', border: '1px solid rgba(239, 68, 68, 0.4)', color: '#ef4444', boxShadow: 'none' }} disabled={simulating}>
+            <RotateCcw size={16} /> Reiniciar BD
           </button>
         </div>
       </header>
@@ -335,6 +363,9 @@ export default function App() {
             <button className={`tab-btn ${activeTab === 'rankings' ? 'active' : ''}`} onClick={() => setActiveTab('rankings')}>
               <Award size={16} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} /> Rankings ELO & FIFA
             </button>
+            <button className={`tab-btn ${activeTab === 'config' ? 'active' : ''}`} onClick={() => setActiveTab('config')}>
+              <Settings size={16} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} /> Configuración
+            </button>
           </div>
 
           <div className="grid-layout">
@@ -350,79 +381,87 @@ export default function App() {
                     <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', marginBottom: '16px', color: '#fff', borderBottom: '1px solid var(--border-color)', paddingBottom: '10px' }}>
                       Panel de Simulación de Fases
                     </h2>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
                       
                       {/* Step 1: Group Stage */}
                       <div className="glass-panel" style={{ padding: '16px', background: 'rgba(255,255,255,0.02)', borderColor: groupsCompleted ? 'rgba(0, 255, 170, 0.2)' : 'var(--border-color)' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                           <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Paso 1</span>
-                          <span style={{ fontSize: '0.75rem', padding: '2px 6px', borderRadius: '4px', background: groupsCompleted ? 'rgba(0,255,170,0.1)' : 'rgba(0,240,255,0.1)', color: groupsCompleted ? 'var(--accent-neon)' : 'var(--accent-cyan)' }}>
-                            {groupsCompleted ? 'Completado' : 'Pendiente'}
-                          </span>
                         </div>
                         <h3 style={{ fontSize: '1rem', marginBottom: '12px' }}>Fase de Grupos</h3>
-                        <button 
-                          className="glow-btn" 
-                          style={{ width: '100%', justifyContent: 'center', padding: '8px' }}
-                          onClick={() => handleSimulatePhase('Group')} 
-                          disabled={groupsCompleted || simulating}
-                        >
-                          <Play size={14} /> Simular Grupos
-                        </button>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px' }} onClick={() => handleSimulatePhase('Group')} disabled={groupsCompleted || simulating}>
+                            <Play size={14} /> Simular
+                          </button>
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #00f0ff, #0077ff)' }} onClick={() => handleAdvanceTournament('Group')} disabled={!groupsCompleted || r32Exists || simulating}>
+                            <ChevronRight size={14} /> Avanzar
+                          </button>
+                        </div>
                       </div>
 
-                      {/* Step 2: Advance to SF */}
-                      <div className="glass-panel" style={{ padding: '16px', background: 'rgba(255,255,255,0.02)', borderColor: sfExists ? 'rgba(0, 255, 170, 0.2)' : 'var(--border-color)' }}>
+                      {/* Step 2: R32 */}
+                      <div className="glass-panel" style={{ padding: '16px', background: 'rgba(255,255,255,0.02)', borderColor: r32Completed ? 'rgba(0, 255, 170, 0.2)' : 'var(--border-color)' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                           <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Paso 2</span>
-                          <span style={{ fontSize: '0.75rem', padding: '2px 6px', borderRadius: '4px', background: sfExists ? 'rgba(0,255,170,0.1)' : 'rgba(255,255,255,0.05)', color: sfExists ? 'var(--accent-neon)' : 'var(--text-muted)' }}>
-                            {sfExists ? 'Listo' : 'Espera Paso 1'}
-                          </span>
                         </div>
-                        <h3 style={{ fontSize: '1rem', marginBottom: '12px' }}>Calcular Semifinales</h3>
-                        <button 
-                          className="glow-btn" 
-                          style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #00f0ff, #0077ff)' }}
-                          onClick={() => handleAdvanceTournament('Group')} 
-                          disabled={!groupsCompleted || sfExists || simulating}
-                        >
-                          <ChevronRight size={14} /> Avanzar a Semifinales
-                        </button>
+                        <h3 style={{ fontSize: '1rem', marginBottom: '12px' }}>16avos</h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px' }} onClick={() => handleSimulatePhase('Round of 32')} disabled={!r32Exists || r32Completed || simulating}>
+                            <Play size={14} /> Simular
+                          </button>
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #00f0ff, #0077ff)' }} onClick={() => handleAdvanceTournament('Round of 32')} disabled={!r32Completed || r16Exists || simulating}>
+                            <ChevronRight size={14} /> Avanzar
+                          </button>
+                        </div>
                       </div>
 
-                      {/* Step 3: SF & Final */}
-                      <div className="glass-panel" style={{ padding: '16px', background: 'rgba(255,255,255,0.02)', borderColor: finalExists ? 'rgba(0, 255, 170, 0.2)' : 'var(--border-color)' }}>
+                      {/* Step 3: R16 */}
+                      <div className="glass-panel" style={{ padding: '16px', background: 'rgba(255,255,255,0.02)', borderColor: r16Completed ? 'rgba(0, 255, 170, 0.2)' : 'var(--border-color)' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                           <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Paso 3</span>
-                          <span style={{ fontSize: '0.75rem', padding: '2px 6px', borderRadius: '4px', background: finalExists ? 'rgba(0,255,170,0.1)' : 'rgba(255,255,255,0.05)', color: finalExists ? 'var(--accent-neon)' : 'var(--text-muted)' }}>
-                            {finalExists ? 'Final Programada' : 'Espera Paso 2'}
-                          </span>
                         </div>
-                        <h3 style={{ fontSize: '1rem', marginBottom: '12px' }}>Semifinales y Final</h3>
+                        <h3 style={{ fontSize: '1rem', marginBottom: '12px' }}>Octavos</h3>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                          <button 
-                            className="glow-btn" 
-                            style={{ width: '100%', justifyContent: 'center', padding: '8px' }}
-                            onClick={() => handleSimulatePhase('Semifinals')} 
-                            disabled={!sfExists || sfCompleted || simulating}
-                          >
-                            <Play size={14} /> Simular SF
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px' }} onClick={() => handleSimulatePhase('Round of 16')} disabled={!r16Exists || r16Completed || simulating}>
+                            <Play size={14} /> Simular
                           </button>
-                          <button 
-                            className="glow-btn" 
-                            style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #00f0ff, #0077ff)' }}
-                            onClick={() => handleAdvanceTournament('Semifinals')} 
-                            disabled={!sfCompleted || finalExists || simulating}
-                          >
-                            <ChevronRight size={14} /> Calcular Final
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #00f0ff, #0077ff)' }} onClick={() => handleAdvanceTournament('Round of 16')} disabled={!r16Completed || qfExists || simulating}>
+                            <ChevronRight size={14} /> Avanzar
                           </button>
-                          <button 
-                            className="glow-btn" 
-                            style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #ffd700, #ff8800)', color: '#000' }}
-                            onClick={() => handleSimulatePhase('Final')} 
-                            disabled={!finalExists || finalCompleted || simulating}
-                          >
-                            <Play size={14} /> Simular Gran Final
+                        </div>
+                      </div>
+
+                      {/* Step 4: QF */}
+                      <div className="glass-panel" style={{ padding: '16px', background: 'rgba(255,255,255,0.02)', borderColor: qfCompleted ? 'rgba(0, 255, 170, 0.2)' : 'var(--border-color)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                          <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Paso 4</span>
+                        </div>
+                        <h3 style={{ fontSize: '1rem', marginBottom: '12px' }}>Cuartos</h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px' }} onClick={() => handleSimulatePhase('Quarterfinals')} disabled={!qfExists || qfCompleted || simulating}>
+                            <Play size={14} /> Simular
+                          </button>
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #00f0ff, #0077ff)' }} onClick={() => handleAdvanceTournament('Quarterfinals')} disabled={!qfCompleted || sfExists || simulating}>
+                            <ChevronRight size={14} /> Avanzar
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Step 5: SF & Final */}
+                      <div className="glass-panel" style={{ padding: '16px', background: 'rgba(255,255,255,0.02)', borderColor: finalExists ? 'rgba(0, 255, 170, 0.2)' : 'var(--border-color)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                          <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Paso 5</span>
+                        </div>
+                        <h3 style={{ fontSize: '1rem', marginBottom: '12px' }}>Semis y Final</h3>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px' }} onClick={() => handleSimulatePhase('Semifinals')} disabled={!sfExists || sfCompleted || simulating}>
+                            <Play size={14} /> Simular Semis
+                          </button>
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #00f0ff, #0077ff)' }} onClick={() => handleAdvanceTournament('Semifinals')} disabled={!sfCompleted || finalExists || simulating}>
+                            <ChevronRight size={14} /> Avanzar
+                          </button>
+                          <button className="glow-btn" style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #ffd700, #ff8800)', color: '#000' }} onClick={() => handleSimulatePhase('Final')} disabled={!finalExists || finalCompleted || simulating}>
+                            <Play size={14} /> Gran Final
                           </button>
                         </div>
                       </div>
@@ -436,20 +475,25 @@ export default function App() {
                       <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', color: '#fff' }}>
                         Calendario de Partidos
                       </h2>
-                      <div style={{ display: 'flex', gap: '8px' }}>
-                        {['All', 'Group', 'Semifinals', 'Final'].map(f => (
-                          <button 
-                            key={f} 
-                            style={{ padding: '4px 10px', borderRadius: '6px', border: '1px solid var(--border-color)', background: phaseFilter === f ? 'var(--bg-tertiary)' : 'transparent', color: phaseFilter === f ? 'var(--accent-neon)' : 'var(--text-secondary)', cursor: 'pointer', fontSize: '0.8rem' }}
-                            onClick={() => setPhaseFilter(f)}
-                          >
-                            {f === 'All' ? 'Todos' : f === 'Group' ? 'Grupos' : f === 'Semifinals' ? 'Semifinales' : 'Final'}
-                          </button>
-                        ))}
+                      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                        {['All', 'Group', 'Round of 32', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Final'].map(f => {
+                          let label = f === 'All' ? 'Todos' : f === 'Group' ? 'Grupos' : f === 'Round of 32' ? '16avos' : f === 'Round of 16' ? 'Octavos' : f === 'Quarterfinals' ? 'Cuartos' : f === 'Semifinals' ? 'Semis' : 'Final';
+                          return (
+                            <button 
+                              key={f} 
+                              style={{ padding: '4px 10px', borderRadius: '6px', border: '1px solid var(--border-color)', background: phaseFilter === f ? 'var(--bg-tertiary)' : 'transparent', color: phaseFilter === f ? 'var(--accent-neon)' : 'var(--text-secondary)', cursor: 'pointer', fontSize: '0.8rem' }}
+                              onClick={() => setPhaseFilter(f)}
+                            >
+                              {label}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
+                    
+                    <TournamentBracket matches={matches} />
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '550px', overflowY: 'auto', paddingRight: '4px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '550px', overflowY: 'auto', paddingRight: '4px', marginTop: '16px' }}>
                       {filteredMatches.length === 0 ? (
                         <p style={{ textAlign: 'center', padding: '40px 0', color: 'var(--text-secondary)' }}>
                           No hay partidos disponibles para esta fase. Avance en la simulación.
@@ -767,6 +811,28 @@ export default function App() {
                       )}
                     </>
                   )}
+                </div>
+              )}
+              {/* Tab 4: Config */}
+              {activeTab === 'config' && (
+                <div className="glass-panel" style={{ padding: '24px', gridColumn: '1 / -1' }}>
+                  <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', marginBottom: '20px', color: '#fff', borderBottom: '1px solid var(--border-color)', paddingBottom: '10px' }}>
+                    Configuración Avanzada
+                  </h2>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    <div className="glass-panel" style={{ padding: '20px', background: 'rgba(239, 68, 68, 0.05)', borderColor: 'rgba(239, 68, 68, 0.2)' }}>
+                      <h3 style={{ fontSize: '1.2rem', color: '#ef4444', marginBottom: '12px' }}>Restaurar Base de Datos Completa (Local CSV)</h3>
+                      <p style={{ color: 'var(--text-secondary)', marginBottom: '16px' }}>
+                        Esta acción borrará absolutamente <strong>todos</strong> los datos de la base de datos actual y la restaurará rápidamente a partir de los respaldos locales CSV (incluyendo histórico, ELOs y estadísticas pre-calculadas).
+                        <br/><br/>
+                        <strong>Aviso:</strong> Esta operación perderá cualquier progreso de simulación actual.
+                      </p>
+                      <button onClick={handleResetAll} className="glow-btn" style={{ background: '#ef4444', color: '#fff', border: 'none', padding: '10px 20px', fontWeight: 'bold' }} disabled={simulating}>
+                        <RotateCcw size={18} style={{ marginRight: '8px' }} />
+                        Ejecutar Restauración Completa
+                      </button>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

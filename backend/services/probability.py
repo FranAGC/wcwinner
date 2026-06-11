@@ -118,6 +118,14 @@ class MatchProbabilityService:
          h2h_hw, h2h_aw, h2h_d,
          h2h_hg, h2h_ag) = res
 
+        # Fetch Average Player Ratings (Micro-level data)
+        with self.repo.conn_factory(read_only=True) as conn:
+            h_rating = conn.execute("SELECT AVG(base_rating) FROM players p JOIN squad_calls s ON p.player_id = s.player_id WHERE s.team_id = ?", [home_team]).fetchone()[0] or 70.0
+            a_rating = conn.execute("SELECT AVG(base_rating) FROM players p JOIN squad_calls s ON p.player_id = s.player_id WHERE s.team_id = ?", [away_team]).fetchone()[0] or 70.0
+        
+        # Player rating delta factor (-0.2 to +0.2 roughly)
+        player_edge = (h_rating - a_rating) / 100.0
+
         # -------------------------------------------------------------- #
         # 1. BIVARIATE POISSON COMPONENT                                  #
         # -------------------------------------------------------------- #
@@ -180,7 +188,8 @@ class MatchProbabilityService:
         if h2h_total >= 3:
             h2h_edge = ((h2h_hw or 0) - (h2h_aw or 0)) / h2h_total  # range -1 to +1
 
-        composite_edge = 0.5 * form_delta + 0.3 * h2h_edge + 0.2 * squad_delta
+        # Composite Edge blends macro (Form, H2H) with micro (Player Ratings, Squad Size)
+        composite_edge = 0.35 * form_delta + 0.3 * player_edge + 0.25 * h2h_edge + 0.1 * squad_delta
         # Map composite edge to probability adjustment
         # edge ≈ +0.2 → +4% home win, -2% draw, -2% away win
         p_hw_adj = max(0.05, min(0.9, 0.38 + 0.20 * composite_edge))

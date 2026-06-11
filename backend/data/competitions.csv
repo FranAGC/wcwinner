@@ -1,0 +1,6 @@
+competition_id,competition_name,competition_type
+WC,FIFA World Cup,International
+FRIENDLY,International Friendly,International
+COPA_AMERICA,Copa América,Continental
+EURO,UEFA Euro,Continental
+OTHER,Other Tournament,International

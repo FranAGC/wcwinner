@@ -195,10 +195,20 @@ def advance_tournament(
 ):
     """Generate matchups for the next phase based on the finished phase's results."""
     try:
-        if current_phase.lower() == "group":
-            new_matches = simulator.advance_group_stage_to_knockout(tournament_id)
-            return {"message": "Advanced Group Stage to Semifinals", "scheduled_matches": new_matches}
-        elif current_phase.lower() == "semifinals":
+        p = current_phase.lower()
+        if p == "group":
+            new_matches = simulator.advance_group_stage_to_round32(tournament_id)
+            return {"message": "Advanced Group Stage to Round of 32", "scheduled_matches": new_matches}
+        elif p == "round of 32":
+            new_matches = simulator.advance_round32_to_round16(tournament_id)
+            return {"message": "Advanced Round of 32 to Round of 16", "scheduled_matches": new_matches}
+        elif p == "round of 16":
+            new_matches = simulator.advance_round16_to_quarterfinals(tournament_id)
+            return {"message": "Advanced Round of 16 to Quarterfinals", "scheduled_matches": new_matches}
+        elif p == "quarterfinals":
+            new_matches = simulator.advance_quarterfinals_to_semifinals(tournament_id)
+            return {"message": "Advanced Quarterfinals to Semifinals", "scheduled_matches": new_matches}
+        elif p == "semifinals":
             new_matches = simulator.advance_semifinals_to_final(tournament_id)
             return {"message": "Advanced Semifinals to Final", "scheduled_matches": new_matches}
         else:
@@ -206,13 +216,23 @@ def advance_tournament(
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
-@app.post("/reset")
-def reset_database():
+@app.post("/reset/wc26")
+def reset_wc26_database():
+    """Reset only the WC26 tournament matches and stats."""
+    try:
+        from backend.scripts.seed_wc26 import seed_wc26
+        seed_wc26()
+        return {"message": "WC26 tournament data successfully reset to initial schedule"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/reset/all")
+def reset_all_database():
     """Reset the database to the initial clean state by executing the run_etl.py pipeline."""
     try:
         from backend.scripts.run_etl import run_pipeline
         run_pipeline()
-        return {"message": "Database successfully reset to initial state"}
+        return {"message": "Database completely rebuilt to initial state"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

@@ -1,0 +1,1793 @@
+player_id,player_name,birth_date,position,club,base_rating
+P-01925,Cyle Larin,1995-04-17,Forward,,81.8
+P-60139,Omid Ebrahimi,1987-09-16,Midfielder,,83.4
+P-22286,Robert Arboleda,1991-10-22,Defender,,83.6
+P-42565,Gaëtan Englebert,1976-06-11,Midfielder,,82.1
+P-19142,Chang-soo Kim,1985-09-12,Defender,,78.5
+P-77301,Bassem Srarfi,1997-06-25,Forward,,71.5
+P-61424,Jefferson Lerma,1994-10-25,Midfielder,,81.8
+P-91602,Sofiane Melliti,1978-08-18,Midfielder,,72.2
+P-71601,Eric Van Meir,1968-02-28,Defender,,78.4
+P-27047,Leo Franco,1977-05-29,Midfielder,,86.6
+P-09632,Seok-ho Hwang,1989-06-27,Defender,,82.3
+P-00652,Juan Foyth,1998-01-12,Defender,,78.6
+P-57975,not applicable Ricardinho,1976-05-23,Midfielder,,88.5
+P-56626,Ki-hyeon Seol,1979-01-08,Forward,,80.5
+P-94093,Anass Zaroury,2000-11-07,Midfielder,,80.7
+P-68164,Danny Mills,1977-05-18,Defender,,83.3
+P-41902,Hiroki Ito,1999-05-12,Defender,,75.7
+P-20248,Jae-jin Cho,1981-07-09,Forward,,83.6
+P-47906,Youri Tielemans,1997-05-07,Midfielder,,87.3
+P-81126,Ryan Nelsen,1977-10-18,Defender,,69.8
+P-57715,Óscar Bagüí,1982-12-10,Defender,,79.2
+P-27419,Rodrigo Palacio,1982-02-05,Forward,,82.1
+P-08169,Jordan Henderson,1990-06-17,Midfielder,,86.4
+P-04686,Emil Forsberg,1991-10-23,Midfielder,,84.1
+P-88928,Bamba Dieng,2000-03-23,Forward,,74.7
+P-09441,Dani Alves,1983-05-06,Defender,,82.4
+P-37782,Arif Erdem,1972-01-02,Forward,,75.2
+P-42911,Héctor Herrera,1990-04-19,Midfielder,,74.3
+P-37294,not applicable Koke,1992-01-08,Midfielder,,88.1
+P-69606,Hugo Campagnaro,1980-06-27,Defender,,88.8
+P-33434,Massimo Luongo,1992-09-25,Midfielder,,80.2
+P-56844,Mohammad Nosrati,1982-01-11,Defender,,83.4
+P-15566,Munir Mohamedi,1989-05-10,Midfielder,,75.2
+P-19156,Agustín Delgado,1974-12-23,Forward,,79.1
+P-77063,Javier Mascherano,1984-06-08,Midfielder,,82.7
+P-51395,Thierry Henry,1977-08-17,Forward,,85.5
+P-72819,Michael Amir Murillo,1996-02-11,Defender,,77.7
+P-16053,Fabian Delph,1989-11-21,Defender,,78.5
+P-30708,Jae-sung Kim,1983-10-03,Midfielder,,83.4
+P-09053,Alejandro Bedoya,1987-04-29,Midfielder,,76.1
+P-06608,Chu-young Park,1985-07-10,Forward,,74.2
+P-96259,Tajon Buchanan,1999-02-08,Forward,,82.0
+P-24897,not applicable Pedri,2002-11-25,Midfielder,,89.3
+P-44505,Erick Davis,1991-03-31,Defender,,77.9
+P-62854,Abdul Fatawu Issahaku,2004-03-08,Midfielder,,79.8
+P-35334,Nicolas Lombaerts,1985-03-20,Defender,,80.8
+P-26303,Yuto Nagatomo,1986-09-12,Defender,,73.6
+P-55140,Cheikhou Kouyaté,1989-12-21,Midfielder,,82.6
+P-84093,Mark Iuliano,1973-08-12,Defender,,82.9
+P-91889,Chul Hong,1990-09-17,Defender,,84.0
+P-55935,Jefferson Montero,1989-09-01,Midfielder,,77.7
+P-61172,Son Jun-ho,1992-05-12,Midfielder,,75.5
+P-84395,Samuel Kuffour,1976-09-03,Defender,,80.4
+P-86499,not applicable Ramires,1987-03-24,Midfielder,,88.8
+P-07902,Magnus Hedman,1973-03-19,Midfielder,,75.9
+P-22128,Bilel Ifa,1990-03-09,Defender,,79.0
+P-17445,Luis Ernesto Pérez,1981-01-12,Midfielder,,80.3
+P-90145,Shane Smeltz,1981-09-29,Forward,,72.4
+P-84382,Sadegh Moharrami,1996-03-01,Defender,,76.1
+P-89804,not applicable Luizão,1975-11-14,Forward,,85.1
+P-95369,Tomas Antonelius,1973-05-07,Defender,,73.0
+P-80996,Eduardo Camavinga,2002-11-10,Midfielder,,77.8
+P-46898,Yeremy Pino,2002-10-20,Forward,,86.5
+P-53533,Djibril Cissé,1981-08-12,Forward,,86.4
+P-71308,Keun-ho Lee,1985-04-11,Forward,,76.5
+P-35320,Cristian Roldan,1995-06-03,Midfielder,,75.6
+P-07148,Markus Rosenberg,1982-09-27,Forward,,80.6
+P-34376,Bart Goor,1973-04-09,Midfielder,,76.7
+P-24689,Fatau Dauda,1985-04-06,Midfielder,,74.1
+P-53385,Harold Cummings,1992-03-01,Defender,,70.7
+P-82216,Moisés Caicedo,2001-11-02,Midfielder,,75.5
+P-98210,Jonny Magallón,1981-11-21,Defender,,81.5
+P-80826,Guillermo Ochoa,1985-07-13,Midfielder,,83.7
+P-72804,Jorge Guagua,1981-09-28,Defender,,84.3
+P-58061,Lucas Cavallini,1992-12-28,Forward,,74.8
+P-45528,Robbie Kruse,1988-10-05,Forward,,81.8
+P-77071,not applicable Fabinho,1993-10-23,Midfielder,,81.1
+P-24062,Jorge Sánchez,1997-12-10,Defender,,81.5
+P-75090,José Izquierdo,1992-07-07,Forward,,80.5
+P-50034,Ben White,1997-10-08,Defender,,76.8
+P-24300,Mix Diskerud,1990-10-02,Midfielder,,83.7
+P-86098,José Antonio Castro,1980-08-11,Defender,,80.3
+P-60541,Sergio Romero,1987-02-22,Midfielder,,88.0
+P-42890,Jermain Defoe,1982-10-07,Forward,,78.6
+P-02977,Peter Van der Heyden,1976-07-16,Defender,,87.2
+P-49265,Antonio Valencia,1985-08-04,Midfielder,,84.7
+P-01249,Rio Ferdinand,1978-11-07,Defender,,77.2
+P-20974,Didier Ya Konan,1984-05-22,Forward,,72.8
+P-31566,Ümit Davala,1973-07-30,Midfielder,,81.0
+P-56859,Jonás Gutiérrez,1983-07-05,Midfielder,,81.7
+P-90867,Ferjani Sassi,1992-03-18,Midfielder,,82.9
+P-71023,Sofyan Amrabat,1996-08-21,Midfielder,,85.1
+P-26659,Young-min Hyun,1979-12-25,Defender,,75.0
+P-50270,Anthony Annan,1986-07-21,Midfielder,,80.6
+P-11638,Isaác Brizuela,1990-08-28,Midfielder,,85.4
+P-62769,Gōtoku Sakai,1991-03-14,Defender,,82.7
+P-12913,Tariq Lamptey,2000-09-30,Defender,,77.0
+P-99967,Wayne Rooney,1985-10-24,Forward,,80.6
+P-32968,not applicable Luisão,1981-02-13,Defender,,87.5
+P-91114,Laurent Koscielny,1985-09-10,Defender,,81.8
+P-90491,Yoshito Ōkubo,1982-06-09,Forward,,78.5
+P-48887,Hannibal Mejbri,2003-01-21,Midfielder,,82.1
+P-55590,Éder Militão,1998-01-18,Defender,,86.7
+P-36056,Vratislav Lokvenc,1973-09-27,Forward,,75.5
+P-71727,Joel Waterman,1996-01-24,Defender,,75.3
+P-52641,Ali Boumnijel,1966-04-13,Midfielder,,76.3
+P-60304,Mark Paston,1976-12-13,Midfielder,,64.9
+P-70691,Loïs Openda,2000-02-16,Forward,,83.3
+P-91831,Sven Vermant,1973-04-04,Midfielder,,81.1
+P-90384,Martin Keown,1966-07-24,Defender,,82.5
+P-29185,Mohammad Rashid Mazaheri,1989-05-18,Midfielder,,76.1
+P-33325,Kamaldeen Sulemana,2002-02-15,Midfielder,,74.2
+P-22378,Mauro Camoranesi,1976-10-04,Midfielder,,77.4
+P-32822,Ki-hun Yeom,1983-03-30,Forward,,74.6
+P-59735,Ulrich Ramé,1972-09-19,Midfielder,,82.1
+P-92252,Daniel-Kofi Kyereh,1996-03-08,Midfielder,,82.5
+P-33400,Sébastien Squillaci,1980-08-11,Defender,,82.8
+P-75751,Hidemasa Morita,1995-05-10,Midfielder,,77.4
+P-50303,Pape Malick Diop,1974-12-29,Defender,,73.8
+P-72039,Herculez Gomez,1982-04-06,Forward,,83.1
+P-00640,Ziad Jaziri,1978-07-12,Forward,,76.0
+P-12781,Takayuki Morimoto,1988-05-07,Forward,,76.5
+P-40400,Emmanuel Petit,1970-09-22,Midfielder,,89.1
+P-96490,Rahman Rezaei,1975-02-20,Defender,,81.5
+P-26847,Damiano Tommasi,1974-05-17,Midfielder,,76.9
+P-66229,Esteban Cambiasso,1980-08-18,Midfielder,,82.4
+P-96540,Patrick Vieira,1976-06-23,Midfielder,,79.7
+P-88360,Kwon Chang-hoon,1994-06-30,Midfielder,,76.6
+P-92316,Emmanuel Eboué,1983-06-04,Defender,,83.3
+P-10244,Mathew Ryan,1992-04-08,Midfielder,,78.0
+P-10063,Miguel Layún,1988-06-25,Defender,,83.9
+P-18830,Florent Malouda,1980-06-13,Midfielder,,82.8
+P-55485,Won-hee Cho,1983-04-17,Defender,,76.5
+P-68599,Thomas Deng,1997-03-20,Defender,,72.2
+P-21701,Marek Heinz,1977-08-04,Forward,,78.9
+P-49882,Derek Boateng,1983-05-02,Midfielder,,74.9
+P-74066,not applicable Josué,1979-07-19,Midfielder,,88.9
+P-24653,not applicable Kahraba,1994-04-13,Forward,,72.1
+P-77335,Heung-min Son,1992-07-08,Forward,,75.9
+P-26250,Pavel Mareš,1976-01-18,Defender,,81.7
+P-53967,Iñaki Williams,1994-06-15,Forward,,75.2
+P-03191,Yohan Benalouane,1987-03-28,Defender,,71.9
+P-30652,Mickaël Landreau,1979-05-14,Midfielder,,85.1
+P-08514,Fernando Morientes,1976-04-05,Forward,,82.8
+P-86404,Éder Álvarez Balanta,1993-02-28,Defender,,79.1
+P-72637,Romelu Lukaku,1993-05-13,Forward,,77.2
+P-41152,Matthew Upson,1979-04-18,Defender,,81.7
+P-39788,Franco Armani,1986-10-16,Midfielder,,88.5
+P-90908,Antoine Griezmann,1991-03-21,Forward,,87.6
+P-05318,Trent Alexander-Arnold,1998-10-07,Defender,,86.5
+P-12810,Boualem Khoukhi,1990-07-09,Defender,,71.2
+P-20998,Alireza Beiranvand,1992-09-21,Midfielder,,75.4
+P-90633,Mbo Mpenza,1976-12-04,Forward,,79.5
+P-38372,Jack Butland,1993-03-10,Midfielder,,79.6
+P-82956,Daniel Amartey,1994-12-21,Defender,,74.5
+P-49610,Ryuzo Morioka,1975-10-07,Defender,,82.3
+P-96697,Nampalys Mendy,1992-06-23,Midfielder,,83.8
+P-14907,Milan Baroš,1981-10-28,Forward,,76.9
+P-44851,Michael Estrada,1996-04-07,Forward,,76.4
+P-10561,Édgar Bárcenas,1993-10-23,Midfielder,,72.6
+P-55762,Sammy Bossut,1985-08-11,Midfielder,,88.1
+P-95198,Orbelín Pineda,1996-03-24,Forward,,84.4
+P-58634,Gilles Yapi Yapo,1982-01-13,Midfielder,,73.3
+P-92353,Ángel Correa,1995-03-09,Forward,,84.8
+P-32575,Gabriel Gómez,1984-05-29,Midfielder,,77.0
+P-86920,Ibrahima Konaté,1999-05-25,Defender,,84.2
+P-22338,Chun-soo Lee,1981-07-09,Forward,,82.9
+P-72916,Patrice Evra,1981-05-15,Defender,,89.2
+P-40630,Stephen Adams,1989-09-28,Midfielder,,81.6
+P-99025,Aymeric Laporte,1994-05-27,Defender,,84.7
+P-96174,Segundo Castillo,1982-05-15,Midfielder,,84.4
+P-29172,Filippo Inzaghi,1973-08-09,Forward,,80.4
+P-57361,not applicable Ronaldinho,1980-03-21,Midfielder,,78.8
+P-64198,Ricardo Clark,1983-03-10,Midfielder,,75.7
+P-61216,Owen Hargreaves,1981-01-20,Midfielder,,86.3
+P-98022,Gaël Givet,1981-10-09,Defender,,77.7
+P-97778,Ousmane Dembélé,1997-05-15,Forward,,78.8
+P-89750,Olivier Giroud,1986-09-30,Forward,,84.9
+P-30116,Federico Marchetti,1983-02-07,Midfielder,,77.1
+P-97434,Carlos Salcido,1980-04-02,Defender,,80.6
+P-06384,Ante Covic,1975-06-13,Midfielder,,82.3
+P-88939,Sung-ryong Jung,1985-01-04,Midfielder,,74.6
+P-93920,Jae-sung Lee,1992-08-10,Midfielder,,72.7
+P-75820,Arthur Theate,2000-05-25,Defender,,85.0
+P-47815,Ellyes Skhiri,1995-05-10,Midfielder,,80.4
+P-34956,Yutaka Akita,1970-08-06,Defender,,74.9
+P-64961,Toshihiro Hattori,1973-09-23,Defender,,77.8
+P-04237,Diego Palacios,1999-07-12,Defender,,77.5
+P-45212,Marcus Allbäck,1973-07-05,Forward,,73.6
+P-23070,Lisandro Martínez,1998-01-18,Defender,,80.8
+P-39545,not applicable Zé Roberto,1974-07-06,Midfielder,,86.3
+P-53282,Wataru Endo,1993-02-09,Defender,,85.4
+P-56348,Alberto Rodríguez,1974-04-01,Defender,,79.1
+P-81067,Adam Taggart,1993-06-02,Forward,,72.9
+P-99821,Seny Dieng,1994-11-23,Midfielder,,78.9
+P-12533,Mousa Dembélé,1987-07-16,Midfielder,,79.1
+P-16148,Ibrahim Danlad,2002-12-02,Midfielder,,79.8
+P-82154,Ryota Oshima,1993-01-23,Midfielder,,80.0
+P-11879,Dylan Bronn,1995-06-19,Defender,,76.7
+P-03128,Iván Kaviedes,1977-10-24,Forward,,84.7
+P-16416,Ali Karimi,1978-11-08,Midfielder,,77.3
+P-99089,Manuel da Costa,1986-05-06,Defender,,78.6
+P-33622,Boulaye Dia,1996-11-16,Forward,,73.5
+P-64424,Cristian Ansaldi,1986-09-20,Defender,,78.8
+P-88863,Fabio Cannavaro,1973-09-13,Defender,,83.6
+P-53809,Daniel Viteri,1981-12-12,Midfielder,,81.1
+P-76842,Bukayo Saka,2001-09-05,Forward,,82.6
+P-65216,Dominic Adiyiah,1989-11-29,Forward,,80.4
+P-73907,Jimmy Durmaz,1989-03-22,Midfielder,,79.0
+P-09113,Sardar Azmoun,1995-01-01,Forward,,75.7
+P-01945,André Ayew,1989-12-17,Midfielder,,81.3
+P-58741,Ricky Álvarez,1988-04-12,Midfielder,,78.5
+P-76287,Conor Coady,1993-02-25,Defender,,86.3
+P-93241,Aruna Dindane,1980-11-26,Forward,,82.9
+P-23821,Mohammed Kudus,2000-08-02,Midfielder,,81.9
+P-08628,Saad Samir,1989-04-01,Defender,,79.8
+P-41789,Mahmoud Hamdy,1995-06-01,Defender,,74.0
+P-99817,Gaku Shibasaki,1992-05-28,Midfielder,,83.2
+P-04964,Blaise Matuidi,1987-04-09,Midfielder,,81.5
+P-92987,Randal Kolo Muani,1998-12-05,Forward,,80.8
+P-61767,James Meredith,1988-04-05,Defender,,83.1
+P-51440,not applicable Juanito,1976-07-23,Defender,,90.4
+P-03945,Dayot Upamecano,1998-10-27,Defender,,85.4
+P-27263,Masato Morishige,1987-05-21,Defender,,79.1
+P-55244,Wes Brown,1979-10-13,Defender,,81.9
+P-39347,Moisés Ramírez,2000-09-09,Midfielder,,73.5
+P-37612,Hyun-soo Jang,1991-09-28,Defender,,73.8
+P-21070,Daniel Van Buyten,1978-02-07,Defender,,88.1
+P-45680,Anis Ben Slimane,2001-03-16,Forward,,71.9
+P-59324,David James,1970-08-01,Midfielder,,78.9
+P-09614,Noussair Mazraoui,1997-11-14,Defender,,80.4
+P-43764,Glen Johnson,1984-08-23,Defender,,75.9
+P-56430,Zinedine Zidane,1972-06-23,Midfielder,,88.3
+P-19512,Jalal Hosseini,1982-02-03,Defender,,79.0
+P-42663,Tarek Salman,1997-12-05,Defender,,77.0
+P-14151,Tyler Adams,1999-02-14,Midfielder,,84.8
+P-95312,Leandro Trossard,1994-12-04,Forward,,88.0
+P-79884,Ibrahim Ayew,1988-04-16,Defender,,81.7
+P-94551,not applicable Maicon,1981-07-26,Defender,,80.5
+P-70618,Jordan Pickford,1994-03-07,Midfielder,,83.4
+P-29136,Mame Biram Diouf,1987-12-16,Forward,,81.9
+P-30363,not applicable Gilberto,1976-04-25,Defender,,87.9
+P-13162,Emiliano Martínez,1992-09-02,Midfielder,,87.7
+P-77892,Adolfo Machado,1985-02-14,Defender,,79.1
+P-17988,Wilmar Barrios,1993-10-16,Midfielder,,86.8
+P-53270,Medhi Benatia,1987-04-17,Defender,,77.4
+P-28014,Diego Milito,1979-06-12,Forward,,80.9
+P-91280,Tomáš Ujfaluši,1978-03-24,Defender,,72.8
+P-70145,Elisha Owusu,1997-11-07,Midfielder,,72.4
+P-38556,Asamoah Gyan,1985-11-22,Forward,,78.2
+P-37239,not applicable Oscar,1991-09-09,Midfielder,,78.2
+P-37372,not applicable Jô,1987-03-20,Forward,,88.1
+P-57411,Moussa Wagué,1998-10-04,Defender,,78.2
+P-67089,Jason Cummings,1995-08-01,Forward,,77.4
+P-09349,Hidetoshi Nakata,1977-01-22,Midfielder,,80.9
+P-86290,Roberto Abbondanzieri,1972-08-19,Midfielder,,87.4
+P-48341,Maurice Edu,1986-04-18,Midfielder,,80.9
+P-37735,Juninho Pernambucano,1975-01-30,Midfielder,,84.1
+P-17136,Chris Wood,1991-12-07,Forward,,70.2
+P-11191,Francisco Javier Rodríguez,1981-10-20,Defender,,80.7
+P-01505,Santiago Arias,1992-01-13,Defender,,81.1
+P-74059,Hassan Roudbarian,1978-07-06,Midfielder,,78.8
+P-58069,Abdullah Ercan,1971-12-08,Midfielder,,78.1
+P-17048,Mohammed Muntari,1993-12-20,Forward,,72.2
+P-32803,Aymen Dahmen,1997-01-28,Midfielder,,72.7
+P-45750,Kyle Beckerman,1982-04-23,Midfielder,,81.0
+P-49934,William Pacho,2001-10-16,Defender,,85.0
+P-29967,John Mensah,1982-11-29,Defender,,75.3
+P-80656,Bilal El Khannous,2004-05-10,Midfielder,,83.2
+P-29082,not applicable Juanfran,1976-07-15,Defender,,78.4
+P-91431,Gonzalo Montiel,1997-01-01,Defender,,82.6
+P-70715,Hakim Ziyech,1993-03-19,Midfielder,,73.6
+P-42534,Édison Méndez,1979-03-16,Forward,,76.4
+P-01045,Fabio Quagliarella,1983-01-31,Forward,,83.4
+P-50142,Mohammed Salisu,1999-04-17,Defender,,73.2
+P-52008,not applicable Emerson,1976-04-04,Midfielder,,81.9
+P-42223,Wahbi Khazri,1991-02-08,Forward,,78.4
+P-20762,Yahya Golmohammadi,1971-03-19,Defender,,73.8
+P-55391,Hamdi Marzouki,1977-01-23,Defender,,75.9
+P-83849,Trent Sainsbury,1992-01-05,Defender,,75.6
+P-52217,David de Gea,1990-11-07,Midfielder,,85.9
+P-15887,Oscar Hiljemark,1992-06-28,Midfielder,,83.9
+P-92064,Tony Sanneh,1971-06-01,Defender,,78.6
+P-35460,Sylvain N'Diaye,1976-06-25,Midfielder,,81.3
+P-25937,Kieran Trippier,1990-09-19,Defender,,79.8
+P-14060,not applicable Bremer,1997-03-18,Defender,,85.3
+P-74340,not applicable Cris,1977-06-03,Defender,,85.1
+P-93236,Juliano Belletti,1976-06-20,Defender,,88.0
+P-04420,Daniel Opare,1990-10-18,Defender,,79.8
+P-40621,Idrissa Gueye,1989-09-26,Midfielder,,80.9
+P-81477,Jan Koller,1973-03-30,Forward,,83.7
+P-80088,Jesús Gallardo,1994-08-15,Midfielder,,84.0
+P-62543,Ángelo Preciado,1998-02-18,Defender,,75.9
+P-91308,Pape Thiaw,1981-02-05,Forward,,79.0
+P-96510,Gerardo Arteaga,1998-09-07,Defender,,74.3
+P-05368,Harrison Afful,1986-06-24,Defender,,76.8
+P-80262,Timmy Simons,1976-12-11,Midfielder,,80.5
+P-46039,Fayçal Fajr,1988-08-01,Midfielder,,76.3
+P-05559,Takumi Minamino,1995-01-16,Midfielder,,77.0
+P-69235,Gareth Barry,1981-02-23,Midfielder,,81.8
+P-16785,Mario Balotelli,1990-08-12,Forward,,82.4
+P-64443,Joe Hart,1987-04-19,Midfielder,,84.1
+P-10167,Daniel Arzani,1999-01-04,Forward,,81.0
+P-14267,Cristian Zaccardo,1981-12-21,Defender,,86.8
+P-63068,Adel Chedli,1976-09-16,Midfielder,,77.4
+P-41422,not applicable Jefferson,1983-01-02,Midfielder,,82.1
+P-25398,Kolo Touré,1981-03-19,Defender,,81.0
+P-87223,not applicable Mineiro,1975-08-02,Midfielder,,80.9
+P-75785,Ehsan Hajsafi,1990-02-25,Midfielder,,82.4
+P-58692,Hee-chan Hwang,1996-01-26,Forward,,73.5
+P-82555,Abou Diaby,1986-05-11,Midfielder,,79.2
+P-23371,Yuya Osako,1990-05-18,Forward,,84.0
+P-10231,Papu Gómez,1988-02-15,Midfielder,,79.1
+P-25905,Luis García,1978-06-24,Midfielder,,87.9
+P-92146,Ulises de la Cruz,1974-02-08,Defender,,77.0
+P-84852,Dries Mertens,1987-05-06,Forward,,80.7
+P-27229,Omar Daf,1977-02-12,Defender,,83.5
+P-60203,Claudio López,1974-07-17,Forward,,79.8
+P-68218,Nico Williams,2002-07-12,Forward,,83.9
+P-33433,David Raya,1995-09-15,Midfielder,,80.5
+P-26637,Mostafa Meshaal,2001-03-28,Midfielder,,76.4
+P-39884,Du-ri Cha,1980-07-25,Forward,,74.6
+P-38198,Julio Cruz,1974-10-10,Forward,,84.7
+P-88273,Kye Rowles,1998-06-24,Defender,,81.4
+P-32594,Salvador Carmona,1975-08-22,Defender,,85.5
+P-84430,Nahuel Molina,1998-04-06,Defender,,82.9
+P-82010,Craig Goodwin,1991-12-16,Forward,,77.8
+P-27327,Camilo Vargas,1989-03-09,Midfielder,,86.5
+P-37161,Gaizka Mendieta,1974-03-27,Midfielder,,90.4
+P-65749,Jiří Štajner,1976-05-27,Forward,,84.2
+P-89840,Kisho Yano,1984-04-05,Forward,,77.2
+P-02465,Harry Maguire,1993-03-05,Defender,,85.8
+P-56817,Jonathan Bornstein,1984-11-07,Defender,,78.5
+P-49004,Ahmed Elmohamady,1987-09-09,Defender,,78.4
+P-07494,Jung-soo Lee,1980-01-08,Defender,,84.0
+P-03735,Steven Defour,1988-04-15,Midfielder,,86.4
+P-35408,Karim Benzema,1987-12-19,Forward,,80.2
+P-09062,Nathaniel Atkinson,1999-06-13,Defender,,77.8
+P-16139,Bo-kyung Kim,1989-10-06,Midfielder,,80.1
+P-95996,Rami Shaaban,1975-06-30,Midfielder,,78.3
+P-64711,Richard Garcia,1981-09-04,Midfielder,,78.6
+P-40312,Andrés Guardado,1986-09-28,Midfielder,,84.2
+P-64377,not applicable Marcos,1973-08-04,Midfielder,,81.5
+P-28883,Nico Van Kerckhoven,1970-12-14,Defender,,79.8
+P-33958,Iliman Ndiaye,2000-03-06,Forward,,73.1
+P-73455,Montassar Talbi,1998-05-26,Defender,,77.7
+P-63942,Míchel Salgado,1975-10-22,Defender,,87.6
+P-91484,Javier Pastore,1989-06-20,Midfielder,,85.3
+P-73306,Djibril Sidibé,1992-07-29,Defender,,84.2
+P-45985,Gustavo López,1973-04-13,Midfielder,,80.9
+P-77467,Mario Méndez,1979-06-01,Defender,,80.0
+P-64102,David Silva,1986-01-08,Midfielder,,86.1
+P-14026,Jawad El Yamiq,1992-02-29,Defender,,79.8
+P-75628,José Cifuentes,1999-03-12,Midfielder,,74.0
+P-85453,Dong-gook Lee,1979-04-29,Forward,,75.9
+P-38424,José María Basanta,1984-04-03,Defender,,88.1
+P-89392,James Rodríguez,1991-07-12,Midfielder,,83.0
+P-39774,Alessio Cerci,1987-07-23,Forward,,80.8
+P-02609,Min-woo Kim,1990-02-25,Defender,,77.5
+P-02839,Kevin Rodríguez,2000-03-04,Forward,,79.7
+P-37678,Riccardo Montolivo,1985-01-18,Midfielder,,87.1
+P-49219,Carlos Llamosa,1969-06-30,Defender,,80.2
+P-21208,Héctor Moreno,1988-01-17,Defender,,78.4
+P-52032,Emre Aşık,1973-12-13,Defender,,78.2
+P-03922,Dong-won Ji,1991-05-28,Forward,,76.4
+P-17733,Christian Lara,1980-04-27,Midfielder,,78.8
+P-07796,Johan Mojica,1992-08-21,Defender,,76.3
+P-46512,Martin Jiránek,1979-05-25,Defender,,73.6
+P-07864,Eugene Galekovic,1981-06-12,Midfielder,,72.0
+P-45280,Pape Gueye,1999-01-24,Midfielder,,78.7
+P-72448,Karim Haggui,1984-01-21,Defender,,75.3
+P-85324,Reza Ghoochannejhad,1987-09-20,Forward,,72.8
+P-26059,Jeremy Christie,1983-05-22,Midfielder,,73.2
+P-69430,David Jemmali,1974-12-13,Defender,,81.1
+P-48433,Sung-yueng Ki,1989-01-24,Midfielder,,79.3
+P-62207,Daniel Andersson,1977-08-28,Midfielder,,79.0
+P-90129,Martin Olsson,1988-05-17,Defender,,82.8
+P-96347,Félix Torres,1997-01-11,Defender,,80.2
+P-59950,Miguel Borja,1993-01-26,Forward,,87.1
+P-02080,Faryd Mondragón,1971-06-21,Midfielder,,82.9
+P-38732,Hassan Al-Haydos,1990-12-11,Midfielder,,70.0
+P-53272,Eiji Kawashima,1983-03-20,Midfielder,,76.4
+P-76850,Blas Pérez,1981-03-13,Forward,,75.9
+P-42918,not applicable Lúcio,1978-05-08,Defender,,87.8
+P-36188,Gerónimo Rulli,1992-05-20,Midfielder,,82.4
+P-91976,DaMarcus Beasley,1982-05-24,Midfielder,,78.2
+P-84807,Shinji Okazaki,1986-04-16,Forward,,80.1
+P-32448,Essam El Hadary,1973-01-15,Midfielder,,72.1
+P-62939,Moussa N'Diaye,1979-02-20,Midfielder,,82.2
+P-73924,Xabi Alonso,1981-11-25,Midfielder,,90.1
+P-57865,Raúl Jiménez,1991-05-05,Forward,,83.3
+P-40789,Adil Rami,1985-12-27,Defender,,78.5
+P-26367,Tim Ream,1987-10-05,Defender,,79.4
+P-78068,Josh Wolff,1977-02-25,Forward,,83.6
+P-13394,Marc Planus,1982-03-07,Defender,,87.2
+P-76596,Tomoaki Makino,1987-05-11,Defender,,85.1
+P-88433,not applicable Gavi,2004-08-05,Midfielder,,79.1
+P-46890,Karl-Johan Johnsson,1990-01-28,Midfielder,,82.1
+P-61292,Yasuhito Endō,1980-01-28,Midfielder,,83.4
+P-50522,Tim Howard,1979-03-06,Midfielder,,79.7
+P-03307,Miguel Ángel Nadal,1966-07-28,Defender,,88.0
+P-67250,Bonaventure Kalou,1978-01-12,Forward,,76.5
+P-56280,Gary Cahill,1985-12-19,Defender,,79.9
+P-91793,Makoto Hasebe,1984-01-18,Midfielder,,76.3
+P-53863,Simon Elliott,1974-06-10,Midfielder,,69.1
+P-41262,John Brooks,1993-01-28,Defender,,76.3
+P-12842,Jacky Peeters,1969-12-13,Defender,,79.4
+P-71130,Diego Tristán,1976-01-05,Forward,,90.2
+P-33117,Christian Noboa,1985-04-09,Midfielder,,80.5
+P-04977,Kyung-ho Chung,1980-05-22,Forward,,83.0
+P-77402,Jordan Morris,1994-10-26,Forward,,80.1
+P-27280,Famara Diédhiou,1992-12-15,Forward,,74.8
+P-78418,not applicable Pedro,1987-07-28,Forward,,89.3
+P-17853,Willy Caballero,1981-09-28,Midfielder,,88.9
+P-70815,Diego Pozo,1978-02-16,Midfielder,,87.5
+P-34915,Marco Tilio,2001-08-23,Forward,,79.5
+P-28816,José Chamot,1969-05-17,Defender,,82.0
+P-11130,Kily González,1974-08-04,Midfielder,,83.3
+P-09292,Krépin Diatta,1999-02-25,Midfielder,,84.2
+P-87661,Chris Smalling,1989-11-22,Defender,,85.5
+P-31976,Salomon Kalou,1985-08-05,Forward,,73.5
+P-56398,Hiroki Sakai,1990-04-12,Defender,,74.8
+P-06696,Armando Cooper,1987-11-26,Midfielder,,80.4
+P-96662,Rodolfo Cota,1987-07-03,Midfielder,,74.4
+P-11392,Gianluigi Buffon,1978-01-28,Midfielder,,80.5
+P-17071,Éric Deflandre,1973-08-02,Defender,,79.0
+P-88869,Ahmed Reda Tagnaouti,1996-04-05,Midfielder,,79.7
+P-60914,Juan Pablo Sorín,1976-05-05,Defender,,84.0
+P-67615,Mattia De Sciglio,1992-10-20,Defender,,77.2
+P-15134,Keiji Tamada,1980-04-11,Forward,,75.2
+P-63370,Afriyie Acquah,1992-01-05,Midfielder,,74.9
+P-73649,Gabriel Paletta,1986-02-15,Defender,,76.6
+P-72244,Federico Fernández,1989-02-21,Defender,,86.3
+P-01792,Ethan Horvath,1995-06-09,Midfielder,,80.5
+P-12777,Franky Vandendriessche,1971-04-07,Midfielder,,82.3
+P-75912,Enner Valencia,1989-11-04,Forward,,80.5
+P-94736,Glen De Boeck,1971-08-22,Defender,,86.7
+P-75959,Constant Djakpa,1986-10-17,Defender,,74.1
+P-66580,Óscar Ustari,1986-07-03,Midfielder,,86.4
+P-63253,Seydou Doumbia,1987-12-31,Forward,,75.1
+P-54768,Chaouki Ben Saada,1984-07-01,Forward,,73.5
+P-22633,Kaoru Mitoma,1997-05-20,Midfielder,,77.6
+P-69451,Steven Nzonzi,1988-12-15,Midfielder,,87.6
+P-64760,Pavel Nedvěd,1972-08-30,Midfielder,,78.9
+P-89438,Francisco Fonseca,1979-10-02,Forward,,81.3
+P-09270,not applicable Edmílson,1976-07-10,Defender,,87.2
+P-51130,Michael Owen,1979-12-14,Forward,,78.1
+P-89713,Sayouba Mandé,1993-06-15,Midfielder,,83.4
+P-89177,Sergio Ramos,1986-03-30,Defender,,80.6
+P-60592,Martín Palermo,1973-11-07,Forward,,86.7
+P-54533,David Rozehnal,1980-07-05,Defender,,77.1
+P-46091,Yūichi Komano,1981-07-25,Defender,,79.1
+P-35246,Fernando Hierro,1968-03-23,Defender,,89.8
+P-81706,Yassine Meriah,1993-07-02,Defender,,75.9
+P-33804,Homam Ahmed,1999-08-25,Defender,,69.9
+P-03552,David Carney,1983-11-30,Defender,,73.3
+P-96457,Hyung-il Kim,1984-04-27,Defender,,83.7
+P-11411,Masaaki Higashiguchi,1986-05-12,Midfielder,,82.8
+P-15123,Adrián Bone,1988-09-08,Midfielder,,77.5
+P-94877,Alexander Domínguez,1987-06-05,Midfielder,,77.8
+P-77419,Javier Aquino,1990-02-11,Midfielder,,76.7
+P-06108,Mario Bolatti,1985-02-17,Midfielder,,78.3
+P-40581,Anis Ayari,1982-02-16,Defender,,73.8
+P-69953,Ezequiel Lavezzi,1985-05-03,Forward,,84.1
+P-37753,Alfonso Obregón,1972-05-12,Midfielder,,81.8
+P-51266,Gérard Gnanhouan,1979-02-12,Midfielder,,77.4
+P-29090,Tomáš Rosický,1980-10-04,Midfielder,,73.5
+P-55416,Sol Bamba,1985-01-13,Defender,,74.0
+P-76368,Felipe Baloy,1981-02-24,Defender,,75.0
+P-12111,Ivan Franjic,1987-09-10,Defender,,82.5
+P-33197,Danny Boffin,1965-07-10,Midfielder,,82.3
+P-48295,Zakaria Aboukhlal,2000-02-18,Midfielder,,82.0
+P-49482,Henry Martín,1992-11-18,Forward,,76.6
+P-77532,Peter Crouch,1981-01-30,Forward,,81.1
+P-90857,Marlon Ayoví,1971-09-27,Defender,,73.7
+P-69089,Michael Beauchamp,1981-03-08,Defender,,82.1
+P-16260,Kengo Nakamura,1980-10-31,Midfielder,,81.1
+P-94249,Mehrdad Pooladi,1987-02-26,Defender,,78.0
+P-20335,Cyril Domoraud,1971-07-22,Defender,,79.8
+P-40007,Dani Olmo,1998-05-07,Forward,,89.2
+P-20019,Albin Ekdal,1989-07-28,Midfielder,,78.2
+P-98287,N'Golo Kanté,1991-03-29,Midfielder,,84.1
+P-99914,Cléber Chalá,1971-06-29,Midfielder,,84.2
+P-02947,Seung-woo Lee,1998-01-06,Midfielder,,83.7
+P-51990,Lawrence Ati-Zigi,1996-11-29,Midfielder,,77.4
+P-69743,Tomáš Galásek,1973-01-15,Midfielder,,82.1
+P-64184,Bakari Koné,1981-09-17,Forward,,71.8
+P-31684,Mauricio Pochettino,1972-03-02,Defender,,87.6
+P-37948,Rahman Ahmadi,1980-07-30,Midfielder,,73.8
+P-44282,Stephen Warnock,1981-12-12,Defender,,81.9
+P-15905,Majid Hosseini,1996-06-20,Defender,,76.1
+P-64718,Yong Lee,1986-12-24,Defender,,81.3
+P-95181,James Maddison,1996-11-23,Midfielder,,84.6
+P-78863,Mark Schwarzer,1972-10-06,Midfielder,,80.2
+P-87852,Josh Risdon,1992-07-27,Defender,,79.1
+P-88716,Bernd Thijs,1978-06-28,Midfielder,,85.0
+P-91486,Wayne Bridge,1980-08-05,Defender,,75.4
+P-29672,Augusto Fernández,1986-04-10,Midfielder,,80.3
+P-86227,Stewart Downing,1984-07-22,Midfielder,,77.3
+P-73520,Renato Ibarra,1991-01-20,Midfielder,,84.6
+P-13285,David Seaman,1963-09-19,Midfielder,,79.1
+P-04541,Mehdi Torabi,1994-09-10,Midfielder,,83.4
+P-23035,Daniel Quaye,1980-12-25,Defender,,73.7
+P-96639,Pablo Zabaleta,1985-01-16,Defender,,83.5
+P-03869,Dae-sung Ha,1985-03-02,Midfielder,,80.5
+P-65040,Do-heon Kim,1982-07-14,Midfielder,,75.3
+P-36400,Luke Shaw,1995-07-12,Defender,,76.1
+P-09888,Gregg Berhalter,1973-08-01,Defender,,79.2
+P-54550,Hamza Mendyl,1997-10-21,Defender,,80.2
+P-03484,Brenden Aaronson,2000-10-22,Forward,,78.6
+P-01835,Paul Aguilar,1986-03-06,Defender,,79.9
+P-31145,Nikita Rukavytsya,1987-06-22,Forward,,81.7
+P-90423,Abderrazak Hamdallah,1990-12-17,Forward,,74.1
+P-04746,Steve Gohouri,1981-02-08,Defender,,77.3
+P-57058,Winston Reid,1988-07-03,Defender,,69.6
+P-05216,Walid Cheddira,1998-01-22,Forward,,74.4
+P-06678,Daniel Sturridge,1989-09-01,Forward,,76.6
+P-83403,Roberto Ayala,1973-04-14,Defender,,79.7
+P-21222,Naoki Matsuda,1977-03-14,Defender,,80.5
+P-45039,not applicable Ricardo,1971-12-30,Midfielder,,81.2
+P-60562,Eul-yong Lee,1975-09-08,Midfielder,,80.9
+P-40666,Libor Sionko,1977-02-01,Midfielder,,77.9
+P-92775,Ho Lee,1984-10-22,Midfielder,,79.0
+P-70879,Saad Al-Sheeb,1990-02-19,Midfielder,,73.1
+P-52784,Óscar Pérez,1973-02-01,Midfielder,,84.8
+P-81968,Pape Sarr,1977-12-07,Midfielder,,83.5
+P-58924,Harry Kane,1993-07-28,Forward,,79.7
+P-89452,Sergiño Dest,2000-11-03,Defender,,81.0
+P-25845,Sylvain Gbohouo,1988-10-29,Midfielder,,80.7
+P-57401,Adrien Rabiot,1995-04-03,Midfielder,,88.0
+P-51406,Riley McGree,1998-11-02,Midfielder,,74.7
+P-81049,David Beckham,1975-05-02,Midfielder,,85.4
+P-33570,Maxi Rodríguez,1981-01-02,Midfielder,,87.0
+P-07338,Antonín Kinský,1975-05-31,Midfielder,,79.2
+P-85176,Roberto Carlos,1973-04-10,Defender,,80.8
+P-88370,Stuart Holden,1985-08-01,Midfielder,,83.5
+P-31431,Victor Lindelöf,1994-07-17,Defender,,76.0
+P-50688,Yassine Bounou,1991-04-05,Midfielder,,81.5
+P-06851,Phil Jones,1992-02-21,Defender,,75.4
+P-24586,Hans Sarpei,1976-06-28,Midfielder,,79.7
+P-59808,Alexander Djiku,1994-08-09,Defender,,80.2
+P-21776,Loïc Rémy,1987-01-02,Forward,,77.8
+P-20244,Omar Gonzalez,1988-10-11,Defender,,79.5
+P-29161,Mohamed Abdel Shafy,1985-07-01,Defender,,82.0
+P-92710,Hwang Ui-jo,1992-08-28,Forward,,81.0
+P-61979,Awer Mabil,1995-09-15,Forward,,77.2
+P-67297,Samuel Umtiti,1993-11-14,Defender,,83.2
+P-47597,Juan Mata,1988-04-28,Midfielder,,79.5
+P-63935,Ali Zitouni,1981-01-11,Forward,,80.1
+P-92874,Giorgio Chiellini,1984-08-14,Defender,,80.4
+P-91455,Fidel Escobar,1995-01-09,Defender,,79.9
+P-09041,Francileudo Santos,1979-03-20,Forward,,78.7
+P-91438,Julian Green,1995-06-06,Midfielder,,75.9
+P-95278,Maximiliano Meza,1992-12-15,Midfielder,,82.9
+P-48968,Didier Zokora,1980-12-14,Midfielder,,78.8
+P-23883,Hasan Şaş,1976-08-01,Forward,,77.5
+P-38940,Sean Johnson,1989-05-31,Midfielder,,75.2
+P-75306,Antonio Di Natale,1977-10-13,Forward,,83.5
+P-35489,Habib Beye,1977-10-19,Defender,,84.0
+P-94594,Young-chul Kim,1976-06-30,Defender,,73.7
+P-55298,Youssouf Sabaly,1993-03-05,Defender,,78.4
+P-42215,Ahmad Nourollahi,1993-02-01,Midfielder,,72.3
+P-30405,Carlos Soler,1997-01-02,Midfielder,,81.4
+P-01560,Stéphane Ruffier,1986-09-27,Midfielder,,84.5
+P-77521,Jaime Penedo,1981-09-26,Midfielder,,80.7
+P-20273,Petter Hansson,1976-12-14,Defender,,78.1
+P-79017,Johan Elmander,1981-05-27,Forward,,74.6
+P-52697,Pervis Estupiñán,1998-01-21,Defender,,84.6
+P-77619,Divock Origi,1995-04-18,Forward,,83.4
+P-03723,Nicky Butt,1975-01-21,Midfielder,,75.5
+P-60554,Iago Aspas,1987-08-01,Forward,,89.5
+P-73512,Dario Vidošić,1987-04-08,Midfielder,,72.5
+P-47753,Joan Capdevila,1978-02-03,Defender,,87.9
+P-17174,Presnel Kimpembe,1995-08-13,Defender,,87.5
+P-21652,Amadou Onana,2001-08-16,Midfielder,,84.6
+P-91655,Salif Sané,1990-08-25,Midfielder,,72.8
+P-19366,Gustav Svensson,1987-02-07,Midfielder,,82.7
+P-96267,Tae-young Kim,1970-11-08,Defender,,76.9
+P-21864,Jason Culina,1980-08-05,Midfielder,,79.6
+P-15197,not applicable Pedro,1997-06-20,Forward,,83.9
+P-67176,Ricardo Ávila,1997-02-04,Midfielder,,76.3
+P-42227,Gianluca Zambrotta,1977-02-19,Defender,,77.6
+P-87514,Lee Kang-in,2001-02-19,Midfielder,,74.4
+P-62977,Khalilou Fadiga,1974-12-30,Midfielder,,78.5
+P-92673,Marcus Hahnemann,1972-06-15,Midfielder,,76.1
+P-52013,Achraf Dari,1999-05-06,Defender,,73.9
+P-97784,Eddie Lewis,1974-05-17,Midfielder,,76.6
+P-15450,Francesco Coco,1977-01-08,Defender,,82.3
+P-94500,Jeong Woo-yeong,1999-09-20,Midfielder,,73.8
+P-51443,Kepa Arrizabalaga,1994-10-03,Midfielder,,79.9
+P-44407,Mohamed Mkacher,1975-05-25,Defender,,78.1
+P-33293,Haykel Guemamdia,1981-12-22,Forward,,82.3
+P-75618,Yousef Hassan,1996-05-24,Midfielder,,74.3
+P-95009,Matt Besler,1987-02-11,Defender,,79.2
+P-69919,Nacer Chadli,1989-08-02,Midfielder,,79.5
+P-82456,not applicable Grafite,1979-04-02,Forward,,78.1
+P-16580,Yong-hyung Cho,1983-11-03,Midfielder,,82.9
+P-22102,Diafra Sakho,1989-12-24,Forward,,78.6
+P-74941,not applicable Fred,1993-03-05,Midfielder,,82.4
+P-42390,Richie Laryea,1995-01-07,Defender,,71.5
+P-84943,El Hadji Diouf,1981-01-15,Forward,,83.0
+P-60872,Aziz Bouhaddouz,1987-03-30,Forward,,83.9
+P-07089,William Saliba,2001-03-24,Defender,,86.4
+P-21531,not applicable Alisson,1992-10-02,Midfielder,,80.8
+P-76750,Hugo Ayala,1987-03-31,Defender,,82.3
+P-88529,Yoon Jong-gyu,1998-03-20,Defender,,80.1
+P-62157,Steven Gerrard,1980-05-30,Midfielder,,80.8
+P-55511,Alessandro Nesta,1976-03-19,Defender,,81.2
+P-64945,Daniel Yeboah,1984-11-13,Midfielder,,76.3
+P-49258,Cobi Jones,1970-06-16,Midfielder,,80.7
+P-29274,Álvaro Morata,1992-10-23,Forward,,89.3
+P-44438,Adolfo Bautista,1979-05-15,Forward,,79.9
+P-28364,Alan Franco,1998-08-21,Midfielder,,75.5
+P-82447,Ao Tanaka,1998-09-10,Midfielder,,80.5
+P-04157,Hyeon-woo Jo,1991-09-25,Midfielder,,75.9
+P-34132,Jesús Ferreira,2000-12-24,Forward,,77.1
+P-46499,Yves Vanderhaeghe,1970-01-30,Midfielder,,85.5
+P-51960,Cheikh N'Doye,1986-03-29,Midfielder,,82.8
+P-36764,Salvatore Bocchetti,1986-11-30,Defender,,79.0
+P-60016,Salvatore Sirigu,1987-01-12,Midfielder,,87.3
+P-12056,Roberto Bonano,1970-01-24,Midfielder,,82.5
+P-55097,Myung-bo Hong,1969-02-12,Defender,,77.9
+P-62062,Philippe Christanval,1978-08-31,Defender,,80.9
+P-48340,Jonathan David,2000-01-14,Forward,,81.1
+P-38594,Davinson Sánchez,1996-06-12,Defender,,80.8
+P-60769,Mattia Perin,1992-11-10,Midfielder,,83.7
+P-80838,Joe Scally,2002-12-31,Defender,,75.1
+P-12167,David Trezeguet,1977-10-15,Forward,,80.7
+P-01462,Henri Camara,1977-05-10,Forward,,73.3
+P-10663,Robbie Fowler,1975-04-09,Forward,,86.6
+P-66577,Adel Nefzi,1974-03-16,Midfielder,,72.5
+P-31173,Geoff Cameron,1985-07-11,Defender,,78.3
+P-37933,Joe Cole,1981-11-08,Midfielder,,85.9
+P-86524,not applicable Hulk,1986-07-25,Forward,,85.5
+P-47137,Ramin Rezaeian,1990-03-21,Defender,,75.8
+P-98031,Iván Hurtado,1974-08-16,Defender,,77.5
+P-11109,Christian Maggio,1982-02-11,Defender,,81.2
+P-54517,Aurélien Tchouaméni,2000-01-27,Midfielder,,84.2
+P-74655,Radamel Falcao,1986-02-10,Forward,,82.9
+P-17666,Sung-yong Choi,1975-12-25,Midfielder,,82.2
+P-06205,Stan Lazaridis,1972-08-16,Defender,,73.2
+P-64249,Cameron Devlin,1998-06-07,Midfielder,,78.5
+P-50787,Jorge Campos,1966-10-15,Midfielder,,84.1
+P-06000,Michael Dawson,1983-11-18,Defender,,84.6
+P-48955,Kevin De Bruyne,1991-06-28,Midfielder,,82.7
+P-44850,Alpay Özalan,1973-05-29,Defender,,75.6
+P-34406,Kieron Dyer,1978-12-29,Midfielder,,80.1
+P-80859,Eddie Johnson,1984-03-31,Forward,,83.6
+P-86410,Kellyn Acosta,1995-07-24,Midfielder,,81.8
+P-11737,Christian Pulisic,1998-09-18,Forward,,74.0
+P-45182,Morgan Schneiderlin,1989-11-08,Midfielder,,86.1
+P-01078,Ciro Immobile,1990-02-20,Forward,,76.4
+P-07076,Ismaël Diomandé,1992-08-28,Midfielder,,72.7
+P-24134,Fran Karačić,1996-05-12,Defender,,77.8
+P-46540,Conor Gallagher,2000-02-06,Midfielder,,79.5
+P-47180,not applicable Maxwell,1981-08-27,Defender,,82.2
+P-83836,Alessandro Del Piero,1974-11-09,Forward,,83.0
+P-58540,Matthew Jurman,1989-12-08,Defender,,82.6
+P-34998,Andreas Granqvist,1985-04-16,Defender,,82.3
+P-22844,Callum Wilson,1992-02-27,Forward,,76.3
+P-87266,not applicable Taison,1988-01-13,Forward,,89.2
+P-61256,Tomi Juric,1991-07-22,Forward,,81.0
+P-47401,Andreas Isaksson,1981-10-03,Midfielder,,78.6
+P-69284,Jesús Navas,1985-11-21,Midfielder,,89.2
+P-42690,Eun-sung Choi,1971-04-05,Midfielder,,81.6
+P-61649,Beom-seok Oh,1984-07-29,Defender,,81.6
+P-94647,Josh Sargent,2000-02-20,Forward,,81.8
+P-17082,Douglas Costa,1990-09-14,Forward,,85.7
+P-78308,Claudio Suárez,1968-12-17,Defender,,75.4
+P-70237,Toshihiro Aoyama,1986-02-22,Midfielder,,80.9
+P-29833,Mikael Lustig,1986-12-13,Defender,,84.5
+P-15454,Andrew Boyens,1983-09-18,Defender,,75.1
+P-27541,Jonathan Osorio,1992-06-12,Midfielder,,81.4
+P-26022,Mohammad Reza Khanzadeh,1991-05-11,Defender,,77.1
+P-92812,Vinícius Júnior,2000-07-12,Forward,,81.4
+P-16352,Giovani Lo Celso,1996-04-09,Midfielder,,78.9
+P-02886,Román Torres,1986-03-20,Defender,,80.0
+P-09454,Ânderson Polga,1979-02-09,Defender,,84.5
+P-55453,Jeong-ho Hong,1989-08-12,Defender,,82.2
+P-21052,Abde Ezzalzouli,2001-12-17,Forward,,82.9
+P-19910,Morgan De Sanctis,1977-03-26,Midfielder,,78.9
+P-64924,Ali Abdi,1993-12-20,Defender,,83.1
+P-92892,Archie Thompson,1978-10-23,Forward,,76.1
+P-97800,Abdulaziz Hatem,1990-01-01,Midfielder,,76.9
+P-27402,Heurelho Gomes,1981-02-15,Midfielder,,78.3
+P-49008,Alejandro Balde,2003-10-18,Defender,,80.5
+P-44044,Keita Baldé,1995-03-08,Forward,,79.1
+P-32798,Thiago Silva,1984-09-22,Defender,,84.1
+P-81377,Masahiko Inoha,1983-08-28,Defender,,85.4
+P-16059,Santiago Cañizares,1969-12-18,Midfielder,,80.8
+P-94317,Dayne St. Clair,1997-05-09,Midfielder,,76.1
+P-66020,not applicable Weverton,1987-12-13,Midfielder,,85.4
+P-44340,Karl Svensson,1984-03-21,Defender,,75.6
+P-17348,Hiroaki Morishima,1972-04-30,Midfielder,,77.1
+P-62952,Daichi Kamada,1996-08-05,Midfielder,,73.8
+P-59901,Javad Nekounam,1980-09-07,Midfielder,,73.8
+P-83216,Juan Cuadrado,1988-05-26,Midfielder,,79.9
+P-00465,Jordan Veretout,1993-03-01,Midfielder,,82.5
+P-97154,Simone Barone,1978-04-30,Midfielder,,83.4
+P-02305,not applicable Casemiro,1992-02-23,Midfielder,,81.5
+P-87409,Ilias Chair,1997-10-30,Midfielder,,76.6
+P-61550,Dong-jin Kim,1982-01-29,Defender,,83.9
+P-75667,Yoichiro Kakitani,1990-01-03,Forward,,84.6
+P-53076,Manabu Saitō,1990-04-04,Forward,,75.5
+P-57272,Johan Rodríguez,1975-08-15,Midfielder,,84.5
+P-88263,Angelo Peruzzi,1970-02-16,Midfielder,,78.6
+P-56293,Ahmed El-Jaouachi,1975-07-13,Midfielder,,72.1
+P-15736,Shin-wook Kim,1988-04-14,Forward,,79.7
+P-34670,Christian Vieri,1973-07-12,Forward,,81.1
+P-07353,Steven Beitashour,1987-02-01,Defender,,81.0
+P-20754,Nabil Fekir,1993-07-18,Forward,,80.1
+P-98378,Timothy Chandler,1990-03-29,Defender,,83.7
+P-34386,Ferydoon Zandi,1979-04-26,Midfielder,,76.2
+P-45548,Tom Rogic,1992-12-16,Midfielder,,82.3
+P-68161,Nader Ghandri,1995-02-18,Midfielder,,78.7
+P-56947,Lilian Thuram,1972-01-01,Defender,,83.5
+P-43410,Luiz Gustavo,1987-07-23,Midfielder,,86.5
+P-42740,Éverton Ribeiro,1989-04-10,Midfielder,,80.6
+P-81505,Lautaro Martínez,1997-08-22,Forward,,87.8
+P-16571,Tony Sylva,1975-05-17,Midfielder,,74.6
+P-28762,Shusaku Nishikawa,1986-06-18,Midfielder,,75.8
+P-00111,Masoud Shojaei,1984-06-09,Midfielder,,80.5
+P-78264,not applicable Elano,1981-06-14,Midfielder,,82.1
+P-21153,Jack Grealish,1995-09-10,Forward,,84.2
+P-75041,Alan Pulido,1991-03-08,Forward,,82.6
+P-85736,Ángel Fernández,1971-08-02,Forward,,73.7
+P-83544,Chong-gug Song,1979-02-20,Midfielder,,82.9
+P-19578,Braulio Luna,1974-09-08,Midfielder,,78.7
+P-95590,Ryan McGowan,1989-08-15,Defender,,74.4
+P-22992,Eduardo Salvio,1990-07-13,Defender,,86.7
+P-98986,Alex Tachie-Mensah,1977-02-15,Forward,,82.4
+P-42018,Hiroshi Kiyotake,1989-11-12,Midfielder,,75.1
+P-37126,Marco Materazzi,1973-08-19,Defender,,80.2
+P-65590,Jaroslav Plašil,1982-01-05,Midfielder,,77.0
+P-89070,Nick Pope,1992-04-19,Midfielder,,80.2
+P-38599,Vincenzo Iaquinta,1979-11-21,Forward,,82.3
+P-82223,not applicable Trézéguet,1994-10-01,Midfielder,,79.2
+P-64049,Jan Vertonghen,1987-04-24,Defender,,85.9
+P-94002,Marcelo Gallardo,1976-01-18,Midfielder,,85.0
+P-41304,Hossein Mahini,1986-09-16,Defender,,74.5
+P-77996,James Holland,1989-05-15,Midfielder,,78.6
+P-95269,Vincent Kompany,1986-04-10,Defender,,86.2
+P-39602,Walter Ayoví,1979-08-11,Defender,,78.3
+P-90430,Yuji Nakazawa,1978-02-25,Defender,,77.7
+P-24647,Raúl Albiol,1985-09-04,Defender,,83.4
+P-61850,Jawhar Mnari,1976-11-08,Midfielder,,79.8
+P-98607,not applicable Juan,1979-02-01,Defender,,82.5
+P-29864,Morteza Pouraliganji,1992-04-19,Defender,,75.9
+P-89934,John Guidetti,1992-04-15,Forward,,73.6
+P-78113,Nick Rimando,1979-06-17,Midfielder,,78.5
+P-38647,Lucas Biglia,1986-01-30,Midfielder,,84.6
+P-77754,Tarek Hamed,1988-10-24,Midfielder,,80.6
+P-51199,Seung-hyun Jung,1994-04-03,Defender,,80.3
+P-45288,Achraf Hakimi,1998-11-04,Defender,,76.7
+P-75462,Ignazio Abate,1986-11-12,Defender,,84.4
+P-48525,Daisuke Ichikawa,1980-05-14,Midfielder,,83.8
+P-14175,Arouna Koné,1983-11-11,Forward,,73.7
+P-85432,Anders Svensson,1976-07-17,Midfielder,,81.3
+P-87008,not applicable Neymar,1992-02-05,Forward,,87.2
+P-81393,Christian Abbiati,1977-07-08,Midfielder,,83.4
+P-66658,Gary Neville,1975-02-18,Defender,,86.7
+P-19618,Carlos Rodríguez,1997-01-03,Midfielder,,85.9
+P-20389,Juninho Paulista,1973-02-22,Midfielder,,82.8
+P-29063,Aïssa Laïdouni,1996-12-13,Midfielder,,80.4
+P-44763,Rafael Márquez,1979-02-13,Defender,,84.4
+P-55659,Franck Ribéry,1983-04-07,Midfielder,,83.8
+P-31765,Jordan Ayew,1991-09-11,Forward,,79.9
+P-37848,Claudio Marchisio,1986-01-19,Midfielder,,75.9
+P-42659,Luigi Di Biagio,1971-06-03,Midfielder,,83.4
+P-43196,Yerry Mina,1994-09-23,Defender,,81.3
+P-21099,Derek Cornelius,1997-11-25,Defender,,76.9
+P-84486,Mark Bresciano,1980-02-11,Midfielder,,78.4
+P-06024,John Boye,1987-04-23,Defender,,73.1
+P-53723,Francesco Toldo,1971-12-02,Midfielder,,79.5
+P-24388,Abdul Majeed Waris,1991-09-19,Forward,,73.9
+P-58649,Pablo Mastroeni,1976-08-29,Defender,,82.3
+P-63089,Tugay Kerimoğlu,1970-08-24,Midfielder,,84.2
+P-37696,Nordin Amrabat,1987-03-31,Midfielder,,73.9
+P-58476,Brad Guzan,1984-09-09,Midfielder,,77.5
+P-94570,Amir Hossein Sadeghi,1981-09-06,Defender,,83.4
+P-83169,not applicable Raphinha,1996-12-14,Forward,,88.4
+P-83198,Dimitri Petratos,1992-11-10,Forward,,75.3
+P-52444,Abdiel Arroyo,1993-12-13,Forward,,79.9
+P-80183,Francisco Palencia,1973-04-28,Forward,,77.0
+P-95374,Saeid Ezatolahi,1996-10-01,Midfielder,,81.8
+P-53062,Petr Čech,1982-05-20,Midfielder,,75.9
+P-41027,Hotaru Yamaguchi,1990-10-06,Midfielder,,83.4
+P-85916,Efraín Juárez,1988-02-22,Defender,,80.3
+P-84412,Tommy Oar,1991-12-10,Midfielder,,78.6
+P-05120,José de Jesús Corona,1981-01-26,Midfielder,,77.0
+P-13321,Carlos Gruezo,1995-04-19,Midfielder,,75.4
+P-74007,Luca de la Torre,1998-05-23,Midfielder,,83.4
+P-13613,Marcus Thuram,1997-08-06,Forward,,82.5
+P-78071,Mark Viduka,1975-10-09,Forward,,72.8
+P-35173,Nicolás Tagliafico,1992-08-31,Defender,,87.3
+P-38004,Cédric Carrasso,1981-12-30,Midfielder,,86.9
+P-56385,Germán Burgos,1969-04-16,Midfielder,,85.8
+P-51118,Aziz Behich,1990-12-16,Defender,,74.9
+P-60597,Brian McBride,1972-06-19,Forward,,77.5
+P-39810,Martín Demichelis,1980-12-20,Defender,,80.7
+P-08307,Emile Heskey,1978-01-11,Forward,,86.6
+P-38901,Javier Saviola,1981-12-11,Forward,,80.5
+P-27162,Damián Lanza,1982-04-10,Midfielder,,74.8
+P-40995,Yoichi Doi,1973-07-25,Midfielder,,83.4
+P-98680,Nihat Kahveci,1979-11-23,Forward,,80.9
+P-33175,Keisuke Honda,1986-06-13,Midfielder,,82.9
+P-37877,Roberto Firmino,1991-10-02,Forward,,84.5
+P-96566,Takayuki Suzuki,1976-06-05,Forward,,75.1
+P-84201,Robert Green,1980-01-18,Midfielder,,84.5
+P-49027,Sherif Ekramy,1983-07-10,Midfielder,,72.4
+P-47469,Oswaldo Ibarra,1969-09-08,Midfielder,,75.9
+P-92866,Thomas Vermaelen,1985-11-14,Defender,,82.6
+P-06223,Quincy Owusu-Abeyie,1986-04-15,Midfielder,,75.6
+P-76131,Walter Samuel,1978-03-23,Defender,,81.9
+P-85824,Yasuyuki Konno,1983-01-25,Defender,,77.6
+P-49806,Luis Chávez,1996-01-15,Midfielder,,81.2
+P-79380,Marcel Desailly,1968-09-07,Defender,,78.1
+P-38799,Moussa Sow,1986-01-19,Forward,,82.9
+P-82601,Alassane N'Dour,1981-12-12,Defender,,84.0
+P-29011,Stephen Ahorlu,1988-09-05,Midfielder,,72.2
+P-75890,Mohamed Salah,1992-06-15,Forward,,73.1
+P-58665,Kalidou Cissokho,1978-08-28,Midfielder,,77.3
+P-91543,Yahia Attiyat Allah,1995-03-02,Defender,,79.5
+P-92004,Gabriel Jesus,1997-04-03,Forward,,78.2
+P-50801,Sam Morsy,1991-09-10,Midfielder,,79.6
+P-14196,Saîf-Eddine Khaoui,1995-04-27,Forward,,72.0
+P-90689,Mohammed Waad,1999-09-18,Defender,,72.7
+P-59617,Muzzy Izzet,1974-10-31,Midfielder,,83.8
+P-64352,Gabriel Heinze,1978-04-19,Defender,,84.1
+P-92513,Robert Sánchez,1997-11-18,Midfielder,,86.6
+P-06754,Joshua Kennedy,1982-08-20,Forward,,74.4
+P-55538,José Francisco Torres,1987-10-29,Midfielder,,74.9
+P-28659,Daiki Iwamasa,1982-01-30,Defender,,83.6
+P-72399,Mark-Anthony Kaye,1994-12-02,Midfielder,,79.1
+P-63916,Paul Scholes,1974-11-16,Midfielder,,76.2
+P-15988,Badou Ndiaye,1990-10-27,Midfielder,,77.7
+P-63774,Patrik Andersson,1971-08-18,Defender,,79.7
+P-32508,Gabriel Mercado,1987-03-18,Defender,,80.2
+P-69034,Mehdi Nafti,1978-11-28,Midfielder,,76.0
+P-83822,Iké Ugbo,1998-09-21,Forward,,80.6
+P-69217,Djorkaeff Reasco,1999-01-18,Forward,,82.4
+P-91832,Lucas Neill,1978-03-09,Defender,,78.9
+P-83711,José Antonio Reyes,1983-09-01,Midfielder,,86.3
+P-37614,Farid Díaz,1983-07-20,Defender,,83.2
+P-84532,Wilfried Bony,1988-12-10,Forward,,75.4
+P-47321,Kalidou Koulibaly,1991-06-20,Defender,,73.5
+P-05227,Luis Saritama,1983-10-20,Midfielder,,79.0
+P-65534,Frank Lampard,1978-06-20,Midfielder,,80.2
+P-48310,Christian Atsu,1992-01-10,Midfielder,,75.0
+P-10072,Jermaine Jones,1981-11-03,Midfielder,,73.9
+P-95259,Kōji Nakata,1979-07-09,Defender,,79.0
+P-77277,Shunsuke Nakamura,1978-06-24,Midfielder,,80.8
+P-87199,Amine Harit,1997-06-18,Midfielder,,74.9
+P-93633,Mehdi Mahdavikia,1977-07-24,Midfielder,,75.6
+P-57906,Johan Micoud,1973-07-24,Midfielder,,87.3
+P-45941,Luis Hernández,1968-12-22,Forward,,85.2
+P-18598,Young-sun Yun,1988-10-04,Defender,,82.9
+P-56897,Naohiro Takahara,1979-06-04,Forward,,75.7
+P-21108,Yıldıray Baştürk,1978-12-24,Midfielder,,80.2
+P-51733,Félix Borja,1983-04-02,Forward,,84.1
+P-93619,not applicable Dante,1983-10-18,Defender,,85.9
+P-66969,Kim Tae-hwan,1989-07-24,Defender,,82.8
+P-75255,Sang-chul Yoo,1971-10-18,Defender,,76.0
+P-37860,not applicable Antony,2000-02-24,Forward,,86.5
+P-58822,Youssef Aït Bennasser,1996-07-07,Midfielder,,84.3
+P-56330,Andrés Iniesta,1984-05-11,Midfielder,,86.0
+P-42895,Henrik Larsson,1971-09-20,Forward,,82.6
+P-37935,Ismaïla Sarr,1998-02-25,Forward,,81.1
+P-82889,Kim Jin-su,1992-06-13,Defender,,81.5
+P-36179,Robbie Findley,1985-08-04,Forward,,85.7
+P-35873,Claudio Caniggia,1967-01-09,Forward,,83.8
+P-73564,Adrián Ramos,1986-01-22,Forward,,83.4
+P-78640,Jay DeMerit,1979-12-04,Defender,,81.2
+P-78106,Gabriel Torres,1988-10-31,Forward,,69.3
+P-74098,Milad Mohammadi,1993-09-29,Defender,,73.3
+P-42326,Raphaël Varane,1993-04-25,Defender,,77.9
+P-42523,Seung-gyu Kim,1990-09-30,Midfielder,,73.4
+P-61949,James Pantemis,1997-02-21,Midfielder,,71.9
+P-05081,Zafer Özgültekin,1975-03-10,Midfielder,,79.0
+P-35850,Antonio Candreva,1987-02-28,Midfielder,,76.9
+P-71633,Mamadou Sakho,1990-02-13,Defender,,85.3
+P-21945,Luis Ernesto Michel,1979-07-21,Midfielder,,75.8
+P-60716,César Azpilicueta,1989-08-28,Defender,,89.7
+P-47627,not applicable Cicinho,1980-06-24,Defender,,87.1
+P-88715,Koen Casteels,1992-06-25,Midfielder,,79.1
+P-84301,not applicable Miranda,1984-09-07,Defender,,83.9
+P-16046,Lamine Diatta,1975-07-02,Defender,,80.6
+P-87592,Rafael García,1974-08-14,Midfielder,,84.2
+P-91324,Axel Disasi,1998-03-11,Defender,,89.3
+P-44716,Frédéric Herpoel,1974-08-16,Midfielder,,79.3
+P-20585,Phil Jagielka,1982-08-17,Defender,,80.9
+P-38981,Ali Maâloul,1990-01-01,Defender,,76.8
+P-47440,Ja-cheol Koo,1989-02-27,Midfielder,,73.3
+P-76612,Juan Carlos Valerón,1975-06-17,Midfielder,,79.4
+P-48670,Valentín Pimentel,1991-05-30,Midfielder,,75.8
+P-27035,Keanu Baccus,1998-06-07,Midfielder,,79.9
+P-31347,Karim Essediri,1979-07-29,Defender,,76.7
+P-49485,Ömer Çatkıç,1974-10-15,Midfielder,,79.5
+P-58840,Felipe Melo,1983-08-26,Midfielder,,87.1
+P-10860,Gonzalo Pineda,1982-10-19,Defender,,85.3
+P-16489,Joo-ho Park,1987-01-16,Defender,,75.6
+P-26412,Luis Romo,1995-06-05,Midfielder,,81.9
+P-49090,Song Bum-keun,1997-10-15,Midfielder,,81.5
+P-45981,Miki Yamane,1993-12-22,Defender,,80.7
+P-51785,Nam-il Kim,1977-03-14,Midfielder,,77.8
+P-77249,Gaël Clichy,1985-07-26,Defender,,86.2
+P-53048,Axel Witsel,1989-01-12,Midfielder,,78.6
+P-93828,Adama Mbengue,1993-12-01,Defender,,77.8
+P-98153,Nabil Dirar,1986-02-25,Defender,,81.4
+P-28151,Paulo Dybala,1993-11-15,Forward,,83.1
+P-44926,Tim Cahill,1979-12-06,Midfielder,,73.7
+P-02028,Ayman Ashraf,1991-04-09,Defender,,73.5
+P-84524,Tommy Smith,1990-03-31,Defender,,72.7
+P-81297,Cesc Fàbregas,1987-05-04,Midfielder,,85.5
+P-74242,Jamie Vardy,1987-01-11,Forward,,75.9
+P-34822,Jackson Irvine,1993-03-07,Midfielder,,73.1
+P-64299,Érick Gutiérrez,1995-06-15,Midfielder,,84.9
+P-88428,Cuauhtémoc Blanco,1973-01-17,Forward,,85.9
+P-15314,Carlos Marchena,1979-07-31,Defender,,87.9
+P-86028,Agustín Orión,1981-07-26,Midfielder,,83.2
+P-03447,Johan Walem,1972-02-01,Midfielder,,82.0
+P-62364,Karim El Ahmadi,1985-01-27,Midfielder,,77.7
+P-44328,Shuto Machino,1999-09-30,Forward,,81.1
+P-68095,Jong-hwan Yoon,1973-02-16,Midfielder,,80.0
+P-93567,Matt McKay,1983-01-11,Midfielder,,83.6
+P-54042,not applicable Fred,1983-10-03,Forward,,81.8
+P-76705,Abel Aguilar,1985-01-06,Midfielder,,77.8
+P-45399,Édouard Mendy,1992-03-01,Midfielder,,82.7
+P-48947,James Bannatyne,1975-06-30,Midfielder,,75.4
+P-53231,Alberto Medina,1983-05-29,Midfielder,,84.3
+P-46176,Gen Shoji,1992-12-11,Defender,,84.3
+P-34543,Romario Ibarra,1994-09-24,Midfielder,,83.2
+P-44011,José Clayton,1974-03-21,Defender,,73.0
+P-66433,Éver Banega,1988-06-29,Midfielder,,85.6
+P-59571,Yunus Musah,2002-11-29,Midfielder,,78.2
+P-44775,Jaromír Blažek,1972-12-29,Midfielder,,81.8
+P-01212,Clarence Goodson,1982-05-17,Defender,,85.6
+P-98747,Rouzbeh Cheshmi,1993-07-24,Defender,,83.6
+P-06370,Diego Simeone,1970-04-28,Midfielder,,78.3
+P-29883,Kara Mbodji,1989-11-22,Defender,,77.7
+P-46807,Junichi Inamoto,1979-09-18,Midfielder,,79.3
+P-66906,Shūichi Gonda,1989-03-03,Midfielder,,76.3
+P-81778,Richard Kingson,1978-06-13,Midfielder,,79.8
+P-24015,Theo Walcott,1989-03-16,Forward,,84.1
+P-43567,Kalvin Phillips,1995-12-02,Midfielder,,77.4
+P-80105,Zlatan Ibrahimović,1981-10-03,Forward,,75.2
+P-70140,Massimo Oddo,1976-06-14,Defender,,85.1
+P-09100,James Troisi,1988-07-03,Midfielder,,79.4
+P-59033,Sofiane Boufal,1993-09-17,Midfielder,,74.2
+P-63532,Assim Madibo,1996-10-22,Midfielder,,73.6
+P-68429,Takehiro Tomiyasu,1998-11-05,Defender,,80.4
+P-52676,Frickson Erazo,1988-05-05,Defender,,80.4
+P-28794,Stephen Eustáquio,1996-12-21,Midfielder,,75.2
+P-98143,Rio Mavuba,1984-03-08,Midfielder,,78.2
+P-33089,Joao Rojas,1989-06-14,Midfielder,,75.8
+P-54461,Corentin Tolisso,1994-08-03,Midfielder,,83.5
+P-67129,Lucas Digne,1993-07-20,Defender,,89.1
+P-61051,Ezequiel Garay,1986-10-10,Defender,,83.5
+P-07233,Kim Moon-hwan,1995-08-01,Defender,,78.6
+P-24556,not applicable Raúl,1977-06-27,Forward,,88.0
+P-39956,Kwadwo Asamoah,1988-12-09,Midfielder,,76.1
+P-77769,Abdou Diallo,1996-05-04,Defender,,74.7
+P-97485,Song Min-kyu,1999-09-12,Midfielder,,83.1
+P-48592,Geert De Vlieger,1971-10-16,Midfielder,,77.7
+P-01930,Almoez Ali,1996-08-19,Forward,,79.0
+P-95754,Karim Boudiaf,1990-09-16,Midfielder,,72.8
+P-89943,Ji-hoon Baek,1985-02-28,Midfielder,,82.9
+P-01258,Abdelkarim Hassan,1993-08-28,Midfielder,,77.8
+P-17027,Sammy Adjei,1980-09-01,Midfielder,,82.2
+P-71343,Alexis Mac Allister,1998-12-24,Midfielder,,79.8
+P-17784,Payam Niazmand,1995-04-06,Midfielder,,73.1
+P-64182,Alexis Vega,1997-11-25,Forward,,75.1
+P-07865,Jin-cheul Choi,1971-03-26,Defender,,74.4
+P-43029,Marco Verratti,1992-11-05,Midfielder,,85.7
+P-09951,Jonathan dos Santos,1990-04-26,Midfielder,,85.6
+P-62341,not applicable Rodri,1996-06-22,Midfielder,,89.4
+P-95302,Aliou Cissé,1976-03-24,Defender,,75.7
+P-37924,Ferdinand Coly,1973-09-10,Defender,,74.3
+P-50943,Danny Welbeck,1990-11-26,Forward,,79.4
+P-97422,Bailey Wright,1992-07-28,Defender,,72.6
+P-38371,Ali Daei,1969-03-21,Forward,,78.0
+P-11930,José Francisco Cevallos,1971-04-17,Midfielder,,84.5
+P-34695,Frankie Hejduk,1974-08-05,Midfielder,,77.2
+P-20557,Mattias Jonson,1974-01-16,Midfielder,,75.3
+P-79943,Gareth Southgate,1970-09-03,Defender,,78.9
+P-73255,Guillermo Franco,1976-11-03,Forward,,80.8
+P-81466,Alphonse Areola,1993-02-27,Midfielder,,77.6
+P-05392,Jason Davidson,1991-06-29,Defender,,83.6
+P-57029,Walker Zimmerman,1993-05-19,Defender,,83.5
+P-11495,Ángel Mena,1988-01-21,Midfielder,,75.7
+P-31301,Ferran Torres,2000-02-29,Forward,,90.4
+P-36196,Mark Milligan,1985-08-04,Defender,,83.6
+P-13030,Omar Gaber,1992-01-30,Midfielder,,78.3
+P-56659,Thiago Almada,2001-04-26,Midfielder,,87.6
+P-60871,Mohamed Elneny,1992-07-11,Midfielder,,71.8
+P-47319,Akram Afif,1996-11-18,Forward,,78.8
+P-72795,Yoann Gourcuff,1986-07-11,Midfielder,,79.5
+P-52319,Oliver Bozanic,1989-01-08,Midfielder,,77.6
+P-69659,Marc Wilmots,1969-02-22,Forward,,79.1
+P-72780,Imed Mhedhebi,1976-03-22,Forward,,77.4
+P-59999,Chris Albright,1979-01-14,Defender,,76.3
+P-82967,Marcus Berg,1986-08-17,Forward,,74.2
+P-40927,Chung-yong Lee,1988-07-02,Midfielder,,78.6
+P-85473,Juan Carlos Burbano,1969-02-15,Midfielder,,76.3
+P-61416,Pathé Ciss,1994-03-16,Midfielder,,84.2
+P-51653,Graham Zusi,1986-08-18,Midfielder,,77.5
+P-75905,Paúl Ambrosi,1980-10-14,Defender,,77.0
+P-36638,Abdul Manaf Nurudeen,1999-02-08,Midfielder,,78.8
+P-65386,Samuel Piette,1994-11-12,Midfielder,,82.5
+P-95122,Woon-jae Lee,1973-04-26,Midfielder,,81.8
+P-98071,Abdul Kader Keïta,1981-08-06,Midfielder,,74.8
+P-26953,Alex Telles,1992-12-15,Defender,,83.8
+P-00384,Habib Mohamed,1983-12-10,Defender,,82.5
+P-74946,Sebastian Larsson,1985-06-06,Midfielder,,76.6
+P-19229,Curro Torres,1976-12-27,Defender,,86.1
+P-76077,Carlos Carbonero,1990-07-25,Midfielder,,77.4
+P-42808,Niclas Alexandersson,1971-12-29,Midfielder,,78.1
+P-92520,not applicable Thiago,1991-04-11,Midfielder,,90.2
+P-75070,Mikael Nilsson,1978-06-24,Defender,,76.0
+P-49094,Mohamed Dräger,1996-06-25,Defender,,80.4
+P-02231,Diego Costa,1988-10-07,Forward,,83.4
+P-51678,Ali Assadalla,1993-01-19,Midfielder,,69.7
+P-55991,Fabien Barthez,1971-06-28,Midfielder,,86.3
+P-02115,John Alvbåge,1982-08-10,Midfielder,,77.3
+P-17428,Jermaine Jenas,1983-02-18,Midfielder,,82.5
+P-16333,Pau Torres,1997-01-16,Defender,,85.0
+P-23315,Willy Sagnol,1977-03-18,Defender,,82.1
+P-54100,Serey Dié,1984-11-07,Midfielder,,77.5
+P-01933,Oswaldo Minda,1983-07-26,Midfielder,,79.5
+P-15896,Adnan Januzaj,1995-02-05,Midfielder,,78.9
+P-94838,David Ospina,1988-08-31,Midfielder,,79.5
+P-64922,Wesley Sonck,1978-08-09,Forward,,83.3
+P-06256,Olof Mellberg,1977-09-03,Defender,,75.7
+P-86080,Mohamed El Shenawy,1988-12-18,Midfielder,,74.7
+P-25906,Pablo Aimar,1979-11-03,Midfielder,,80.3
+P-19776,Julián Álvarez,2000-01-31,Forward,,80.7
+P-72763,Germán Villa,1973-04-02,Midfielder,,84.6
+P-97294,Marco Zoro,1983-12-27,Defender,,78.5
+P-72859,Paul Robinson,1979-10-15,Midfielder,,75.5
+P-96512,Luca Toni,1977-05-26,Forward,,77.2
+P-54495,Khalid Muneer,1998-02-24,Forward,,80.7
+P-20467,Kamal Sowah,2000-01-09,Midfielder,,80.1
+P-71420,John Terry,1980-12-07,Defender,,86.0
+P-23304,Youssouf Fofana,1999-01-10,Midfielder,,88.1
+P-93941,Máximo Banguera,1985-12-16,Midfielder,,80.4
+P-98528,Luís Fabiano,1980-11-08,Forward,,87.5
+P-27915,Issah Ahmed,1982-05-24,Defender,,72.7
+P-26068,Romain Saïss,1990-03-26,Defender,,83.8
+P-30596,Andrew Redmayne,1989-01-13,Midfielder,,82.2
+P-00916,Sylvain Wiltord,1974-05-10,Forward,,78.1
+P-59727,Miloš Degenek,1994-04-28,Defender,,83.1
+P-42976,Amdy Faye,1977-03-12,Midfielder,,79.9
+P-89292,Takashi Fukunishi,1976-09-01,Midfielder,,84.8
+P-66219,Min-sung Lee,1973-06-23,Defender,,73.9
+P-37114,Tae-uk Choi,1981-03-13,Forward,,78.5
+P-78091,Jeremy Sarmiento,2002-06-16,Midfielder,,84.7
+P-97589,George Owu,1982-06-17,Midfielder,,74.7
+P-37703,Marwan Mohsen,1989-02-26,Forward,,77.7
+P-86464,Joe-Max Moore,1971-02-23,Forward,,77.6
+P-19907,Frank Leboeuf,1968-01-22,Defender,,79.7
+P-56284,Lee Addy,1985-09-26,Defender,,74.2
+P-44334,Pepe Reina,1982-08-31,Midfielder,,80.7
+P-35225,Ko Itakura,1997-01-27,Defender,,82.8
+P-37420,Eric García,2001-01-09,Defender,,84.4
+P-33115,Giovanni Sio,1989-03-31,Forward,,79.5
+P-87449,David Luiz,1987-04-22,Defender,,79.7
+P-51458,Haminu Draman,1986-04-01,Midfielder,,75.6
+P-73619,Lionel Scaloni,1978-05-16,Defender,,86.4
+P-21683,David Albelda,1977-09-01,Midfielder,,86.5
+P-42113,Ángel Di María,1988-02-14,Midfielder,,87.5
+P-35103,Marek Jankulovski,1977-05-09,Defender,,74.1
+P-84424,Lucas Hernandez,1996-02-14,Defender,,86.3
+P-70867,Antonee Robinson,1997-08-08,Defender,,75.7
+P-66815,not applicable Cássio,1987-06-06,Midfielder,,78.7
+P-51089,Carles Puyol,1978-04-13,Defender,,84.2
+P-14456,not applicable Sergio,1976-11-10,Midfielder,,85.7
+P-07870,Moussa Sissoko,1989-08-16,Midfielder,,78.0
+P-22876,Vincent Candela,1973-10-24,Defender,,87.1
+P-99537,Andrea Pirlo,1979-05-19,Midfielder,,76.7
+P-84312,Mathieu Valbuena,1984-09-28,Midfielder,,86.6
+P-43176,Samuel Inkoom,1989-06-01,Defender,,79.6
+P-79283,not applicable Kléberson,1979-06-19,Midfielder,,83.2
+P-48443,Ross Barkley,1993-12-05,Midfielder,,81.8
+P-95402,Pablo Armero,1986-11-02,Defender,,76.2
+P-60652,Benjamin Pavard,1996-03-28,Defender,,79.1
+P-36687,Marco Fabián,1989-07-21,Midfielder,,77.0
+P-31907,Okan Buruk,1973-10-19,Midfielder,,75.0
+P-43681,Pascal Chimbonda,1979-02-21,Defender,,85.9
+P-96363,Alaeddine Yahia,1981-09-26,Defender,,78.1
+P-54298,Yoshikatsu Kawaguchi,1975-08-15,Midfielder,,76.3
+P-86943,Carlos Tenorio,1979-05-14,Forward,,79.8
+P-72098,Tim Brown,1981-03-06,Midfielder,,73.4
+P-12707,Alfred N'Diaye,1990-03-06,Midfielder,,78.6
+P-36290,José Luis Perlaza,1981-10-06,Defender,,81.7
+P-10739,Enzo Fernández,2001-01-17,Midfielder,,84.2
+P-09338,Se-jong Ju,1990-10-30,Midfielder,,82.1
+P-43423,Moharram Navidkia,1982-11-01,Midfielder,,77.0
+P-87229,Sigifredo Mercado,1968-12-21,Midfielder,,79.3
+P-03472,Atiba Hutchinson,1983-02-08,Midfielder,,81.9
+P-58878,Tomokazu Myojin,1978-01-24,Midfielder,,79.8
+P-96547,not applicable Shikabala,1986-03-05,Forward,,74.5
+P-52837,not applicable Saúl,1994-11-21,Midfielder,,80.6
+P-26539,Andrea Barzagli,1981-05-08,Defender,,79.6
+P-37171,Philippe Coutinho,1992-06-12,Midfielder,,81.1
+P-68649,not applicable Henrique,1986-10-14,Defender,,83.4
+P-57511,Kwon Kyung-won,1992-01-31,Defender,,84.1
+P-94825,Teddy Sheringham,1966-04-02,Forward,,77.0
+P-80905,Álex Rodríguez,1990-08-05,Midfielder,,71.2
+P-16073,Ledley King,1980-10-12,Defender,,79.6
+P-14499,Juan Fernando Quintero,1993-01-18,Midfielder,,77.8
+P-74320,Abdallah El Said,1985-07-13,Midfielder,,71.0
+P-08539,Young-kwang Kim,1983-06-28,Midfielder,,80.2
+P-66635,Moussa N'Diaye,2002-06-18,Defender,,76.5
+P-20372,not applicable Adriano,1982-02-17,Forward,,85.6
+P-06005,Angelo Palombo,1981-09-25,Midfielder,,82.9
+P-89922,Riadh Jelassi,1971-07-07,Forward,,74.1
+P-09400,Marco Asensio,1996-01-21,Midfielder,,88.7
+P-71373,Jong-woo Park,1989-03-10,Midfielder,,77.2
+P-33989,Adam Federici,1985-01-31,Midfielder,,75.3
+P-66316,Kevin-Prince Boateng,1987-03-06,Midfielder,,78.0
+P-36826,Melvin Brown,1979-01-28,Defender,,84.1
+P-77705,Teófilo Gutiérrez,1985-05-17,Forward,,86.2
+P-52437,Illiasu Shilla,1982-10-26,Defender,,72.0
+P-47246,Simone Pepe,1983-08-30,Midfielder,,86.7
+P-65802,Daniele De Rossi,1983-07-24,Midfielder,,79.9
+P-02909,Sohrab Bakhtiarizadeh,1973-09-11,Defender,,82.9
+P-32567,Raúl Guerrón,1976-10-12,Defender,,76.9
+P-12635,Alistair Johnston,1998-10-08,Defender,,80.8
+P-73513,Jaime Ayoví,1988-02-21,Forward,,73.4
+P-62629,Syam Ben Youssef,1989-03-31,Defender,,73.2
+P-86095,Fodé Ballo-Touré,1997-01-03,Defender,,80.6
+P-12127,Abdoulaye Méïté,1980-10-06,Defender,,77.6
+P-12805,Michael Essien,1982-12-03,Midfielder,,82.4
+P-05728,Landon Donovan,1982-03-04,Forward,,77.1
+P-70474,Razak Pimpong,1982-12-30,Forward,,78.8
+P-76837,Álvaro Odriozola,1995-12-14,Defender,,79.0
+P-13809,Arash Borhani,1983-09-14,Forward,,80.3
+P-15025,Adel Sellimi,1972-11-16,Forward,,73.4
+P-12859,Ahmed Khalil,1994-12-21,Forward,,75.0
+P-40852,Enrique Romero,1971-06-23,Defender,,82.1
+P-20127,Kosuke Nakamura,1995-02-27,Midfielder,,85.4
+P-57248,Leonardo Bonucci,1987-05-01,Defender,,86.9
+P-42535,Bobby Convey,1983-05-27,Midfielder,,78.2
+P-05265,Abdelhamid Sabiri,1996-11-28,Forward,,76.4
+P-48335,Shaun Wright-Phillips,1981-10-25,Midfielder,,83.0
+P-72363,Osman Bukari,1998-12-13,Midfielder,,83.8
+P-63129,Vince Grella,1979-10-05,Midfielder,,74.3
+P-39664,Hamdi Nagguez,1992-10-28,Defender,,73.6
+P-21962,Mohamed Amine Ben Amor,1992-05-03,Midfielder,,76.0
+P-28455,Luis Gómez,1972-04-20,Midfielder,,84.5
+P-05864,Garang Kuol,2004-09-15,Forward,,73.5
+P-74139,Pontus Farnerud,1980-06-04,Midfielder,,77.7
+P-58388,not applicable Kaká,1982-04-22,Midfielder,,86.8
+P-56839,Sebas Méndez,1997-04-26,Midfielder,,75.9
+P-74071,Kyle Walker,1990-05-28,Defender,,78.1
+P-15489,Bakhtiar Rahmani,1991-09-23,Midfielder,,82.9
+P-41052,Brad Davis,1981-11-08,Midfielder,,75.2
+P-96029,Rami Bedoui,1990-01-19,Defender,,73.3
+P-59702,Siaka Tiéné,1982-03-22,Defender,,72.4
+P-81643,Jared Borgetti,1973-08-14,Forward,,82.4
+P-10731,Max Gradel,1987-11-30,Forward,,71.9
+P-79898,Daniel Agyei,1989-11-10,Midfielder,,82.4
+P-07475,Jozy Altidore,1989-11-06,Forward,,81.3
+P-25209,Kevin Mirallas,1987-10-05,Midfielder,,79.3
+P-36639,Alex Oxlade-Chamberlain,1993-08-15,Midfielder,,83.0
+P-57303,Mouez Hassen,1995-03-05,Midfielder,,74.6
+P-24705,Hirving Lozano,1995-07-30,Forward,,76.6
+P-22016,Luis Ovalle,1988-09-07,Defender,,74.4
+P-68379,David Regis,1968-12-02,Defender,,83.9
+P-82861,Ahmad Alenemeh,1982-10-10,Defender,,79.1
+P-76060,not applicable Marquinhos,1994-05-14,Defender,,79.6
+P-61810,Charles De Ketelaere,2001-03-10,Forward,,80.3
+P-54138,Genki Haraguchi,1991-05-09,Midfielder,,77.9
+P-13964,Antonio López,1981-09-13,Defender,,89.4
+P-94511,Hitoshi Sogahata,1979-08-02,Midfielder,,77.5
+P-30753,Boubacar Barry,1979-12-30,Midfielder,,81.5
+P-90951,Chris Killen,1981-10-08,Forward,,64.9
+P-29578,Jérémy Doku,2002-05-27,Forward,,88.0
+P-23169,Mathis Bolly,1990-11-14,Forward,,76.7
+P-90012,Mason Mount,1999-01-10,Midfielder,,83.1
+P-99957,Víctor Ibarbo,1990-05-19,Forward,,81.0
+P-25083,John Paintsil,1981-06-15,Midfielder,,72.4
+P-87958,Hugo Guillamón,2000-01-31,Defender,,82.7
+P-20087,Jamie Maclaren,1993-07-29,Forward,,80.6
+P-00809,Liam Millar,1999-09-27,Midfielder,,82.0
+P-02974,not applicable Hernanes,1985-05-29,Midfielder,,81.1
+P-79299,Sadio Mané,1992-04-10,Forward,,82.4
+P-96211,Brett Holman,1984-03-27,Forward,,83.3
+P-56532,Nicolás Burdisso,1981-04-12,Defender,,82.3
+P-15161,Bassam Al-Rawi,1997-12-16,Defender,,75.6
+P-28517,Gideon Mensah,1998-07-18,Defender,,76.8
+P-73491,Roberto Alvarado,1998-09-07,Forward,,80.2
+P-69641,Prince Tagoe,1986-11-09,Forward,,80.2
+P-63176,Jean-Alain Boumsong,1979-12-14,Defender,,80.2
+P-72495,Yong-soo Choi,1973-09-10,Forward,,84.3
+P-14758,Lionel Messi,1987-06-24,Forward,,88.2
+P-76769,Radhi Jaïdi,1975-08-30,Defender,,79.4
+P-57447,Scott Carson,1985-09-03,Midfielder,,79.2
+P-29713,Piero Hincapié,2002-01-09,Defender,,84.8
+P-64348,Gerard Piqué,1987-02-02,Defender,,82.7
+P-01311,Vincenzo Montella,1974-06-18,Forward,,76.5
+P-44093,Ahmed Fathy,1984-11-10,Defender,,78.6
+P-69793,Naïm Sliti,1992-07-27,Forward,,76.6
+P-48161,Lucho González,1981-01-19,Midfielder,,78.7
+P-43350,Mathieu Debuchy,1985-07-28,Defender,,84.9
+P-77916,Carlos Valdés,1985-05-22,Defender,,87.2
+P-55821,Sam Adekugbe,1995-01-16,Defender,,75.0
+P-01730,Carlos Salcedo,1993-09-29,Defender,,75.9
+P-03038,Branko Strupar,1970-02-09,Forward,,87.2
+P-93674,Nigel Martyn,1966-08-11,Midfielder,,85.3
+P-12376,Mitsuo Ogasawara,1979-04-05,Midfielder,,75.8
+P-00148,Yuki Abe,1981-09-06,Midfielder,,83.9
+P-62368,Aaron Ramsdale,1998-05-14,Midfielder,,76.1
+P-36105,Alidu Seidu,2000-06-04,Defender,,78.1
+P-77238,Steve Cherundolo,1979-02-19,Defender,,85.0
+P-53957,Karim Ansarifard,1990-04-03,Forward,,74.2
+P-49114,Nicolás Otamendi,1988-02-12,Defender,,87.7
+P-65411,Teruyuki Moniwa,1981-09-08,Defender,,83.9
+P-01939,Rogério Ceni,1973-01-22,Midfielder,,84.3
+P-09945,Ismael Díaz,1997-05-12,Forward,,75.9
+P-72797,Jeff Agoos,1968-05-02,Defender,,75.0
+P-81433,Uriel Antuna,1997-08-21,Forward,,84.2
+P-79710,Felipe Caicedo,1988-09-05,Forward,,80.4
+P-56735,Bixente Lizarazu,1969-12-09,Defender,,80.9
+P-10738,Alain Boghossian,1970-10-27,Midfielder,,83.8
+P-83190,Jimmy Conrad,1977-02-12,Defender,,74.3
+P-33586,not applicable Gervinho,1987-05-27,Forward,,75.4
+P-18605,Ebrahim Mirzapour,1978-09-16,Midfielder,,74.8
+P-74612,Hossein Kanaanizadegan,1994-03-23,Defender,,76.3
+P-47809,Seung-yeoul Lee,1989-03-06,Forward,,81.7
+P-86937,Nicolas Jackson,2001-06-20,Forward,,82.3
+P-51388,Vikash Dhorasoo,1973-10-10,Midfielder,,87.7
+P-65206,Michael Arroyo,1987-04-23,Midfielder,,84.9
+P-94643,Anthony Réveillère,1979-11-10,Defender,,83.1
+P-71816,Benjamin Mendy,1994-07-17,Defender,,83.4
+P-15091,Edson Buddle,1981-05-21,Forward,,77.4
+P-18894,Cristian Mora,1979-08-26,Midfielder,,77.0
+P-07553,Kasey Keller,1969-11-29,Midfielder,,74.0
+P-70595,Rickie Lambert,1982-02-16,Forward,,83.9
+P-31219,Eric Dier,1994-01-15,Midfielder,,86.7
+P-26695,not applicable Edílson,1971-09-17,Forward,,85.1
+P-79650,Cristian Romero,1998-04-27,Defender,,89.4
+P-19801,Cheick Tioté,1986-06-21,Midfielder,,73.6
+P-94275,Álvaro Arbeloa,1983-01-17,Defender,,89.4
+P-95116,Pedro Contreras,1972-01-07,Midfielder,,88.2
+P-72305,Ben Sigmund,1981-02-03,Defender,,67.9
+P-21553,Raheem Sterling,1994-12-08,Midfielder,,79.7
+P-97459,Claudio Reyna,1973-07-20,Midfielder,,76.5
+P-70545,Carl Valeri,1984-08-14,Midfielder,,79.3
+P-77068,Matthew Spiranovic,1988-06-27,Defender,,77.3
+P-11593,Nacho Monreal,1986-02-26,Defender,,87.9
+P-49097,David Villa,1981-12-03,Forward,,78.5
+P-84745,Ruben Loftus-Cheek,1996-01-23,Midfielder,,81.4
+P-23336,Albert Luque,1978-03-11,Forward,,82.9
+P-10094,Khaled Badra,1973-04-08,Defender,,74.5
+P-94559,Bülent Korkmaz,1968-11-24,Defender,,83.4
+P-82549,Marcos Senna,1976-07-17,Midfielder,,83.8
+P-50641,Sulley Muntari,1984-08-27,Midfielder,,77.2
+P-07259,Young-gwon Kim,1990-02-27,Defender,,78.2
+P-25724,Ji-sung Park,1981-02-25,Midfielder,,83.3
+P-09991,Joseph Aidoo,1995-09-29,Defender,,73.9
+P-42517,Youssef En-Nesyri,1997-06-01,Forward,,77.7
+P-56669,Zeno Debast,2003-10-24,Defender,,87.5
+P-26542,Óscar Murillo,1988-04-18,Defender,,84.8
+P-35837,Mathew Leckie,1991-02-04,Forward,,80.6
+P-18164,Gennaro Gattuso,1978-01-09,Midfielder,,78.7
+P-32717,Thiago Motta,1982-08-28,Midfielder,,83.8
+P-30252,Timothy Weah,2000-02-22,Forward,,85.3
+P-91329,Andrew Nabbout,1992-12-17,Forward,,77.3
+P-67867,Yohan Cabaye,1986-01-14,Midfielder,,78.8
+P-82212,Papa Bouba Diop,1978-01-28,Midfielder,,80.3
+P-82870,Hatem Trabelsi,1977-01-25,Defender,,75.7
+P-38283,Fernando Llorente,1985-02-26,Forward,,85.4
+P-03287,Diego Reyes,1992-09-19,Defender,,78.3
+P-70547,Toby Alderweireld,1989-03-02,Defender,,80.3
+P-68818,Cristiano Doni,1973-04-01,Midfielder,,86.7
+P-84116,Adam Larsen Kwarasey,1987-12-12,Midfielder,,82.4
+P-93262,Clemente Rodríguez,1981-07-31,Defender,,87.0
+P-55581,not applicable Romaric,1983-06-04,Midfielder,,80.7
+P-85670,Ismaël Koné,2002-06-16,Midfielder,,73.2
+P-74323,Nicolás Asencio,1975-04-26,Forward,,83.3
+P-16859,Tayfur Havutçu,1970-04-23,Midfielder,,77.7
+P-27618,Yassine Chikhaoui,1986-09-02,Forward,,81.7
+P-13639,Daniel Afriyie,2001-06-26,Midfielder,,72.6
+P-48645,Alberto Gilardino,1982-07-05,Forward,,80.8
+P-99888,Keisuke Tsuboi,1979-09-16,Defender,,76.6
+P-82945,Ajdin Hrustic,1996-07-05,Midfielder,,72.4
+P-77484,Emmanuel Koné,1986-12-31,Midfielder,,81.3
+P-16245,Luis Muriel,1991-04-16,Forward,,82.7
+P-55710,Farouk Ben Mustapha,1989-07-01,Midfielder,,77.2
+P-43440,Serge Aurier,1992-12-24,Defender,,71.8
+P-79146,not applicable Denílson,1977-08-24,Forward,,81.3
+P-99847,Selim Benachour,1981-09-08,Midfielder,,71.9
+P-29870,Gabriel Achilier,1985-03-24,Defender,,80.0
+P-99721,Akinori Nishizawa,1976-06-18,Forward,,84.3
+P-54658,Michael McGlinchey,1987-01-07,Midfielder,,76.0
+P-78477,Viktor Claesson,1992-01-02,Midfielder,,74.7
+P-66308,Roque Júnior,1976-08-31,Defender,,83.0
+P-73712,Marcos Acuña,1991-10-28,Defender,,77.8
+P-08359,Denis Odoi,1988-05-27,Defender,,78.8
+P-07875,Thomas Partey,1993-06-13,Midfielder,,83.3
+P-86871,Marcos Llorente,1995-01-30,Midfielder,,89.7
+P-30711,Hugo Lloris,1986-12-26,Midfielder,,88.6
+P-22242,Zoubeir Baya,1971-05-15,Midfielder,,76.4
+P-42905,Jean-Daniel Akpa Akpro,1992-10-11,Defender,,78.0
+P-80902,Blaise Kouassi,1975-02-02,Defender,,82.2
+P-98036,Ramón Morales,1975-10-10,Midfielder,,80.2
+P-61178,Juan Camilo Zúñiga,1985-12-14,Defender,,86.0
+P-19422,Benjamin Angoua,1986-11-28,Defender,,71.9
+P-41133,İlhan Mansız,1975-08-10,Forward,,81.8
+P-92628,John Stones,1994-05-28,Defender,,75.6
+P-53694,Alfred Gomis,1993-09-05,Midfielder,,76.5
+P-15199,Khalid Boutaïb,1987-04-24,Forward,,77.3
+P-32574,Liam Fraser,1998-02-13,Midfielder,,79.5
+P-28595,Naomichi Ueda,1994-10-24,Defender,,82.8
+P-07038,Fraser Forster,1988-03-17,Midfielder,,83.2
+P-94649,Leighton Baines,1984-12-11,Defender,,82.5
+P-78024,Chris Wondolowski,1983-01-28,Forward,,78.7
+P-20969,Andranik Teymourian,1983-03-06,Midfielder,,75.9
+P-18672,Clint Dempsey,1983-03-09,Midfielder,,79.2
+P-01068,Jackson Martínez,1986-10-03,Forward,,83.0
+P-77464,Aristide Zogbo,1981-12-30,Midfielder,,74.6
+P-78133,Fabricio Coloccini,1982-01-22,Defender,,85.6
+P-88818,Oussama Haddadi,1992-01-28,Defender,,77.1
+P-68952,Weston McKennie,1998-08-28,Midfielder,,80.5
+P-46263,Milan Borjan,1987-10-23,Midfielder,,81.1
+P-97840,Sol Campbell,1974-09-18,Defender,,79.0
+P-86644,Yahya Jabrane,1991-06-18,Midfielder,,76.0
+P-58212,Hakan Şükür,1971-09-01,Forward,,77.2
+P-41620,Kaies Ghodhbane,1976-01-07,Midfielder,,78.3
+P-38878,Luis Enrique,1970-05-08,Midfielder,,80.5
+P-10636,Masashi Oguro,1980-05-04,Forward,,84.5
+P-24963,Javier de Pedro,1973-08-04,Midfielder,,89.3
+P-89904,Emmanuel Agyemang-Badu,1990-12-02,Midfielder,,78.7
+P-55125,Zeljko Kalac,1972-12-16,Midfielder,,81.3
+P-23774,M'Baye Niang,1994-12-19,Forward,,79.0
+P-57378,Cristiano Zanetti,1977-04-14,Midfielder,,84.3
+P-12476,Carlos Bacca,1986-09-08,Forward,,85.0
+P-92939,Andy Barron,1980-12-24,Midfielder,,71.5
+P-13271,Suk-young Yun,1990-02-13,Defender,,74.2
+P-29212,José Fernando Cuadrado,1985-06-01,Midfielder,,86.5
+P-25449,not applicable Nilmar,1984-07-14,Forward,,87.1
+P-61793,Iker Casillas,1981-05-20,Midfielder,,78.7
+P-81997,Hans Vanaken,1992-08-24,Midfielder,,77.7
+P-14862,Luke Wilkshire,1981-10-02,Defender,,75.8
+P-83566,Brett Emerton,1979-02-22,Defender,,72.4
+P-05164,Lucas Paquetá,1997-08-27,Midfielder,,83.4
+P-10501,Phil Foden,2000-05-28,Midfielder,,86.6
+P-59548,Magnus Svensson,1969-03-10,Midfielder,,78.0
+P-04469,Eric Abidal,1979-09-11,Defender,,83.5
+P-33854,Ansu Fati,2002-10-31,Forward,,82.1
+P-16557,Ashley Cole,1980-12-20,Defender,,79.1
+P-42311,Alessandro Santos,1977-07-20,Midfielder,,82.7
+P-74065,Christophe Dugarry,1972-03-24,Forward,,83.9
+P-64292,Woo-young Jung,1989-12-14,Midfielder,,78.1
+P-84762,Masashi Nakayama,1967-09-23,Forward,,78.8
+P-05583,Tobias Linderoth,1979-04-21,Midfielder,,80.4
+P-31138,Ben Foster,1983-04-03,Midfielder,,85.2
+P-85199,Juan Román Riquelme,1978-06-24,Midfielder,,84.0
+P-80043,Pablo Barrera,1987-06-21,Midfielder,,74.9
+P-50281,Jean-Jacques Gosso,1983-03-15,Midfielder,,72.4
+P-36278,Yoshinori Muto,1992-07-15,Forward,,77.6
+P-42706,André-Pierre Gignac,1985-12-05,Forward,,79.4
+P-54013,not applicable Paulinho,1988-07-25,Midfielder,,88.1
+P-03265,Guido Rodríguez,1994-04-12,Midfielder,,89.2
+P-15739,Min-soo Kang,1986-02-14,Defender,,73.6
+P-24251,Seigo Narazaki,1976-04-15,Midfielder,,75.4
+P-54694,Domenico Criscito,1986-12-30,Defender,,77.2
+P-29447,Kook-young Han,1990-04-19,Midfielder,,79.2
+P-00668,Mourad Melki,1975-05-09,Midfielder,,72.2
+P-46107,Ayoub El Kaabi,1993-06-25,Forward,,80.2
+P-45653,Ali Gholizadeh,1996-03-10,Midfielder,,74.4
+P-24760,Aníbal Godoy,1990-02-10,Midfielder,,76.4
+P-56718,Johan Mjällby,1971-02-09,Defender,,81.0
+P-98074,Santi Cazorla,1984-12-13,Midfielder,,81.7
+P-50893,Francisco Gabriel de Anda,1971-06-05,Defender,,76.9
+P-01416,Jordi Alba,1989-03-21,Defender,,81.8
+P-76780,Jin-kyu Kim,1985-02-16,Defender,,81.4
+P-08678,Karim Saidi,1983-03-24,Defender,,78.1
+P-02795,not applicable Dida,1973-10-07,Midfielder,,81.0
+P-71531,Andreas Andersson,1974-04-10,Forward,,77.7
+P-71933,Fabian Johnson,1987-12-11,Defender,,76.3
+P-09728,Stephen Appiah,1980-12-24,Midfielder,,80.3
+P-28801,Emil Krafth,1994-08-02,Defender,,76.3
+P-78484,Jules Koundé,1998-11-12,Defender,,85.9
+P-91718,not applicable Cafu,1970-06-07,Defender,,79.8
+P-85046,Leo Bertos,1981-12-20,Midfielder,,64.9
+P-22930,Thomas Meunier,1991-09-12,Defender,,80.9
+P-40147,Exequiel Palacios,1998-10-05,Midfielder,,86.9
+P-01077,Ismaeel Mohammad,1990-04-05,Defender,,79.9
+P-28010,Sergio Busquets,1988-07-16,Midfielder,,82.7
+P-61270,Marco Parolo,1985-01-25,Midfielder,,77.0
+P-11346,Issam Jebali,1991-12-25,Forward,,73.6
+P-48944,Louis Saha,1978-08-08,Forward,,79.4
+P-50663,not applicable Bernard,1992-09-08,Forward,,80.9
+P-24531,Vahid Amiri,1988-04-02,Midfielder,,75.1
+P-42015,Filip Helander,1993-04-22,Defender,,82.6
+P-77489,Carlos Peña,1990-03-29,Midfielder,,82.4
+P-48903,Matt Turner,1994-06-24,Midfielder,,79.8
+P-29415,not applicable Xavi,1980-01-25,Midfielder,,90.0
+P-05029,Souleymane Camara,1982-12-22,Forward,,72.9
+P-47942,Jung-woo Kim,1982-05-09,Midfielder,,75.7
+P-77382,Shogo Taniguchi,1991-07-15,Defender,,85.5
+P-99163,Matteo Darmian,1989-12-02,Defender,,79.6
+P-64668,Makhtar N'Diaye,1981-12-31,Midfielder,,72.8
+P-63363,Marouane Fellaini,1987-11-22,Midfielder,,83.7
+P-56023,Karel Poborský,1972-03-30,Midfielder,,81.5
+P-54506,Ismail Jakobs,1999-08-17,Defender,,83.5
+P-05917,Cho Yu-min,1996-11-17,Defender,,77.7
+P-23272,Pejman Montazeri,1983-09-06,Defender,,74.0
+P-58907,Ritsu Dōan,1998-06-16,Midfielder,,81.8
+P-26566,Yo-han Go,1988-03-10,Defender,,82.8
+P-73608,Kim Källström,1982-08-24,Midfielder,,82.4
+P-31668,Sidney Govou,1979-07-27,Forward,,88.7
+P-06545,Xavier Arreaga,1994-09-28,Defender,,74.5
+P-66638,Fredy Guarín,1986-06-30,Midfielder,,85.3
+P-04785,Shinji Ono,1979-09-27,Midfielder,,84.4
+P-35711,Lamine Gassama,1989-10-20,Defender,,72.9
+P-21865,Taha Yassine Khenissi,1992-01-06,Forward,,80.9
+P-03949,Emmanuel Pappoe,1981-03-03,Defender,,76.6
+P-02595,Takashi Usami,1992-05-06,Midfielder,,75.4
+P-46358,Alphonso Davies,2000-11-02,Forward,,72.4
+P-41758,not applicable Fernandinho,1985-05-04,Midfielder,,78.9
+P-03497,Daisuke Matsui,1981-05-11,Forward,,76.6
+P-71071,Dani Carvajal,1992-01-11,Defender,,88.9
+P-34636,Pável Pardo,1976-07-26,Midfielder,,78.0
+P-29601,not applicable Júnior,1973-06-20,Defender,,85.6
+P-09058,Kevin Álvarez,1999-01-15,Defender,,85.1
+P-35157,not applicable Juanfran,1985-01-09,Defender,,81.5
+P-58954,Hassen Bejaoui,1976-02-14,Midfielder,,83.1
+P-97258,Michael Bradley,1987-07-31,Midfielder,,81.6
+P-62209,Juan Sebastián Verón,1975-03-09,Midfielder,,83.4
+P-28811,Meshaal Barsham,1998-02-14,Midfielder,,78.3
+P-89154,Riadh Bouazizi,1973-04-08,Midfielder,,79.2
+P-57100,Ahmed Alaaeldin,1993-01-31,Forward,,72.8
+P-29398,Gonzalo Higuaín,1987-12-10,Forward,,77.6
+P-50718,Michael Carrick,1981-07-28,Midfielder,,82.3
+P-66908,Craig Moore,1975-12-12,Defender,,82.6
+P-06446,not applicable Rodrygo,2001-01-09,Forward,,85.8
+P-36515,Javier Hernández,1988-06-01,Forward,,80.9
+P-39942,Takefusa Kubo,2001-06-04,Midfielder,,75.3
+P-17986,Khadim N'Diaye,1985-04-05,Midfielder,,82.4
+P-25741,Youssef Msakni,1990-10-28,Forward,,73.3
+P-47539,Vahid Hashemian,1976-07-21,Forward,,82.4
+P-97838,Shojae Khalilzadeh,1989-05-14,Defender,,77.5
+P-60159,Alex Wilkinson,1984-08-13,Defender,,74.7
+P-10313,Simon Mignolet,1988-03-06,Midfielder,,77.4
+P-31813,Mubarak Wakaso,1990-07-25,Midfielder,,82.0
+P-56299,Sang-sik Kim,1976-12-17,Defender,,83.5
+P-70483,Gabriel Martinelli,2001-06-18,Forward,,84.4
+P-06468,Giovanny Espinoza,1977-04-12,Defender,,77.3
+P-35179,Atsuto Uchida,1988-03-27,Defender,,82.7
+P-71113,Jonathan Spector,1986-03-01,Defender,,82.0
+P-75763,Guy Demel,1981-06-13,Defender,,80.8
+P-30568,Teddy Lučić,1973-04-15,Defender,,80.1
+P-30306,Edwin Tenorio,1976-06-16,Midfielder,,83.1
+P-29080,Carlos Tevez,1984-02-05,Forward,,83.3
+P-96178,Earnie Stewart,1969-03-28,Midfielder,,80.8
+P-95458,Ivan Vicelich,1976-09-03,Defender,,75.6
+P-09877,Johan Vásquez,1998-10-22,Defender,,86.0
+P-22756,José Juan Vázquez,1988-03-14,Midfielder,,79.8
+P-13973,Gonzalo Plata,2000-11-01,Midfielder,,84.9
+P-69594,Steve Mandanda,1985-03-28,Midfielder,,79.8
+P-26200,Claudio Husaín,1974-11-20,Midfielder,,85.7
+P-80680,Youri Djorkaeff,1968-03-09,Midfielder,,84.9
+P-31806,Kamal Miller,1997-05-16,Defender,,71.5
+P-13053,Alireza Haghighi,1988-05-02,Midfielder,,81.0
+P-13917,Manuel Vidrio,1972-08-23,Defender,,80.1
+P-14179,Antoine Semenyo,2000-01-07,Forward,,83.2
+P-29399,Edwin Villafuerte,1979-03-12,Midfielder,,75.3
+P-71661,Fernando Torres,1984-03-20,Forward,,79.8
+P-01538,Alexander Mejía,1988-07-11,Midfielder,,76.5
+P-61670,Hamed Namouchi,1984-01-12,Midfielder,,79.6
+P-23101,Álex Aguinaga,1968-07-09,Midfielder,,79.8
+P-02174,Diego Placente,1977-04-24,Defender,,81.7
+P-54137,Mehdi Carcela,1989-07-01,Midfielder,,75.5
+P-87702,Raouf Bouzaiene,1970-08-16,Defender,,73.5
+P-37314,Rodrigo De Paul,1994-05-24,Midfielder,,78.8
+P-51931,Víctor Valdés,1982-01-14,Midfielder,,89.0
+P-70144,not applicable Joaquín,1981-07-21,Midfielder,,78.7
+P-01169,Aron Jóhannsson,1990-11-10,Forward,,84.8
+P-32139,Daniel Davari,1988-01-06,Midfielder,,74.0
+P-65298,Ergün Penbe,1972-05-17,Midfielder,,82.8
+P-92891,Moustapha Name,1995-05-05,Defender,,74.7
+P-10357,Na Sang-ho,1996-08-12,Midfielder,,76.1
+P-44035,Abdoulaye Diallo,1992-03-30,Midfielder,,80.3
+P-34018,Seon-min Moon,1992-06-09,Midfielder,,78.3
+P-67189,Albert Adomah,1987-12-13,Midfielder,,72.1
+P-96694,Jesús Manuel Corona,1993-01-06,Midfielder,,77.8
+P-90626,Pape Abou Cissé,1995-09-14,Defender,,79.7
+P-83293,Ali Gabr,1989-01-01,Defender,,82.2
+P-73694,Jackson Porozo,2000-08-04,Defender,,83.0
+P-30993,Ludwig Augustinsson,1994-04-21,Defender,,79.7
+P-60564,Javad Kazemian,1981-04-23,Forward,,82.2
+P-60052,Pablo Cavallero,1974-04-13,Midfielder,,79.8
+P-73344,Pablo Ibáñez,1981-08-03,Defender,,81.5
+P-32986,Emir Mkademi,1978-08-20,Defender,,77.9
+P-77827,Daniel Schmidt,1992-02-03,Midfielder,,82.9
+P-87016,Wellington Sánchez,1974-06-19,Midfielder,,78.9
+P-62722,not applicable Ronaldo,1976-09-18,Forward,,86.5
+P-00339,not applicable Rodrigo,1991-03-06,Forward,,87.7
+P-85116,Cristian Pavón,1996-01-21,Midfielder,,78.2
+P-59777,Angelo Di Livio,1966-07-26,Midfielder,,79.3
+P-66615,Mikaël Silvestre,1977-08-09,Defender,,82.8
+P-24935,Tony Popovic,1973-07-04,Defender,,83.1
+P-08834,Eliaquim Mangala,1991-02-13,Defender,,88.8
+P-96497,Mohammed Rabiu,1989-12-31,Midfielder,,72.6
+P-27627,Giampaolo Pazzini,1984-08-02,Forward,,81.0
+P-09658,Thibaut Courtois,1992-05-11,Midfielder,,88.3
+P-20971,Rashid Sumaila,1992-12-18,Defender,,73.3
+P-11675,Danny Vukovic,1985-03-27,Midfielder,,78.3
+P-36212,César Montes,1997-02-24,Defender,,79.8
+P-79130,Fatih Akyel,1977-12-26,Defender,,79.5
+P-59837,Marcus Rashford,1997-10-31,Forward,,80.9
+P-30651,not applicable Sinha,1976-05-23,Midfielder,,78.9
+P-95847,Aaron Mooy,1990-09-15,Midfielder,,72.1
+P-53590,Trevor Sinclair,1973-03-02,Midfielder,,76.5
+P-10221,Ola Toivonen,1986-07-03,Forward,,84.1
+P-25989,Aymen Mathlouthi,1984-09-14,Midfielder,,77.5
+P-46506,Pontus Jansson,1991-02-13,Defender,,75.1
+P-21820,Salis Abdul Samed,2000-03-26,Midfielder,,78.4
+P-05758,Javi Martínez,1988-09-02,Midfielder,,78.9
+P-33520,Laurent Ciman,1985-08-05,Defender,,77.0
+P-59372,Augusto Porozo,1974-04-13,Defender,,84.8
+P-60008,Scott Chipperfield,1975-12-30,Midfielder,,78.2
+P-85860,Mehdi Taremi,1992-07-18,Forward,,77.7
+P-97698,Alex Sandro,1991-01-26,Defender,,80.9
+P-34448,José Luis Rodríguez,1998-06-19,Midfielder,,80.2
+P-29075,Júlio Baptista,1981-10-01,Midfielder,,84.0
+P-71080,Brian Ching,1978-05-24,Forward,,76.2
+P-57240,Nicolas Anelka,1979-03-14,Forward,,78.0
+P-06280,not applicable Vampeta,1974-03-13,Midfielder,,88.8
+P-56069,Timothy Castagne,1995-12-05,Midfielder,,83.4
+P-70650,not applicable Marcelo,1988-05-12,Defender,,88.8
+P-29462,Marcus Tulio Tanaka,1981-04-24,Defender,,83.7
+P-28485,Mariano Pernía,1977-05-04,Defender,,79.1
+P-18444,Nahuel Guzmán,1986-02-10,Midfielder,,87.2
+P-19165,Fredrik Stenman,1983-06-02,Defender,,84.0
+P-15064,Mitchell Langerak,1988-08-22,Midfielder,,78.6
+P-19888,Hernán Crespo,1975-07-05,Forward,,85.8
+P-83363,Dele Alli,1996-04-11,Midfielder,,83.2
+P-87765,Oguchi Onyewu,1982-05-13,Defender,,75.9
+P-94563,Fakhreddine Ben Youssef,1991-06-23,Forward,,78.9
+P-02673,Omar Diallo,1972-09-28,Midfielder,,75.3
+P-13354,not applicable Robinho,1984-01-25,Forward,,82.0
+P-08714,Kristoffer Nordfeldt,1989-06-23,Midfielder,,76.4
+P-22071,Magnus Kihlstedt,1972-02-29,Midfielder,,82.6
+P-52418,not applicable Isco,1992-04-21,Midfielder,,81.9
+P-85472,Dedryck Boyata,1990-11-28,Defender,,79.5
+P-92932,Oswaldo Sánchez,1973-09-21,Midfielder,,85.0
+P-92771,Mario Yepes,1976-01-13,Defender,,76.0
+P-91983,José Calderón,1985-08-14,Midfielder,,79.0
+P-01987,Jorge Torres Nilo,1988-01-16,Defender,,82.6
+P-14360,Kim Min-jae,1996-11-15,Defender,,82.3
+P-55405,Hossein Kaebi,1985-09-23,Defender,,72.6
+P-95616,James Milner,1986-01-04,Midfielder,,76.5
+P-25925,Cameron Carter-Vickers,1997-12-31,Defender,,75.8
+P-11275,Júlio César,1979-09-03,Midfielder,,82.0
+P-35312,Erik Edman,1978-11-11,Defender,,78.6
+P-27582,Leandro Paredes,1994-06-29,Midfielder,,80.9
+P-65381,Ben Halloran,1992-06-14,Midfielder,,80.5
+P-75522,Aaron Long,1992-10-12,Defender,,79.9
+P-05990,Reza Haghighi,1989-02-01,Midfielder,,77.3
+P-26943,Robin Olsen,1990-01-08,Midfielder,,83.3
+P-46497,Emre Belözoğlu,1980-09-07,Midfielder,,81.0
+P-93316,Naif Al-Hadhrami,2001-07-18,Midfielder,,79.8
+P-10960,Tony Lochhead,1982-01-12,Defender,,65.8
+P-89248,not applicable Ederson,1993-08-17,Midfielder,,86.3
+P-86909,Junya Ito,1993-03-09,Midfielder,,81.6
+P-00981,Federico Fazio,1987-03-17,Defender,,87.5
+P-84787,Declan Rice,1999-01-14,Midfielder,,82.0
+P-89297,Gerardo Torrado,1979-04-30,Midfielder,,74.3
+P-12548,Carlos Bocanegra,1979-05-25,Defender,,85.2
+P-09246,Ashley Young,1985-07-09,Defender,,76.9
+P-56347,Hernán Galíndez,1987-03-30,Midfielder,,78.4
+P-22075,Adam Lallana,1988-05-10,Midfielder,,83.3
+P-02842,Eddie Pope,1973-12-24,Defender,,80.6
+P-50318,Yong-dae Kim,1979-10-11,Midfielder,,83.4
+P-89710,Steven Vitória,1987-01-11,Defender,,73.6
+P-50944,Jamie Carragher,1978-01-28,Defender,,79.9
+P-08312,Isaac Kiese Thelin,1992-06-24,Forward,,76.6
+P-87604,Akira Kaji,1980-01-13,Defender,,74.7
+P-46519,Young-pyo Lee,1977-04-23,Defender,,82.9
+P-29298,Germán Pezzella,1991-06-27,Defender,,84.6
+P-61413,Wout Faes,1998-04-03,Defender,,80.1
+P-53409,Joel King,2000-10-30,Defender,,78.4
+P-86132,Dave Mulligan,1982-03-24,Midfielder,,72.2
+P-42575,Mohamed Ali Ben Romdhane,1999-09-06,Midfielder,,72.3
+P-09461,Benny Feilhaber,1985-01-19,Midfielder,,84.5
+P-99466,Didier Drogba,1978-03-11,Forward,,79.6
+P-08544,Arthur Boka,1983-04-02,Defender,,74.1
+P-31812,Fidel Martínez,1990-02-15,Midfielder,,78.1
+P-35019,Salif Diao,1977-02-10,Midfielder,,83.9
+P-43921,Salem Al-Hajri,1996-04-10,Midfielder,,70.7
+P-51689,Rogelio Funes Mori,1991-03-05,Forward,,74.5
+P-87786,Saman Ghoddos,1993-09-06,Forward,,81.4
+P-79316,Matthew Amoah,1980-10-24,Forward,,73.9
+P-23330,Selim Amallah,1996-11-15,Midfielder,,79.9
+P-20963,Rory Fallon,1982-03-20,Forward,,76.6
+P-82056,Seifeddine Jaziri,1993-02-12,Forward,,81.6
+P-04455,Ümit Özat,1976-10-30,Defender,,84.2
+P-32949,Musab Kheder,1993-01-01,Defender,,79.7
+P-72011,Eden Hazard,1991-01-07,Midfielder,,80.4
+P-61229,Néicer Reasco,1977-07-23,Defender,,80.3
+P-48480,Danny Rose,1990-07-02,Defender,,79.6
+P-17035,Marco Delvecchio,1973-04-07,Forward,,82.5
+P-02461,Israel Castro,1980-12-29,Midfielder,,85.2
+P-26616,Jung-hwan Ahn,1976-01-27,Forward,,77.2
+P-45524,Glen Moss,1983-01-19,Midfielder,,69.9
+P-37275,Mile Jedinak,1984-08-03,Midfielder,,77.3
+P-88203,Matías Almeyda,1973-12-21,Midfielder,,78.4
+P-44934,Yaya Touré,1983-05-13,Midfielder,,75.7
+P-16154,Mehrzad Madanchi,1982-10-12,Midfielder,,82.1
+P-97493,not applicable Fagner,1989-06-11,Defender,,78.7
+P-84406,Ashkan Dejagah,1986-07-05,Midfielder,,78.9
+P-64864,Aaron Lennon,1987-04-16,Midfielder,,85.9
+P-94928,Alfredo Talavera,1982-09-18,Midfielder,,82.8
+P-77047,Giovani dos Santos,1989-05-11,Forward,,75.4
+P-94095,not applicable Victor,1983-01-21,Midfielder,,87.9
+P-73834,Leander Dendoncker,1995-04-15,Defender,,86.7
+P-11915,Tsuneyasu Miyamoto,1977-02-07,Defender,,75.2
+P-89984,Takashi Inui,1988-06-02,Midfielder,,74.1
+P-81427,Pablo Sarabia,1992-05-11,Forward,,89.8
+P-40137,not applicable Danilo,1991-07-15,Defender,,88.1
+P-77757,Eric Addo,1978-11-12,Defender,,79.9
+P-38529,Néstor Araujo,1991-08-29,Defender,,82.8
+P-57529,Simone Perrotta,1977-09-17,Midfielder,,87.0
+P-15222,Sun-hong Hwang,1968-07-14,Forward,,79.5
+P-71285,Florian Thauvin,1993-01-26,Forward,,85.4
+P-68329,Andreas Jakobsson,1972-10-06,Defender,,80.8
+P-72611,Jeremy Brockie,1987-10-07,Midfielder,,65.6
+P-98486,Ricardo Osorio,1980-03-30,Defender,,84.9
+P-65498,Filipe Luís,1985-08-09,Defender,,77.8
+P-52358,Gert Verheyen,1970-09-20,Forward,,77.3
+P-38074,Clint Mathis,1976-11-25,Forward,,78.5
+P-00447,Darius Vassell,1980-06-13,Forward,,85.8
+P-94596,Moussa Konaté,1993-04-03,Forward,,79.7
+P-78533,Hakan Ünsal,1973-05-14,Defender,,74.2
+P-69019,Enzo Pérez,1986-02-22,Midfielder,,77.8
+P-84542,Gabriel Batistuta,1969-02-01,Forward,,79.5
+P-39063,Jack Wilshere,1992-01-01,Midfielder,,78.0
+P-68042,Carlos Vela,1989-03-01,Forward,,81.4
+P-30206,Daizen Maeda,1997-10-20,Forward,,77.2
+P-75923,Amara Traoré,1965-09-25,Forward,,79.5
+P-69530,Bacary Sagna,1983-02-14,Defender,,84.9
+P-74688,Bruno Guimarães,1997-11-16,Midfielder,,86.1
+P-11718,Formose Mendy,2001-01-02,Defender,,84.1
+P-53821,Michael Svensson,1975-11-25,Defender,,73.3
+P-45956,Gilberto Silva,1976-10-07,Midfielder,,86.5
+P-45258,Christian Panucci,1973-04-12,Defender,,87.2
+P-46913,Takuma Asano,1994-11-10,Forward,,82.0
+P-09884,Jérémy Toulalan,1983-09-10,Midfielder,,88.0
+P-77556,Pedro Geromel,1985-09-21,Defender,,84.9
+P-92547,Jesús Arellano,1973-05-08,Forward,,79.0
+P-05459,Ariel Garcé,1979-07-14,Defender,,84.7
+P-15674,Jude Bellingham,2003-06-29,Midfielder,,76.5
+P-64146,Reza Enayati,1976-09-23,Forward,,73.0
+P-64077,Kylian Mbappé,1998-12-20,Forward,,82.8
+P-84022,Freddie Ljungberg,1977-04-16,Midfielder,,80.8
+P-68131,Haji Wright,1998-03-27,Forward,,82.6
+P-67516,Hwang In-beom,1996-09-20,Midfielder,,74.8
+P-63618,Christian Benítez,1986-05-01,Forward,,73.6
+P-91357,Gabriel Milito,1980-09-07,Defender,,84.5
+P-94579,Baba Rahman,1994-07-02,Defender,,79.8
+P-62621,not applicable Willian,1988-08-09,Midfielder,,86.2
+P-97275,Lucas Vázquez,1991-07-01,Forward,,82.8
+P-79882,Rémy Cabella,1990-03-08,Midfielder,,85.8
+P-46553,Mbark Boussoufa,1984-08-15,Midfielder,,76.5
+P-16541,Leandro Cufré,1978-05-09,Defender,,85.0
+P-86056,Zdeněk Grygera,1980-05-14,Defender,,83.8
+P-01292,Alberto Aquilani,1984-07-07,Midfielder,,83.8
+P-37001,Mamadou Loum,1996-12-30,Midfielder,,74.9
+P-57586,Ayase Ueda,1998-08-28,Forward,,84.6
+P-98775,Alireza Jahanbakhsh,1993-08-11,Forward,,73.2
+P-64056,Yuki Soma,1997-02-25,Midfielder,,81.3
+P-34977,Omar Bravo,1980-03-04,Forward,,84.6
+P-36964,Shinji Kagawa,1989-03-17,Midfielder,,81.1
+P-91029,Mitchell Duke,1991-01-18,Forward,,78.7
+P-26546,Edson Álvarez,1997-10-24,Defender,,82.8
+P-55739,Vahid Talebloo,1982-05-26,Midfielder,,82.2
+P-32599,Paik Seung-ho,1997-03-17,Midfielder,,83.2
+P-03144,Luis Tejada,1982-03-28,Forward,,72.1
+P-07807,Mateus Uribe,1991-03-21,Midfielder,,83.9
+P-40619,Azzedine Ounahi,2000-04-19,Midfielder,,77.2
+P-51894,Fernando Gago,1986-04-10,Midfielder,,88.5
+P-17506,Seiichiro Maki,1980-08-07,Forward,,84.1
+P-90087,Mile Sterjovski,1979-05-27,Midfielder,,74.0
+P-26051,Ban-suk Oh,1988-05-20,Defender,,78.8
+P-47506,Tarek Thabet,1971-08-16,Defender,,76.1
+P-04221,Antonio Cassano,1982-07-12,Forward,,77.3
+P-23846,Otto Addo,1975-06-09,Forward,,81.8
+P-02778,Saber Khalifa,1986-10-14,Forward,,79.0
+P-26858,Josip Skoko,1975-12-10,Midfielder,,81.8
+P-69103,Marco Amelia,1982-04-02,Midfielder,,77.8
+P-17509,Paul Pogba,1993-03-15,Midfielder,,81.8
+P-54675,Patricio Urrutia,1978-10-15,Midfielder,,76.4
+P-81689,Ahmed Hegazi,1991-01-25,Defender,,80.6
+P-76835,Pape Matar Sarr,2002-09-14,Midfielder,,84.3
+P-89217,Harry Souttar,1998-10-22,Defender,,71.8
+P-13975,Michy Batshuayi,1993-10-02,Forward,,83.9
+P-06338,Yannick Carrasco,1993-09-04,Midfielder,,84.4
+P-60945,Ben Olsen,1977-05-03,Midfielder,,74.6
+P-00065,Ariel Ortega,1974-03-04,Midfielder,,83.1
+P-78745,Cristián Zapata,1986-09-30,Defender,,81.4
+P-28296,Tae-hwi Kwak,1981-07-08,Defender,,79.2
+P-29757,Jin-hyeon Kim,1987-07-06,Midfielder,,74.6
+P-00597,Badr Benoun,1993-09-30,Defender,,82.8
+P-59039,John Aloisi,1976-02-05,Forward,,78.3
+P-70046,Ghasem Haddadifar,1983-07-12,Midfielder,,74.5
+P-88043,John O'Brien,1977-08-29,Midfielder,,76.7
+P-43736,Tony Meola,1969-02-21,Midfielder,,75.1
+P-16576,Ayrton Preciado,1994-07-17,Midfielder,,82.4
+P-76440,Aaron Clapham,1987-01-01,Midfielder,,66.1
+P-68842,Ali Karimi,1994-02-11,Midfielder,,79.1
+P-09569,Ghailene Chaalali,1994-02-28,Forward,,80.0
+P-58415,Alou Diarra,1981-07-15,Midfielder,,83.7
+P-48265,Shaq Moore,1996-11-02,Defender,,79.5
+P-55451,Mariano Andújar,1983-07-30,Midfielder,,89.2
+P-31283,Jean-Jacques Tizié,1972-09-07,Midfielder,,72.6
+P-49915,David Wotherspoon,1990-01-16,Midfielder,,77.0
+P-84722,Byung-ji Kim,1970-04-08,Midfielder,,82.0
+P-29705,Miguel Ángel Ponce,1989-04-12,Defender,,79.6
+P-14290,Harry Kewell,1978-09-22,Forward,,77.6
+P-48722,Kanga Akalé,1981-03-07,Midfielder,,76.3
+P-63620,Jesse Lingard,1992-12-15,Midfielder,,77.3
+P-14259,Emerse Faé,1984-01-24,Midfielder,,74.4
+P-76755,Gabriel Caballero,1971-02-05,Midfielder,,80.2
+P-74261,not applicable Rivaldo,1972-04-19,Midfielder,,80.7
+P-93750,Jonathan Mensah,1990-07-13,Defender,,80.8
+P-68803,William Gallas,1977-08-17,Defender,,78.5
+P-35706,Junior Hoilett,1990-06-05,Midfielder,,76.6
+P-99473,Fabio Grosso,1977-11-28,Defender,,82.0
+P-27079,Wajdi Kechrida,1995-11-05,Defender,,72.7
+P-79993,Kazuyuki Toda,1977-12-30,Midfielder,,84.4
+P-17974,Anthony Vanden Borre,1987-10-24,Defender,,77.7
+P-18222,Marcos Rojo,1990-03-20,Defender,,86.1
+P-65804,Ousmane Viera,1986-12-21,Defender,,76.0
+P-61927,not applicable Doni,1979-10-22,Midfielder,,86.3
+P-43222,Paolo Maldini,1968-06-26,Defender,,79.5
+P-80505,Amir Abedzadeh,1993-04-26,Midfielder,,79.4
+P-28492,Hossein Hosseini,1992-06-30,Midfielder,,77.8
+P-82054,Hashem Beikzadeh,1984-01-22,Defender,,78.5
+P-36870,Sergio Agüero,1988-06-02,Forward,,84.6
+P-82657,Bechir Ben Saïd,1992-11-29,Midfielder,,75.6
+P-87169,Cho Gue-sung,1998-01-25,Forward,,73.3
+P-95273,DeAndre Yedlin,1993-07-09,Defender,,80.4
+P-85878,Giovanni Reyna,2002-11-13,Forward,,75.4
+P-94271,Unai Simón,1997-06-11,Midfielder,,82.3
+P-74337,Thorgan Hazard,1993-03-29,Midfielder,,80.8
+P-65907,Christian Wilhelmsson,1979-12-08,Midfielder,,80.4
+P-09867,Théo Hernandez,1997-10-06,Defender,,81.2
+P-18963,Bum-young Lee,1989-04-02,Midfielder,,76.0
+P-20643,Iván Helguera,1975-03-18,Midfielder,,79.1
+P-07153,Thomas Lemar,1995-11-12,Forward,,79.0
+P-84536,Brad Jones,1982-03-19,Midfielder,,76.9
+P-00052,not applicable Ró-Ró,1990-08-06,Defender,,70.5
+P-68016,not applicable Richarlison,1997-05-10,Forward,,82.2
+P-66228,Carlos Sánchez,1986-02-06,Midfielder,,82.9
+P-23972,Radoslav Kováč,1979-11-11,Defender,,82.8
+P-21495,Alberto García Aspe,1967-05-11,Midfielder,,85.1
+P-49997,Renato Augusto,1988-02-08,Midfielder,,89.1
+P-83642,Oribe Peralta,1984-01-12,Forward,,82.6
+P-64125,Younès Belhanda,1990-02-25,Midfielder,,84.0
+P-32431,Matteo Guendouzi,1999-04-14,Midfielder,,78.7
+P-04349,David Jarolím,1979-05-17,Midfielder,,74.8
+P-22110,Jassem Gaber,2002-02-20,Midfielder,,80.1
+P-06614,Kingsley Coman,1996-06-13,Forward,,85.6
+P-89321,Maya Yoshida,1988-08-24,Defender,,81.4
+P-79202,Hamdi Kasraoui,1983-01-18,Midfielder,,79.3
+P-82213,Khosro Heydari,1983-09-14,Defender,,72.2
+P-76191,Brad Friedel,1971-05-18,Midfielder,,82.4
+P-57021,Grégory Coupet,1972-12-31,Midfielder,,83.5
+P-15858,Hassen Gabsi,1974-02-23,Midfielder,,80.4
+P-56448,Isaac Vorsah,1988-06-21,Defender,,79.3
+P-30878,Jan Polák,1981-03-14,Midfielder,,77.0
+P-23800,Rubén Baraja,1975-07-11,Midfielder,,82.7
+P-62858,Abolfazl Jalali,1998-06-26,Defender,,83.0
+P-53716,Javier Zanetti,1973-08-10,Defender,,77.6
+P-75361,Anice Badri,1990-09-18,Midfielder,,77.1
+P-93048,Claude Makélélé,1973-02-18,Midfielder,,84.2
+P-61478,Rüştü Reçber,1973-05-10,Midfielder,,79.2
+P-24357,Marcus Rohdén,1991-05-11,Midfielder,,78.1
+P-43280,Juan Carlos Paredes,1987-07-08,Defender,,84.8
+P-99805,Amr Warda,1993-09-17,Forward,,78.7
+P-47490,Nayef Aguerd,1996-03-30,Defender,,81.1
+P-91291,Ramadan Sobhi,1997-01-23,Forward,,79.8
+P-86163,Michel Bastos,1983-08-02,Defender,,87.1
+P-42038,Francesco Totti,1976-09-27,Forward,,81.9
+P-35882,Atsushi Yanagisawa,1977-05-27,Forward,,84.5
+P-25985,Lorenzo Insigne,1991-06-04,Forward,,87.0
+P-15848,not applicable Nacho,1990-01-18,Defender,,79.5
+P-56998,Rasoul Khatibi,1978-09-22,Forward,,81.3

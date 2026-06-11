@@ -78,7 +78,8 @@ CREATE TABLE IF NOT EXISTS players (
     player_name VARCHAR NOT NULL,
     birth_date DATE,
     position VARCHAR,                 -- e.g. Goalkeeper, Defender, Midfielder, Forward
-    club VARCHAR
+    club VARCHAR,
+    base_rating DOUBLE DEFAULT 70.0   -- Overall player rating (1-100)
 );
 
 -- 9. Player Match Stats Table

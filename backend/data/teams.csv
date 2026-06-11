@@ -1,0 +1,49 @@
+team_id,team_name,team_code,confederation
+ARG,Argentina,ARG,CONMEBOL
+BRA,Brazil,BRA,CONMEBOL
+URU,Uruguay,URU,CONMEBOL
+COL,Colombia,COL,CONMEBOL
+ECU,Ecuador,ECU,CONMEBOL
+FRA,France,FRA,UEFA
+ENG,England,ENG,UEFA
+GER,Germany,GER,UEFA
+ESP,Spain,ESP,UEFA
+POR,Portugal,POR,UEFA
+ITA,Italy,ITA,UEFA
+NED,Netherlands,NED,UEFA
+CRO,Croatia,CRO,UEFA
+BEL,Belgium,BEL,UEFA
+USA,United States,USA,CONCACAF
+MEX,Mexico,MEX,CONCACAF
+CAN,Canada,CAN,CONCACAF
+MAR,Morocco,MAR,CAF
+SEN,Senegal,SEN,CAF
+JPN,Japan,JPN,AFC
+KOR,South Korea,KOR,AFC
+AUS,Australia,AUS,AFC
+RSA,South Africa,RSA,CAF
+CZE,Czechia,CZE,UEFA
+QAT,Qatar,QAT,AFC
+SUI,Switzerland,SUI,UEFA
+HAI,Haiti,HAI,CONACAF
+SCO,Scotland,SCO,UEFA
+PAR,Paraguay,PAR,CONMEBOL
+TUR,Turkey,TUR,UEFA
+CUW,Curaçao,CUW,CONACAF
+CIV,Ivory Coast,CIV,CAF
+SWE,Sweden,SWE,UEFA
+TUN,Tunisia,TUN,CAF
+EGY,Egypt,EGY,CAF
+IRN,Iran,IRN,AFC
+NZL,New Zealand,NZL,OFC
+CPV,Cape Verde,CPV,CAF
+KSA,Saudi Arabia,KSA,AFC
+IRQ,Iraq,IRQ,AFC
+NOR,Norway,NOR,UEFA
+ALG,Algeria,ALG,CAF
+AUT,Austria,AUT,UEFA
+JOR,Jordan,JOR,AFC
+JAM,Jamaica,JAM,CONACAF
+UZB,Uzbekistan,UZB,AFC
+GHA,Ghana,GHA,CAF
+PAN,Panama,PAN,CONACAF
