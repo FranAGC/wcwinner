@@ -1,78 +1,49 @@
 import sys
+import os
 from pathlib import Path
-from datetime import date, timedelta
-import polars as pl
+import duckdb
 
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 from backend.database.repository import FootballRepository
+from backend.database.connection import get_db_path
 
 def seed_wc26():
-    repo = FootballRepository()
+    print("Resetting WC26 tournament matches from local CSV...")
+    db_path = get_db_path()
     
-    print("Resetting WC26 tournament matches...")
-    
-    # 1. Delete all matches and stats related to WC26
-    with repo.conn_factory(read_only=False) as conn:
+    with duckdb.connect(db_path, read_only=False) as conn:
         conn.execute("BEGIN TRANSACTION")
+        
+        # 1. Delete all matches and stats related to WC26
         conn.execute("DELETE FROM team_match_stats WHERE match_id LIKE 'WC26_%'")
         conn.execute("DELETE FROM matches WHERE tournament_id = 'WC26'")
+        
+        # 2. Load the WC26 matches from CSV
+        csv_path = os.path.abspath("backend/data/wc26_matches.csv")
+        
+        # We need to correctly handle empty strings as NULL for home/away teams in CSV
+        # DuckDB handles this cleanly with COPY if we specify options, or we can use a temp table
+        conn.execute(f"CREATE TEMP TABLE temp_wc26 AS SELECT * FROM read_csv_auto('{csv_path}')")
+        
+        # Convert empty strings to NULL to match database schema requirements
+        conn.execute("""
+            UPDATE temp_wc26 
+            SET home_team_id = NULL WHERE home_team_id = '';
+        """)
+        conn.execute("""
+            UPDATE temp_wc26 
+            SET away_team_id = NULL WHERE away_team_id = '';
+        """)
+        
+        conn.execute("INSERT INTO matches SELECT * FROM temp_wc26")
+        conn.execute("DROP TABLE temp_wc26")
+        
         conn.execute("COMMIT")
         
-    # 2. Define WC26 official-like group structure and scheduled matches
-    start_date = date(2026, 6, 11)
-    groups_config = {
-        "Group A": ["MEX", "RSA", "KOR", "CZE"],
-        "Group B": ["CAN", "ITA", "QAT", "SUI"],
-        "Group C": ["BRA", "MAR", "HAI", "SCO"],
-        "Group D": ["USA", "PAR", "AUS", "TUR"],
-        "Group E": ["GER", "CUW", "CIV", "ECU"],
-        "Group F": ["NED", "JPN", "SWE", "TUN"],
-        "Group G": ["BEL", "EGY", "IRN", "NZL"],
-        "Group H": ["ESP", "CPV", "KSA", "URU"],
-        "Group I": ["FRA", "SEN", "IRQ", "NOR"],
-        "Group J": ["ARG", "ALG", "AUT", "JOR"],
-        "Group K": ["POR", "JAM", "UZB", "COL"],
-        "Group L": ["ENG", "CRO", "GHA", "PAN"]
-    }
-    
-    wc26_matches = []
-    
-    for g_idx, (group_name, teams_list) in enumerate(groups_config.items()):
-        t1, t2, t3, t4 = teams_list
-        md1_date = start_date + timedelta(days=(g_idx // 3))
-        md2_date = start_date + timedelta(days=6 + (g_idx // 3))
-        md3_date = start_date + timedelta(days=12 + (g_idx // 3))
-        
-        matchups = [
-            (t1, t2, md1_date, 1),
-            (t3, t4, md1_date, 2),
-            (t1, t3, md2_date, 3),
-            (t2, t4, md2_date, 4),
-            (t1, t4, md3_date, 5),
-            (t2, t3, md3_date, 6)
-        ]
-        
-        for h, a, m_date, match_num in matchups:
-            grp_code = group_name.replace("Group ", "")
-            match_id = f"WC26_{grp_code}{match_num}"
-            
-            wc26_matches.append((
-                match_id, "WC26", m_date.strftime("%Y-%m-%d"), h, a, None, None, None, None, "Group", "Scheduled"
-            ))
-            
-    matches_df_save = pl.DataFrame(wc26_matches, schema=[
-        "match_id", "tournament_id", "match_date", "home_team_id", "away_team_id",
-        "home_score", "away_score", "home_penalty_score", "away_penalty_score",
-        "match_phase", "status"
-    ])
-    
-    with repo.conn_factory(read_only=False) as conn:
-        conn.execute("BEGIN TRANSACTION")
-        conn.execute("INSERT INTO matches SELECT * FROM matches_df_save")
-        conn.execute("COMMIT")
-        
-    print(f"Successfully re-seeded {len(wc26_matches)} scheduled group matches for WC26.")
+        # Count the matches
+        count = conn.execute("SELECT count(*) FROM matches WHERE tournament_id = 'WC26'").fetchone()[0]
+        print(f"Successfully re-seeded {count} scheduled matches for WC26.")
 
 if __name__ == "__main__":
     seed_wc26()

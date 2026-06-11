@@ -29,8 +29,8 @@ interface Team {
 
 interface MatchDetail {
   match_id: string;
-  home_team: Team;
-  away_team: Team;
+  home_team: Team | null;
+  away_team: Team | null;
   home_score?: number;
   away_score?: number;
   home_penalty_score?: number;
@@ -91,15 +91,15 @@ export const TournamentBracket: React.FC<TournamentBracketProps> = ({ matches })
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: hWinner ? 'bold' : 'normal', color: hWinner ? '#fff' : 'var(--text-secondary)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            {getFlagUrl(m.home_team.team_code) && <img src={getFlagUrl(m.home_team.team_code)!} alt="" width="16" height="12" />}
-            {m.home_team.team_code}
+            {m.home_team && getFlagUrl(m.home_team.team_code) && <img src={getFlagUrl(m.home_team.team_code)!} alt="" width="16" height="12" />}
+            {m.home_team?.team_code || 'TBD'}
           </div>
           <span>{hScore} {m.home_penalty_score !== null && m.home_penalty_score !== undefined ? `(${m.home_penalty_score})` : ''}</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: aWinner ? 'bold' : 'normal', color: aWinner ? '#fff' : 'var(--text-secondary)', marginTop: '2px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            {getFlagUrl(m.away_team.team_code) && <img src={getFlagUrl(m.away_team.team_code)!} alt="" width="16" height="12" />}
-            {m.away_team.team_code}
+            {m.away_team && getFlagUrl(m.away_team.team_code) && <img src={getFlagUrl(m.away_team.team_code)!} alt="" width="16" height="12" />}
+            {m.away_team?.team_code || 'TBD'}
           </div>
           <span>{aScore} {m.away_penalty_score !== null && m.away_penalty_score !== undefined ? `(${m.away_penalty_score})` : ''}</span>
         </div>

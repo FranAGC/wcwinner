@@ -224,22 +224,22 @@ export default function App() {
   const finalMatches = matches.filter(m => m.match_phase === 'Final');
 
   const groupsCompleted = groupMatches.length > 0 && groupMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
-  const r32Exists = r32Matches.length > 0;
+  const r32Exists = r32Matches.length > 0 && r32Matches.some(m => m.home_team && m.away_team);
   const r32Completed = r32Exists && r32Matches.every(m => m.status === 'Simulated' || m.status === 'Completed');
-  const r16Exists = r16Matches.length > 0;
+  const r16Exists = r16Matches.length > 0 && r16Matches.some(m => m.home_team && m.away_team);
   const r16Completed = r16Exists && r16Matches.every(m => m.status === 'Simulated' || m.status === 'Completed');
-  const qfExists = qfMatches.length > 0;
+  const qfExists = qfMatches.length > 0 && qfMatches.some(m => m.home_team && m.away_team);
   const qfCompleted = qfExists && qfMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
-  const sfExists = sfMatches.length > 0;
+  const sfExists = sfMatches.length > 0 && sfMatches.some(m => m.home_team && m.away_team);
   const sfCompleted = sfExists && sfMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
-  const finalExists = finalMatches.length > 0;
+  const finalExists = finalMatches.length > 0 && finalMatches.some(m => m.home_team && m.away_team);
   const finalCompleted = finalExists && finalMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
 
   // Compute standings
   const standings = useMemo(() => {
     const groups: Record<string, string[]> = {
       'Grupo A': ['MEX', 'RSA', 'KOR', 'CZE'],
-      'Grupo B': ['CAN', 'ITA', 'QAT', 'SUI'],
+      'Grupo B': ['CAN', 'BIH', 'QAT', 'SUI'],
       'Grupo C': ['BRA', 'MAR', 'HAI', 'SCO'],
       'Grupo D': ['USA', 'PAR', 'AUS', 'TUR'],
       'Grupo E': ['GER', 'CUW', 'CIV', 'ECU'],
@@ -248,7 +248,7 @@ export default function App() {
       'Grupo H': ['ESP', 'CPV', 'KSA', 'URU'],
       'Grupo I': ['FRA', 'SEN', 'IRQ', 'NOR'],
       'Grupo J': ['ARG', 'ALG', 'AUT', 'JOR'],
-      'Grupo K': ['POR', 'JAM', 'UZB', 'COL'],
+      'Grupo K': ['POR', 'COD', 'UZB', 'COL'],
       'Grupo L': ['ENG', 'CRO', 'GHA', 'PAN']
     };
 
@@ -262,10 +262,12 @@ export default function App() {
 
     // Process group matches
     groupMatches.forEach(m => {
-      const h = m.home_team.team_id;
-      const a = m.away_team.team_id;
+      const h = m.home_team?.team_id;
+      const a = m.away_team?.team_id;
       const hs = m.home_score;
       const as_ = m.away_score;
+
+      if (!h || !a) return; // Safely handle missing teams
 
       if (hs === undefined || as_ === undefined) return; // Not simulated yet
 
@@ -526,8 +528,8 @@ export default function App() {
 
                               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', width: '50%' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%', justifyContent: 'flex-end' }}>
-                                  <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.home_team.team_name}</span>
-                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.home_team.team_code}</span>
+                                  <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.home_team?.team_name || 'TBD'}</span>
+                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.home_team?.team_code || '---'}</span>
                                 </div>
 
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'var(--bg-primary)', padding: '4px 12px', borderRadius: '8px', border: '1px solid var(--border-color)', minWidth: '60px', justifyContent: 'center' }}>
@@ -543,8 +545,8 @@ export default function App() {
                                 </div>
 
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%' }}>
-                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.away_team.team_code}</span>
-                                  <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.away_team.team_name}</span>
+                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.away_team?.team_code || '---'}</span>
+                                  <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.away_team?.team_name || 'TBD'}</span>
                                 </div>
                               </div>
 
@@ -691,18 +693,18 @@ export default function App() {
               ) : (
                 <div>
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: '#fff', borderBottom: '1px solid var(--border-color)', paddingBottom: '10px', marginBottom: '16px' }}>
-                    Análisis: {selectedMatch.home_team.team_name} vs {selectedMatch.away_team.team_name}
+                    Análisis: {selectedMatch.home_team?.team_name || 'TBD'} vs {selectedMatch.away_team?.team_name || 'TBD'}
                   </h3>
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', background: 'rgba(255,255,255,0.02)', padding: '12px', borderRadius: '8px' }}>
                     <div style={{ textAlign: 'center', width: '45%' }}>
-                      <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{selectedMatch.home_team.team_name}</span>
+                      <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{selectedMatch.home_team?.team_name || 'TBD'}</span>
                       <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '6px' }}>
                         <span style={{ fontSize: '0.75rem', padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px', color: 'var(--accent-cyan)' }}>
-                          ELO: {Math.round(eloRankings.find(r => r.team_id === selectedMatch.home_team.team_id)?.elo_rating || 1500)}
+                          ELO: {selectedMatch.home_team ? Math.round(eloRankings.find(r => r.team_id === selectedMatch.home_team?.team_id)?.elo_rating || 1500) : '---'}
                         </span>
                         <span style={{ fontSize: '0.75rem', padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px', color: 'var(--accent-gold)' }}>
-                          FIFA: #{fifaRankings.find(r => r.team_id === selectedMatch.home_team.team_id)?.rank || '?'}
+                          FIFA: #{selectedMatch.home_team ? (fifaRankings.find(r => r.team_id === selectedMatch.home_team?.team_id)?.rank || '?') : '---'}
                         </span>
                       </div>
                     </div>
@@ -710,13 +712,13 @@ export default function App() {
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', fontSize: '0.8rem' }}>VS</div>
 
                     <div style={{ textAlign: 'center', width: '45%' }}>
-                      <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{selectedMatch.away_team.team_name}</span>
+                      <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{selectedMatch.away_team?.team_name || 'TBD'}</span>
                       <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '6px' }}>
                         <span style={{ fontSize: '0.75rem', padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px', color: 'var(--accent-cyan)' }}>
-                          ELO: {Math.round(eloRankings.find(r => r.team_id === selectedMatch.away_team.team_id)?.elo_rating || 1500)}
+                          ELO: {selectedMatch.away_team ? Math.round(eloRankings.find(r => r.team_id === selectedMatch.away_team?.team_id)?.elo_rating || 1500) : '---'}
                         </span>
                         <span style={{ fontSize: '0.75rem', padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px', color: 'var(--accent-gold)' }}>
-                          FIFA: #{fifaRankings.find(r => r.team_id === selectedMatch.away_team.team_id)?.rank || '?'}
+                          FIFA: #{selectedMatch.away_team ? (fifaRankings.find(r => r.team_id === selectedMatch.away_team?.team_id)?.rank || '?') : '---'}
                         </span>
                       </div>
                     </div>
@@ -754,8 +756,8 @@ export default function App() {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                           {/* Prediction donut chart */}
                           <PredictionChart
-                            homeName={selectedMatch.home_team.team_name}
-                            awayName={selectedMatch.away_team.team_name}
+                            homeName={selectedMatch.home_team?.team_name || 'TBD'}
+                            awayName={selectedMatch.away_team?.team_name || 'TBD'}
                             homeWinProb={prediction.home_win_prob}
                             drawProb={prediction.draw_prob}
                             awayWinProb={prediction.away_win_prob}
@@ -764,7 +766,7 @@ export default function App() {
                           {/* Probability numeric summary */}
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '8px', textAlign: 'center' }}>
                             <div className="glass-panel" style={{ padding: '8px', background: 'rgba(0, 240, 255, 0.05)' }}>
-                              <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{selectedMatch.home_team.team_code} Gana</span>
+                              <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{selectedMatch.home_team?.team_code || 'L'} Gana</span>
                               <p style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--accent-cyan)', marginTop: '4px' }}>
                                 {Math.round(prediction.home_win_prob * 100)}%
                               </p>
@@ -776,7 +778,7 @@ export default function App() {
                               </p>
                             </div>
                             <div className="glass-panel" style={{ padding: '8px', background: 'rgba(0, 255, 170, 0.05)' }}>
-                              <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{selectedMatch.away_team.team_code} Gana</span>
+                              <span style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>{selectedMatch.away_team?.team_code || 'V'} Gana</span>
                               <p style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--accent-neon)', marginTop: '4px' }}>
                                 {Math.round(prediction.away_win_prob * 100)}%
                               </p>
@@ -788,11 +790,11 @@ export default function App() {
                             <h4 style={{ fontSize: '0.9rem', color: '#fff', marginBottom: '8px' }}>Expectativas de Goles (Modelo Poisson)</h4>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem' }}>
                               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <span>Goles Esperados {selectedMatch.home_team.team_code}:</span>
+                                <span>Goles Esperados {selectedMatch.home_team?.team_code || 'L'}:</span>
                                 <span style={{ fontWeight: 600, color: 'var(--accent-cyan)' }}>{prediction.expected_home_goals.toFixed(2)}</span>
                               </div>
                               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <span>Goles Esperados {selectedMatch.away_team.team_code}:</span>
+                                <span>Goles Esperados {selectedMatch.away_team?.team_code || 'V'}:</span>
                                 <span style={{ fontWeight: 600, color: 'var(--accent-neon)' }}>{prediction.expected_away_goals.toFixed(2)}</span>
                               </div>
                               <div style={{ display: 'flex', justifyContent: 'space-between', borderTop: '1px solid var(--border-color)', paddingTop: '6px', marginTop: '4px' }}>

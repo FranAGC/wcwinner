@@ -1,0 +1,105 @@
+match_id,tournament_id,match_date,home_team_id,away_team_id,home_score,away_score,home_penalty_score,away_penalty_score,match_phase,status
+WC26_A1,WC26,2026-06-11,MEX,RSA,,,,,Group,Scheduled
+WC26_A2,WC26,2026-06-11,KOR,CZE,,,,,Group,Scheduled
+WC26_A3,WC26,2026-06-18,CZE,RSA,,,,,Group,Scheduled
+WC26_A4,WC26,2026-06-18,MEX,KOR,,,,,Group,Scheduled
+WC26_A5,WC26,2026-06-24,MEX,CZE,,,,,Group,Scheduled
+WC26_A6,WC26,2026-06-24,RSA,KOR,,,,,Group,Scheduled
+WC26_B1,WC26,2026-06-12,CAN,BIH,,,,,Group,Scheduled
+WC26_B2,WC26,2026-06-13,QAT,SUI,,,,,Group,Scheduled
+WC26_B3,WC26,2026-06-18,SUI,BIH,,,,,Group,Scheduled
+WC26_B4,WC26,2026-06-18,CAN,QAT,,,,,Group,Scheduled
+WC26_B5,WC26,2026-06-24,CAN,SUI,,,,,Group,Scheduled
+WC26_B6,WC26,2026-06-24,BIH,QAT,,,,,Group,Scheduled
+WC26_C1,WC26,2026-06-13,BRA,MAR,,,,,Group,Scheduled
+WC26_C2,WC26,2026-06-13,HAI,SCO,,,,,Group,Scheduled
+WC26_C3,WC26,2026-06-19,SCO,MAR,,,,,Group,Scheduled
+WC26_C4,WC26,2026-06-19,BRA,HAI,,,,,Group,Scheduled
+WC26_C5,WC26,2026-06-24,BRA,SCO,,,,,Group,Scheduled
+WC26_C6,WC26,2026-06-24,MAR,HAI,,,,,Group,Scheduled
+WC26_D1,WC26,2026-06-12,USA,PAR,,,,,Group,Scheduled
+WC26_D2,WC26,2026-06-13,AUS,TUR,,,,,Group,Scheduled
+WC26_D3,WC26,2026-06-19,USA,AUS,,,,,Group,Scheduled
+WC26_D4,WC26,2026-06-19,TUR,PAR,,,,,Group,Scheduled
+WC26_D5,WC26,2026-06-25,USA,TUR,,,,,Group,Scheduled
+WC26_D6,WC26,2026-06-25,PAR,AUS,,,,,Group,Scheduled
+WC26_E1,WC26,2026-06-14,GER,CUW,,,,,Group,Scheduled
+WC26_E2,WC26,2026-06-14,CIV,ECU,,,,,Group,Scheduled
+WC26_E3,WC26,2026-06-20,GER,CIV,,,,,Group,Scheduled
+WC26_E4,WC26,2026-06-20,ECU,CUW,,,,,Group,Scheduled
+WC26_E5,WC26,2026-06-25,GER,ECU,,,,,Group,Scheduled
+WC26_E6,WC26,2026-06-25,CUW,CIV,,,,,Group,Scheduled
+WC26_F1,WC26,2026-06-14,NED,JPN,,,,,Group,Scheduled
+WC26_F2,WC26,2026-06-14,SWE,TUN,,,,,Group,Scheduled
+WC26_F3,WC26,2026-06-20,NED,SWE,,,,,Group,Scheduled
+WC26_F4,WC26,2026-06-20,TUN,JPN,,,,,Group,Scheduled
+WC26_F5,WC26,2026-06-25,NED,TUN,,,,,Group,Scheduled
+WC26_F6,WC26,2026-06-25,JPN,SWE,,,,,Group,Scheduled
+WC26_G1,WC26,2026-06-15,BEL,EGY,,,,,Group,Scheduled
+WC26_G2,WC26,2026-06-15,IRN,NZL,,,,,Group,Scheduled
+WC26_G3,WC26,2026-06-21,BEL,IRN,,,,,Group,Scheduled
+WC26_G4,WC26,2026-06-21,EGY,NZL,,,,,Group,Scheduled
+WC26_G5,WC26,2026-06-26,BEL,NZL,,,,,Group,Scheduled
+WC26_G6,WC26,2026-06-26,EGY,IRN,,,,,Group,Scheduled
+WC26_H1,WC26,2026-06-15,ESP,CPV,,,,,Group,Scheduled
+WC26_H2,WC26,2026-06-15,KSA,URU,,,,,Group,Scheduled
+WC26_H3,WC26,2026-06-21,ESP,KSA,,,,,Group,Scheduled
+WC26_H4,WC26,2026-06-21,CPV,URU,,,,,Group,Scheduled
+WC26_H5,WC26,2026-06-26,ESP,URU,,,,,Group,Scheduled
+WC26_H6,WC26,2026-06-26,CPV,KSA,,,,,Group,Scheduled
+WC26_I1,WC26,2026-06-16,FRA,SEN,,,,,Group,Scheduled
+WC26_I2,WC26,2026-06-16,IRQ,NOR,,,,,Group,Scheduled
+WC26_I3,WC26,2026-06-22,FRA,IRQ,,,,,Group,Scheduled
+WC26_I4,WC26,2026-06-22,SEN,NOR,,,,,Group,Scheduled
+WC26_I5,WC26,2026-06-26,FRA,NOR,,,,,Group,Scheduled
+WC26_I6,WC26,2026-06-26,SEN,IRQ,,,,,Group,Scheduled
+WC26_J1,WC26,2026-06-16,ARG,ALG,,,,,Group,Scheduled
+WC26_J2,WC26,2026-06-16,AUT,JOR,,,,,Group,Scheduled
+WC26_J3,WC26,2026-06-22,ARG,AUT,,,,,Group,Scheduled
+WC26_J4,WC26,2026-06-22,ALG,JOR,,,,,Group,Scheduled
+WC26_J5,WC26,2026-06-27,ARG,JOR,,,,,Group,Scheduled
+WC26_J6,WC26,2026-06-27,ALG,AUT,,,,,Group,Scheduled
+WC26_K1,WC26,2026-06-17,POR,COD,,,,,Group,Scheduled
+WC26_K2,WC26,2026-06-17,UZB,COL,,,,,Group,Scheduled
+WC26_K3,WC26,2026-06-23,POR,UZB,,,,,Group,Scheduled
+WC26_K4,WC26,2026-06-23,COD,COL,,,,,Group,Scheduled
+WC26_K5,WC26,2026-06-27,POR,COL,,,,,Group,Scheduled
+WC26_K6,WC26,2026-06-27,COD,UZB,,,,,Group,Scheduled
+WC26_L1,WC26,2026-06-17,ENG,CRO,,,,,Group,Scheduled
+WC26_L2,WC26,2026-06-17,GHA,PAN,,,,,Group,Scheduled
+WC26_L3,WC26,2026-06-23,ENG,GHA,,,,,Group,Scheduled
+WC26_L4,WC26,2026-06-23,CRO,PAN,,,,,Group,Scheduled
+WC26_L5,WC26,2026-06-27,ENG,PAN,,,,,Group,Scheduled
+WC26_L6,WC26,2026-06-27,CRO,GHA,,,,,Group,Scheduled
+WC26_R32_M1,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M2,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M3,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M4,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M5,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M6,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M7,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M8,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M9,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M10,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M11,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M12,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M13,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M14,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M15,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R32_M16,WC26,2026-06-28,,,,,,,Round of 32,Scheduled
+WC26_R16_M1,WC26,2026-07-02,,,,,,,Round of 16,Scheduled
+WC26_R16_M2,WC26,2026-07-02,,,,,,,Round of 16,Scheduled
+WC26_R16_M3,WC26,2026-07-02,,,,,,,Round of 16,Scheduled
+WC26_R16_M4,WC26,2026-07-02,,,,,,,Round of 16,Scheduled
+WC26_R16_M5,WC26,2026-07-02,,,,,,,Round of 16,Scheduled
+WC26_R16_M6,WC26,2026-07-02,,,,,,,Round of 16,Scheduled
+WC26_R16_M7,WC26,2026-07-02,,,,,,,Round of 16,Scheduled
+WC26_R16_M8,WC26,2026-07-02,,,,,,,Round of 16,Scheduled
+WC26_QF_M1,WC26,2026-07-05,,,,,,,Quarterfinals,Scheduled
+WC26_QF_M2,WC26,2026-07-05,,,,,,,Quarterfinals,Scheduled
+WC26_QF_M3,WC26,2026-07-05,,,,,,,Quarterfinals,Scheduled
+WC26_QF_M4,WC26,2026-07-05,,,,,,,Quarterfinals,Scheduled
+WC26_SF_M1,WC26,2026-07-08,,,,,,,Semifinals,Scheduled
+WC26_SF_M2,WC26,2026-07-08,,,,,,,Semifinals,Scheduled
+WC26_3P_M1,WC26,2026-07-18,,,,,,,Third Place,Scheduled
+WC26_F_M1,WC26,2026-07-19,,,,,,,Final,Scheduled

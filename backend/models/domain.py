@@ -42,8 +42,8 @@ class MatchBase(BaseModel):
     match_id: str
     tournament_id: str
     match_date: date
-    home_team_id: str
-    away_team_id: str
+    home_team_id: Optional[str] = None
+    away_team_id: Optional[str] = None
     home_score: Optional[int] = None
     away_score: Optional[int] = None
     home_penalty_score: Optional[int] = None
@@ -196,8 +196,8 @@ class MatchDetail(BaseModel):
     match_id: str
     tournament_id: str
     match_date: date
-    home_team: Team
-    away_team: Team
+    home_team: Optional[Team] = None
+    away_team: Optional[Team] = None
     home_score: Optional[int] = None
     away_score: Optional[int] = None
     home_penalty_score: Optional[int] = None

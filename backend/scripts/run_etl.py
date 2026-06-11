@@ -42,6 +42,10 @@ def run_pipeline():
     conn.execute("COMMIT")
     conn.close()
     
+    print("\nStep 3: Restoring WC26 Tournament Matches...")
+    from backend.scripts.seed_wc26 import seed_wc26
+    seed_wc26()
+    
     print("\n=== RESTORE PIPELINE EXECUTION COMPLETED SUCCESSFULLY ===")
 
 if __name__ == "__main__":
