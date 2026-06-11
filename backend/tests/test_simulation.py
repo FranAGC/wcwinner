@@ -14,7 +14,7 @@ def test_probability_prediction():
     repo = FootballRepository()
     service = MatchProbabilityService(repo)
     
-    # We should have WC26_A1 which is USA vs COL
+    # WC26_A1 = first match of Group A (MEX vs RSA)
     prediction = service.predict_match_outcome("WC26_A1")
     assert prediction is not None
     assert "home_win_prob" in prediction
@@ -23,10 +23,20 @@ def test_probability_prediction():
     assert 0.0 <= prediction["home_win_prob"] <= 1.0
     assert 0.0 <= prediction["away_win_prob"] <= 1.0
     assert 0.0 <= prediction["draw_prob"] <= 1.0
-    # Probabilities should sum to approximately 1.0
-    assert abs(prediction["home_win_prob"] + prediction["away_win_prob"] + prediction["draw_prob"] - 1.0) < 1e-5
+    # Probabilities should sum to approximately 1.0 (allow slight rounding from round())
+    total = prediction["home_win_prob"] + prediction["away_win_prob"] + prediction["draw_prob"]
+    assert abs(total - 1.0) < 1e-3
+    # New fields from enhanced predictor
+    assert "confidence_pct" in prediction
+    assert "components" in prediction
+    assert "inputs" in prediction
+    assert "most_likely_score" in prediction
 
 def test_tournament_simulation_e2e():
+    # Reset the DB to a clean state so the simulation starts fresh
+    from backend.scripts.run_etl import run_pipeline
+    run_pipeline()
+
     repo = FootballRepository()
     simulator = TournamentSimulator(repo)
     

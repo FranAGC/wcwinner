@@ -115,7 +115,12 @@ CREATE TABLE IF NOT EXISTS team_features (
     defense_strength DOUBLE,
     avg_goals_scored DOUBLE,
     avg_goals_conceded DOUBLE,
-    form_index DOUBLE,               -- Weighted average of recent results
+    form_index DOUBLE,               -- Exponentially weighted recent form (0-1)
+    wc_attack_strength DOUBLE,       -- Attack strength in World Cup matches only
+    wc_defense_strength DOUBLE,      -- Defense strength in World Cup matches only
+    squad_size INTEGER,              -- Number of players in WC26 squad
+    clean_sheet_rate DOUBLE,         -- Rate of clean sheets in recent completed matches
+    win_rate DOUBLE,                 -- Overall win rate from completed matches
     PRIMARY KEY (team_id, as_of_date)
 );
 
@@ -133,5 +138,18 @@ CREATE TABLE IF NOT EXISTS match_features (
     home_defense_strength DOUBLE,
     away_defense_strength DOUBLE,
     elo_diff DOUBLE,
-    rank_diff INTEGER
+    rank_diff INTEGER,
+    home_form_index DOUBLE,
+    away_form_index DOUBLE,
+    home_wc_attack DOUBLE,
+    away_wc_attack DOUBLE,
+    home_wc_defense DOUBLE,
+    away_wc_defense DOUBLE,
+    home_squad_size INTEGER,
+    away_squad_size INTEGER,
+    h2h_home_wins INTEGER,           -- Head-to-head wins for home team (last 10 meetings)
+    h2h_away_wins INTEGER,           -- Head-to-head wins for away team (last 10 meetings)
+    h2h_draws INTEGER,               -- Head-to-head draws (last 10 meetings)
+    h2h_home_goals_avg DOUBLE,       -- Average goals scored by home team in H2H
+    h2h_away_goals_avg DOUBLE        -- Average goals scored by away team in H2H
 );

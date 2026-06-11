@@ -289,9 +289,10 @@ class FootballRepository:
             conn.execute(
                 """
                 INSERT INTO team_features (
-                    team_id, as_of_date, elo, fifa_rank, attack_strength, 
-                    defense_strength, avg_goals_scored, avg_goals_conceded, form_index
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    team_id, as_of_date, elo, fifa_rank, attack_strength,
+                    defense_strength, avg_goals_scored, avg_goals_conceded, form_index,
+                    wc_attack_strength, wc_defense_strength, squad_size, clean_sheet_rate, win_rate
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT (team_id, as_of_date) DO UPDATE SET
                     elo = EXCLUDED.elo,
                     fifa_rank = EXCLUDED.fifa_rank,
@@ -299,10 +300,17 @@ class FootballRepository:
                     defense_strength = EXCLUDED.defense_strength,
                     avg_goals_scored = EXCLUDED.avg_goals_scored,
                     avg_goals_conceded = EXCLUDED.avg_goals_conceded,
-                    form_index = EXCLUDED.form_index
+                    form_index = EXCLUDED.form_index,
+                    wc_attack_strength = EXCLUDED.wc_attack_strength,
+                    wc_defense_strength = EXCLUDED.wc_defense_strength,
+                    squad_size = EXCLUDED.squad_size,
+                    clean_sheet_rate = EXCLUDED.clean_sheet_rate,
+                    win_rate = EXCLUDED.win_rate
                 """,
                 [f.team_id, f.as_of_date, f.elo, f.fifa_rank, f.attack_strength,
-                 f.defense_strength, f.avg_goals_scored, f.avg_goals_conceded, f.form_index]
+                 f.defense_strength, f.avg_goals_scored, f.avg_goals_conceded, f.form_index,
+                 f.wc_attack_strength, f.wc_defense_strength, f.squad_size,
+                 f.clean_sheet_rate, f.win_rate]
             )
 
     def save_match_features(self, f: MatchFeatures) -> None:
@@ -312,8 +320,14 @@ class FootballRepository:
                 INSERT INTO match_features (
                     match_id, home_team_id, away_team_id, home_elo, away_elo,
                     home_fifa_rank, away_fifa_rank, home_attack_strength, away_attack_strength,
-                    home_defense_strength, away_defense_strength, elo_diff, rank_diff
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    home_defense_strength, away_defense_strength, elo_diff, rank_diff,
+                    home_form_index, away_form_index,
+                    home_wc_attack, away_wc_attack, home_wc_defense, away_wc_defense,
+                    home_squad_size, away_squad_size,
+                    h2h_home_wins, h2h_away_wins, h2h_draws,
+                    h2h_home_goals_avg, h2h_away_goals_avg
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
+                           ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT (match_id) DO UPDATE SET
                     home_elo = EXCLUDED.home_elo,
                     away_elo = EXCLUDED.away_elo,
@@ -324,11 +338,29 @@ class FootballRepository:
                     home_defense_strength = EXCLUDED.home_defense_strength,
                     away_defense_strength = EXCLUDED.away_defense_strength,
                     elo_diff = EXCLUDED.elo_diff,
-                    rank_diff = EXCLUDED.rank_diff
+                    rank_diff = EXCLUDED.rank_diff,
+                    home_form_index = EXCLUDED.home_form_index,
+                    away_form_index = EXCLUDED.away_form_index,
+                    home_wc_attack = EXCLUDED.home_wc_attack,
+                    away_wc_attack = EXCLUDED.away_wc_attack,
+                    home_wc_defense = EXCLUDED.home_wc_defense,
+                    away_wc_defense = EXCLUDED.away_wc_defense,
+                    home_squad_size = EXCLUDED.home_squad_size,
+                    away_squad_size = EXCLUDED.away_squad_size,
+                    h2h_home_wins = EXCLUDED.h2h_home_wins,
+                    h2h_away_wins = EXCLUDED.h2h_away_wins,
+                    h2h_draws = EXCLUDED.h2h_draws,
+                    h2h_home_goals_avg = EXCLUDED.h2h_home_goals_avg,
+                    h2h_away_goals_avg = EXCLUDED.h2h_away_goals_avg
                 """,
                 [f.match_id, f.home_team_id, f.away_team_id, f.home_elo, f.away_elo,
                  f.home_fifa_rank, f.away_fifa_rank, f.home_attack_strength, f.away_attack_strength,
-                 f.home_defense_strength, f.away_defense_strength, f.elo_diff, f.rank_diff]
+                 f.home_defense_strength, f.away_defense_strength, f.elo_diff, f.rank_diff,
+                 f.home_form_index, f.away_form_index,
+                 f.home_wc_attack, f.away_wc_attack, f.home_wc_defense, f.away_wc_defense,
+                 f.home_squad_size, f.away_squad_size,
+                 f.h2h_home_wins, f.h2h_away_wins, f.h2h_draws,
+                 f.h2h_home_goals_avg, f.h2h_away_goals_avg]
             )
             
     # --- PLAYERS & SQUAD CALLS ---

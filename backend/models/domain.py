@@ -147,7 +147,12 @@ class TeamFeaturesBase(BaseModel):
     defense_strength: Optional[float] = None
     avg_goals_scored: Optional[float] = None
     avg_goals_conceded: Optional[float] = None
-    form_index: Optional[float] = None
+    form_index: Optional[float] = None          # Exponentially-weighted recent form (0-1)
+    wc_attack_strength: Optional[float] = None  # Attack in WC matches only
+    wc_defense_strength: Optional[float] = None # Defense in WC matches only
+    squad_size: Optional[int] = None            # WC squad size
+    clean_sheet_rate: Optional[float] = None    # Rate of clean sheets
+    win_rate: Optional[float] = None            # Overall win rate
 
 class TeamFeatures(TeamFeaturesBase):
     class Config:
@@ -168,6 +173,19 @@ class MatchFeaturesBase(BaseModel):
     away_defense_strength: Optional[float] = None
     elo_diff: Optional[float] = None
     rank_diff: Optional[int] = None
+    home_form_index: Optional[float] = None
+    away_form_index: Optional[float] = None
+    home_wc_attack: Optional[float] = None
+    away_wc_attack: Optional[float] = None
+    home_wc_defense: Optional[float] = None
+    away_wc_defense: Optional[float] = None
+    home_squad_size: Optional[int] = None
+    away_squad_size: Optional[int] = None
+    h2h_home_wins: Optional[int] = None
+    h2h_away_wins: Optional[int] = None
+    h2h_draws: Optional[int] = None
+    h2h_home_goals_avg: Optional[float] = None
+    h2h_away_goals_avg: Optional[float] = None
 
 class MatchFeatures(MatchFeaturesBase):
     class Config:

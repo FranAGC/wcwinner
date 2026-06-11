@@ -137,11 +137,44 @@ def get_elo():
 
 @app.get("/predict/{match_id}")
 def get_match_prediction(match_id: str):
-    """Get win/draw/loss probabilities and expected goals for a match."""
+    """
+    Get win/draw/loss probabilities, expected goals, most likely scoreline,
+    confidence, H2H context, and form breakdown for a match.
+    """
     prediction = prob_service.predict_match_outcome(match_id)
     if not prediction:
         raise HTTPException(status_code=404, detail=f"Prediction features for match {match_id} not found")
     return prediction
+
+@app.get("/team/{team_id}/features")
+def get_team_features(team_id: str):
+    """
+    Retrieve the full computed feature set for a team: ELO, FIFA rank,
+    attack/defense strengths (overall + WC), form index, squad size, etc.
+    """
+    with repo.conn_factory(read_only=True) as conn:
+        res = conn.execute(
+            """
+            SELECT team_id, as_of_date, elo, fifa_rank,
+                   attack_strength, defense_strength,
+                   avg_goals_scored, avg_goals_conceded, form_index,
+                   wc_attack_strength, wc_defense_strength,
+                   squad_size, clean_sheet_rate, win_rate
+            FROM team_features WHERE team_id = ?
+            ORDER BY as_of_date DESC LIMIT 1
+            """,
+            [team_id.upper()]
+        ).fetchone()
+    if not res:
+        raise HTTPException(status_code=404, detail=f"No features found for team {team_id}")
+    keys = [
+        "team_id", "as_of_date", "elo", "fifa_rank",
+        "attack_strength", "defense_strength",
+        "avg_goals_scored", "avg_goals_conceded", "form_index",
+        "wc_attack_strength", "wc_defense_strength",
+        "squad_size", "clean_sheet_rate", "win_rate"
+    ]
+    return dict(zip(keys, res))
 
 @app.post("/simulate/phase")
 def simulate_phase(
