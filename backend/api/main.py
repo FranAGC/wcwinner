@@ -5,7 +5,7 @@ from typing import List, Optional, Dict, Any
 from datetime import date
 
 from backend.database.repository import FootballRepository
-from backend.models.domain import Team, Match, FifaRanking, EloHistory, MatchDetail
+from backend.models.domain import Team, Match, FifaRanking, EloHistory, MatchDetail, TeamMatchStats
 from backend.services.probability import MatchProbabilityService
 from backend.simulations.tournament import TournamentSimulator
 
@@ -63,16 +63,41 @@ def get_matches(
         if status:
             matches = [m for m in matches if m.status.lower() == status.lower()]
 
+        # Pre-fetch all teams in bulk
+        all_teams = repo.get_teams()
+        teams_dict = {t.team_id: t for t in all_teams}
+
+        # Pre-fetch all stats in bulk
+        stats_dict = {}
+        with repo.conn_factory(read_only=True) as conn:
+            stats_rows = conn.execute(
+                """
+                SELECT match_id, team_id, goals, possession, shots, shots_on_target, 
+                       corners, fouls, yellow_cards, red_cards, expected_goals
+                FROM team_match_stats
+                """
+            ).fetchall()
+            for r in stats_rows:
+                m_id = r[0]
+                stat_obj = TeamMatchStats(
+                    match_id=r[0], team_id=r[1], goals=r[2], possession=r[3],
+                    shots=r[4], shots_on_target=r[5], corners=r[6], fouls=r[7],
+                    yellow_cards=r[8], red_cards=r[9], expected_goals=r[10]
+                )
+                if m_id not in stats_dict:
+                    stats_dict[m_id] = []
+                stats_dict[m_id].append(stat_obj)
+
         # Enhance matches with Team details and Match stats
         detailed_matches = []
         for m in matches:
-            home_team = repo.get_team_by_id(m.home_team_id)
-            away_team = repo.get_team_by_id(m.away_team_id)
+            home_team = teams_dict.get(m.home_team_id)
+            away_team = teams_dict.get(m.away_team_id)
             
             # Fetch stats if completed or simulated
             stats = None
             if m.status in ["Completed", "Simulated"]:
-                stats = repo.get_match_stats(m.match_id)
+                stats = stats_dict.get(m.match_id)
                 
             detailed_matches.append(MatchDetail(
                 match_id=m.match_id,

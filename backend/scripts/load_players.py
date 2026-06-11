@@ -1,119 +1,132 @@
 import sys
 from pathlib import Path
-from datetime import date
+from datetime import date, datetime
+import httpx
+import polars as pl
 
 # Add the project directory to path
 sys.path.append(str(Path(__file__).resolve().parent.parent.parent))
 
 from backend.database.repository import FootballRepository
-from backend.models.domain import Player, SquadCall
 
 def populate_players():
     repo = FootballRepository()
     print("Loading players and squad calls...")
 
-    # Key players
-    players_data = [
-        # Argentina
-        ("ARG_1", "Lionel Messi", date(1987, 6, 24), "Forward", "Inter Miami CF"),
-        ("ARG_2", "Lautaro Martínez", date(1997, 8, 22), "Forward", "Inter Milan"),
-        ("ARG_3", "Rodrigo De Paul", date(1994, 5, 24), "Midfielder", "Atlético Madrid"),
-        ("ARG_4", "Emiliano Martínez", date(1992, 9, 2), "Goalkeeper", "Aston Villa"),
-        # France
-        ("FRA_1", "Kylian Mbappé", date(1998, 12, 20), "Forward", "Real Madrid"),
-        ("FRA_2", "Antoine Griezmann", date(1991, 3, 21), "Forward", "Atlético Madrid"),
-        ("FRA_3", "Aurélien Tchouaméni", date(2000, 1, 27), "Midfielder", "Real Madrid"),
-        ("FRA_4", "Mike Maignan", date(1995, 7, 3), "Goalkeeper", "AC Milan"),
-        # Brazil
-        ("BRA_1", "Vinícius Júnior", date(2000, 7, 12), "Forward", "Real Madrid"),
-        ("BRA_2", "Rodrygo", date(2001, 1, 9), "Forward", "Real Madrid"),
-        ("BRA_3", "Bruno Guimarães", date(1997, 11, 16), "Midfielder", "Newcastle United"),
-        ("BRA_4", "Alisson Becker", date(1992, 10, 2), "Goalkeeper", "Liverpool"),
-        # England
-        ("ENG_1", "Harry Kane", date(1993, 7, 28), "Forward", "Bayern Munich"),
-        ("ENG_2", "Jude Bellingham", date(2003, 6, 29), "Midfielder", "Real Madrid"),
-        ("ENG_3", "Bukayo Saka", date(2001, 9, 5), "Forward", "Arsenal"),
-        ("ENG_4", "Jordan Pickford", date(1994, 3, 7), "Goalkeeper", "Everton"),
-        # USA
-        ("USA_1", "Christian Pulisic", date(1998, 9, 18), "Forward", "AC Milan"),
-        ("USA_2", "Weston McKennie", date(1998, 8, 28), "Midfielder", "Juventus"),
-        ("USA_3", "Tyler Adams", date(1999, 2, 14), "Midfielder", "Bournemouth"),
-        ("USA_4", "Matt Turner", date(1994, 6, 24), "Goalkeeper", "Crystal Palace"),
-    ]
+    # 1. Get list of valid teams from our database
+    valid_teams = {t.team_id for t in repo.get_teams()}
+    if not valid_teams:
+        print("No teams found. Run load_matches.py first.")
+        return
 
-    for p_id, name, b_date, pos, club in players_data:
-        player = Player(
-            player_id=p_id,
-            player_name=name,
-            birth_date=b_date,
-            position=pos,
-            club=club
-        )
-        repo.save_player(player)
+    # 2. Download squads and players datasets
+    print("Downloading squads dataset from GitHub...")
+    squads_url = "https://raw.githubusercontent.com/jfjelstul/worldcup/master/data-csv/squads.csv"
+    squads_df = pl.read_csv(squads_url)
 
-    # Squad Calls for WC2022 and WC2026
-    squads_data = [
-        # WC 2022 Calls
-        ("WC22", "ARG", "ARG_1", 10),
-        ("WC22", "ARG", "ARG_2", 22),
-        ("WC22", "ARG", "ARG_3", 7),
-        ("WC22", "ARG", "ARG_4", 23),
-        
-        ("WC22", "FRA", "FRA_1", 10),
-        ("WC22", "FRA", "FRA_2", 7),
-        ("WC22", "FRA", "FRA_3", 8),
-        
-        ("WC22", "BRA", "BRA_1", 20),
-        ("WC22", "BRA", "BRA_4", 1),
-        
-        ("WC22", "ENG", "ENG_1", 9),
-        ("WC22", "ENG", "ENG_4", 1),
-        
-        ("WC22", "USA", "USA_1", 10),
-        ("WC22", "USA", "USA_2", 8),
-        ("WC22", "USA", "USA_3", 4),
-        ("WC22", "USA", "USA_4", 1),
+    print("Downloading players dataset from GitHub...")
+    players_url = "https://raw.githubusercontent.com/jfjelstul/worldcup/master/data-csv/players.csv"
+    players_df = pl.read_csv(players_url)
 
-        # WC 2026 Calls (anticipated)
-        ("WC26", "ARG", "ARG_1", 10),
-        ("WC26", "ARG", "ARG_2", 22),
-        ("WC26", "ARG", "ARG_3", 7),
-        ("WC26", "ARG", "ARG_4", 23),
-        
-        ("WC26", "FRA", "FRA_1", 10),
-        ("WC26", "FRA", "FRA_3", 8),
-        ("WC26", "FRA", "FRA_4", 1),
-        
-        ("WC26", "BRA", "BRA_1", 10),
-        ("WC26", "BRA", "BRA_2", 11),
-        ("WC26", "BRA", "BRA_3", 5),
-        ("WC26", "BRA", "BRA_4", 1),
-        
-        ("WC26", "ENG", "ENG_1", 9),
-        ("WC26", "ENG", "ENG_2", 10),
-        ("WC26", "ENG", "ENG_3", 7),
-        ("WC26", "ENG", "ENG_4", 1),
-        
-        ("WC26", "USA", "USA_1", 10),
-        ("WC26", "USA", "USA_2", 8),
-        ("WC26", "USA", "USA_3", 4),
-        ("WC26", "USA", "USA_4", 1),
-    ]
+    # 3. Join datasets to get player details and birth dates
+    print("Joining and parsing players and squad calls...")
+    joined_df = squads_df.join(players_df, on="player_id", how="left")
 
-    for tour_id, team_id, player_id, jersey in squads_data:
-        # Check if team and player exist
-        if not repo.get_team_by_id(team_id):
-            continue
-        
-        call = SquadCall(
-            tournament_id=tour_id,
-            team_id=team_id,
-            player_id=player_id,
-            jersey_number=jersey
-        )
-        repo.save_squad_call(call)
+    # Filter to only contain target teams and tournaments from 2002 onwards
+    target_tournaments = {"WC-2002", "WC-2006", "WC-2010", "WC-2014", "WC-2018", "WC-2022"}
+    filtered_df = joined_df.filter(
+        (pl.col("team_code").is_in(valid_teams)) &
+        (pl.col("tournament_id").is_in(target_tournaments))
+    )
 
-    print("Players and squad calls loaded successfully!")
+    # 4. Standardize positions
+    # Mapping of position codes/names to our standard categories
+    pos_map = {
+        "goalkeeper": "Goalkeeper",
+        "defender": "Defender",
+        "midfielder": "Midfielder",
+        "forward": "Forward"
+    }
+
+    # 5. Extract and format Player records
+    # Concatenate given_name and family_name
+    filtered_df = filtered_df.with_columns(
+        pl.concat_str(
+            [pl.col("given_name").fill_null(""), pl.col("family_name").fill_null("")],
+            separator=" "
+        ).str.strip_chars().alias("player_name"),
+        pl.col("position_name").str.to_lowercase().map_elements(lambda x: pos_map.get(x, "Midfielder"), return_dtype=pl.String).alias("standard_position"),
+        pl.col("birth_date").str.strptime(pl.Date, format="%Y-%m-%d", strict=False)
+    )
+
+    # Find the unique list of players
+    unique_players_df = filtered_df.unique(subset=["player_id"]).select([
+        "player_id", "player_name", "birth_date", "standard_position"
+    ])
+
+    player_tuples = []
+    for row in unique_players_df.iter_rows(named=True):
+        b_date = row["birth_date"]
+        # Format date as YYYY-MM-DD string or None
+        b_date_str = b_date.strftime("%Y-%m-%d") if b_date is not None else None
+        player_tuples.append((
+            row["player_id"],
+            row["player_name"],
+            b_date_str,
+            row["standard_position"],
+            None # Club name is not in the squads dataset, setting to None
+        ))
+
+    # 6. Extract and format SquadCall records
+    squad_calls_df = filtered_df.select([
+        "tournament_id", "team_code", "player_id", "shirt_number"
+    ]).unique(subset=["tournament_id", "team_code", "player_id"])
+
+    call_tuples = []
+    # Helper to map tournament ID
+    def map_tour_id(tid: str) -> str:
+        # e.g., WC-2022 -> WC22
+        year_part = tid.split("-")[-1]
+        return f"WC{year_part[-2:]}"
+
+    for row in squad_calls_df.iter_rows(named=True):
+        tour_id = map_tour_id(row["tournament_id"])
+        call_tuples.append((
+            tour_id,
+            row["team_code"],
+            row["player_id"],
+            row["shirt_number"]
+        ))
+
+    # 7. Pre-populate anticipated WC 2026 rosters by cloning WC 2022 rosters
+    # This ensures every team has a roster during WC 2026 simulation!
+    wc22_calls = squad_calls_df.filter(pl.col("tournament_id") == "WC-2022")
+    for row in wc22_calls.iter_rows(named=True):
+        call_tuples.append((
+            "WC26",
+            row["team_code"],
+            row["player_id"],
+            row["shirt_number"]
+        ))
+
+    # 8. Save everything to the database in a single transaction using Polars integration
+    print(f"Saving {len(player_tuples)} players and {len(call_tuples)} squad calls to DB...")
+    
+    players_df_save = pl.DataFrame(player_tuples, schema=[
+        "player_id", "player_name", "birth_date", "position", "club"
+    ])
+    
+    calls_df_save = pl.DataFrame(call_tuples, schema=[
+        "tournament_id", "team_id", "player_id", "jersey_number"
+    ])
+    
+    with repo.conn_factory(read_only=False) as conn:
+        conn.execute("BEGIN TRANSACTION")
+        conn.execute("INSERT OR REPLACE INTO players SELECT * FROM players_df_save")
+        conn.execute("INSERT OR REPLACE INTO squad_calls SELECT * FROM calls_df_save")
+        conn.execute("COMMIT")
+
+    print(f"Successfully loaded {len(player_tuples)} players and {len(call_tuples)} squad calls in bulk!")
 
 if __name__ == "__main__":
     populate_players()

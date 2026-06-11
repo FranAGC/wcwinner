@@ -201,18 +201,27 @@ export default function App() {
   const sfMatches = matches.filter(m => m.match_phase === 'Semifinals');
   const finalMatches = matches.filter(m => m.match_phase === 'Final');
 
-  const groupsSimulated = groupMatches.length > 0 && groupMatches.every(m => m.status === 'Simulated');
+  const groupsCompleted = groupMatches.length > 0 && groupMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
   const sfExists = sfMatches.length > 0;
-  const sfSimulated = sfExists && sfMatches.every(m => m.status === 'Simulated');
+  const sfCompleted = sfExists && sfMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
   const finalExists = finalMatches.length > 0;
-  const finalSimulated = finalExists && finalMatches.every(m => m.status === 'Simulated');
+  const finalCompleted = finalExists && finalMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
 
   // Compute standings
   const standings = useMemo(() => {
     const groups: Record<string, string[]> = {
-      'Grupo A': ['USA', 'COL', 'MEX', 'ECU'],
-      'Grupo B': ['ARG', 'MAR', 'FRA', 'JPN'],
-      'Grupo C': ['BRA', 'ENG', 'ESP', 'SEN']
+      'Grupo A': ['MEX', 'RSA', 'KOR', 'CZE'],
+      'Grupo B': ['CAN', 'ITA', 'QAT', 'SUI'],
+      'Grupo C': ['BRA', 'MAR', 'HAI', 'SCO'],
+      'Grupo D': ['USA', 'PAR', 'AUS', 'TUR'],
+      'Grupo E': ['GER', 'CUW', 'CIV', 'ECU'],
+      'Grupo F': ['NED', 'JPN', 'SWE', 'TUN'],
+      'Grupo G': ['BEL', 'EGY', 'IRN', 'NZL'],
+      'Grupo H': ['ESP', 'CPV', 'KSA', 'URU'],
+      'Grupo I': ['FRA', 'SEN', 'IRQ', 'NOR'],
+      'Grupo J': ['ARG', 'ALG', 'AUT', 'JOR'],
+      'Grupo K': ['POR', 'JAM', 'UZB', 'COL'],
+      'Grupo L': ['ENG', 'CRO', 'GHA', 'PAN']
     };
 
     const initialStats = () => ({ pg: 0, pe: 0, pp: 0, gf: 0, ga: 0, gd: 0, pts: 0 });
@@ -292,9 +301,9 @@ export default function App() {
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           <div className="glass-panel" style={{ padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
-            <span className={`pulse-indicator ${groupsSimulated ? (finalSimulated ? 'simulated' : 'live') : 'scheduled'}`}></span>
+            <span className={`pulse-indicator ${groupsCompleted ? (finalCompleted ? 'simulated' : 'live') : 'scheduled'}`}></span>
             <span style={{ color: 'var(--text-secondary)' }}>
-              Estado: {groupsSimulated ? (finalSimulated ? 'Completado' : 'Fases Eliminatorias') : 'Fase de Grupos'}
+              Estado: {groupsCompleted ? (finalCompleted ? 'Completado' : 'Fases Eliminatorias') : 'Fase de Grupos'}
             </span>
           </div>
           <button onClick={handleReset} className="glow-btn" style={{ background: 'rgba(239, 68, 68, 0.2)', border: '1px solid rgba(239, 68, 68, 0.4)', color: '#ef4444', boxShadow: 'none' }} disabled={simulating}>
@@ -344,11 +353,11 @@ export default function App() {
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
                       
                       {/* Step 1: Group Stage */}
-                      <div className="glass-panel" style={{ padding: '16px', background: 'rgba(255,255,255,0.02)', borderColor: groupsSimulated ? 'rgba(0, 255, 170, 0.2)' : 'var(--border-color)' }}>
+                      <div className="glass-panel" style={{ padding: '16px', background: 'rgba(255,255,255,0.02)', borderColor: groupsCompleted ? 'rgba(0, 255, 170, 0.2)' : 'var(--border-color)' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                           <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', color: 'var(--text-muted)' }}>Paso 1</span>
-                          <span style={{ fontSize: '0.75rem', padding: '2px 6px', borderRadius: '4px', background: groupsSimulated ? 'rgba(0,255,170,0.1)' : 'rgba(0,240,255,0.1)', color: groupsSimulated ? 'var(--accent-neon)' : 'var(--accent-cyan)' }}>
-                            {groupsSimulated ? 'Simulado' : 'Pendiente'}
+                          <span style={{ fontSize: '0.75rem', padding: '2px 6px', borderRadius: '4px', background: groupsCompleted ? 'rgba(0,255,170,0.1)' : 'rgba(0,240,255,0.1)', color: groupsCompleted ? 'var(--accent-neon)' : 'var(--accent-cyan)' }}>
+                            {groupsCompleted ? 'Completado' : 'Pendiente'}
                           </span>
                         </div>
                         <h3 style={{ fontSize: '1rem', marginBottom: '12px' }}>Fase de Grupos</h3>
@@ -356,7 +365,7 @@ export default function App() {
                           className="glow-btn" 
                           style={{ width: '100%', justifyContent: 'center', padding: '8px' }}
                           onClick={() => handleSimulatePhase('Group')} 
-                          disabled={groupsSimulated || simulating}
+                          disabled={groupsCompleted || simulating}
                         >
                           <Play size={14} /> Simular Grupos
                         </button>
@@ -375,7 +384,7 @@ export default function App() {
                           className="glow-btn" 
                           style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #00f0ff, #0077ff)' }}
                           onClick={() => handleAdvanceTournament('Group')} 
-                          disabled={!groupsSimulated || sfExists || simulating}
+                          disabled={!groupsCompleted || sfExists || simulating}
                         >
                           <ChevronRight size={14} /> Avanzar a Semifinales
                         </button>
@@ -395,7 +404,7 @@ export default function App() {
                             className="glow-btn" 
                             style={{ width: '100%', justifyContent: 'center', padding: '8px' }}
                             onClick={() => handleSimulatePhase('Semifinals')} 
-                            disabled={!sfExists || sfSimulated || simulating}
+                            disabled={!sfExists || sfCompleted || simulating}
                           >
                             <Play size={14} /> Simular SF
                           </button>
@@ -403,7 +412,7 @@ export default function App() {
                             className="glow-btn" 
                             style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #00f0ff, #0077ff)' }}
                             onClick={() => handleAdvanceTournament('Semifinals')} 
-                            disabled={!sfSimulated || finalExists || simulating}
+                            disabled={!sfCompleted || finalExists || simulating}
                           >
                             <ChevronRight size={14} /> Calcular Final
                           </button>
@@ -411,7 +420,7 @@ export default function App() {
                             className="glow-btn" 
                             style={{ width: '100%', justifyContent: 'center', padding: '8px', background: 'linear-gradient(135deg, #ffd700, #ff8800)', color: '#000' }}
                             onClick={() => handleSimulatePhase('Final')} 
-                            disabled={!finalExists || finalSimulated || simulating}
+                            disabled={!finalExists || finalCompleted || simulating}
                           >
                             <Play size={14} /> Simular Gran Final
                           </button>
@@ -501,8 +510,14 @@ export default function App() {
                                     (Pen: {m.home_penalty_score}-{m.away_penalty_score})
                                   </span>
                                 )}
-                                <span style={{ fontSize: '0.7rem', padding: '2px 6px', borderRadius: '4px', background: m.status === 'Completed' ? 'rgba(255,255,255,0.05)' : m.status === 'Simulated' ? 'rgba(255,215,0,0.1)' : 'rgba(0,240,255,0.1)', color: m.status === 'Completed' ? 'var(--text-secondary)' : m.status === 'Simulated' ? 'var(--accent-gold)' : 'var(--accent-cyan)' }}>
-                                  {m.status === 'Completed' ? 'Histórico' : m.status === 'Simulated' ? 'Simulado' : 'Predicción'}
+                                <span style={{ 
+                                  fontSize: '0.7rem', 
+                                  padding: '2px 6px', 
+                                  borderRadius: '4px', 
+                                  background: m.status === 'Completed' ? (m.tournament_id === 'WC26' ? 'rgba(74, 222, 128, 0.1)' : 'rgba(255,255,255,0.05)') : m.status === 'Simulated' ? 'rgba(255,215,0,0.1)' : 'rgba(0,240,255,0.1)', 
+                                  color: m.status === 'Completed' ? (m.tournament_id === 'WC26' ? '#4ade80' : 'var(--text-secondary)') : m.status === 'Simulated' ? 'var(--accent-gold)' : 'var(--accent-cyan)' 
+                                }}>
+                                  {m.status === 'Completed' ? (m.tournament_id === 'WC26' ? 'Real' : 'Histórico') : m.status === 'Simulated' ? 'Simulado' : 'Predicción'}
                                 </span>
                               </div>
                             </div>
@@ -663,9 +678,11 @@ export default function App() {
                     </div>
                   </div>
 
-                  {selectedMatch.status === 'Simulated' && selectedMatch.stats && (
+                  {(selectedMatch.status === 'Simulated' || selectedMatch.status === 'Completed') && selectedMatch.stats && (
                     <div className="glass-panel" style={{ padding: '12px', marginBottom: '16px', background: 'rgba(255,255,255,0.01)' }}>
-                      <h4 style={{ fontSize: '0.9rem', marginBottom: '8px', color: 'var(--accent-gold)' }}>Estadísticas de la Simulación</h4>
+                      <h4 style={{ fontSize: '0.9rem', marginBottom: '8px', color: selectedMatch.status === 'Completed' ? '#4ade80' : 'var(--accent-gold)' }}>
+                        {selectedMatch.status === 'Completed' ? 'Estadísticas del Partido' : 'Estadísticas de la Simulación'}
+                      </h4>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.8rem' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                           <span>Goles Marcados:</span>
@@ -679,7 +696,9 @@ export default function App() {
                         )}
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                           <span>Estado:</span>
-                          <span style={{ color: 'var(--accent-gold)' }}>Simulado</span>
+                          <span style={{ color: selectedMatch.status === 'Completed' ? '#4ade80' : 'var(--accent-gold)' }}>
+                            {selectedMatch.status === 'Completed' ? 'Completado (Real)' : 'Simulado'}
+                          </span>
                         </div>
                       </div>
                     </div>

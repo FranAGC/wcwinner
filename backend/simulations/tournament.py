@@ -145,9 +145,18 @@ class TournamentSimulator:
         # Group B: ARG, MAR, FRA, JPN
         # Group C: BRA, ENG, ESP, SEN
         groups = {
-            "Group A": ["USA", "COL", "MEX", "ECU"],
-            "Group B": ["ARG", "MAR", "FRA", "JPN"],
-            "Group C": ["BRA", "ENG", "ESP", "SEN"]
+            "Group A": ["MEX", "RSA", "KOR", "CZE"],
+            "Group B": ["CAN", "ITA", "QAT", "SUI"],
+            "Group C": ["BRA", "MAR", "HAI", "SCO"],
+            "Group D": ["USA", "PAR", "AUS", "TUR"],
+            "Group E": ["GER", "CUW", "CIV", "ECU"],
+            "Group F": ["NED", "JPN", "SWE", "TUN"],
+            "Group G": ["BEL", "EGY", "IRN", "NZL"],
+            "Group H": ["ESP", "CPV", "KSA", "URU"],
+            "Group I": ["FRA", "SEN", "IRQ", "NOR"],
+            "Group J": ["ARG", "ALG", "AUT", "JOR"],
+            "Group K": ["POR", "JAM", "UZB", "COL"],
+            "Group L": ["ENG", "CRO", "GHA", "PAN"]
         }
         
         standings = {t: {"points": 0, "gf": 0, "ga": 0, "gd": 0} for g in groups.values() for t in g}
@@ -177,36 +186,24 @@ class TournamentSimulator:
                 standings[a]["points"] += 1
                 
         # Rank groups
-        group_winners = {}
-        group_runners_up = {}
-        
+        group_winners = []
         for g_name, g_teams in groups.items():
-            # Sort teams by points, then gd, then gf
+            # Sort teams in this group
             sorted_teams = sorted(
                 g_teams,
                 key=lambda t: (standings[t]["points"], standings[t]["gd"], standings[t]["gf"]),
                 reverse=True
             )
-            group_winners[g_name] = sorted_teams[0]
-            group_runners_up[g_name] = sorted_teams[1]
-
-        # Generate Semifinals (or next knockout round)
-        # Since we have 3 groups, let's create a Semifinals with Group A Winner, Group B Winner, Group C Winner,
-        # and the best Runner-up!
-        # Best runner-up calculation
-        runners_up = [group_runners_up[g] for g in groups.keys()]
-        best_runner_up = sorted(
-            runners_up,
+            group_winners.append(sorted_teams[0])
+            
+        # Select the top 4 group winners overall to advance to Semifinals
+        top_4_winners = sorted(
+            group_winners,
             key=lambda t: (standings[t]["points"], standings[t]["gd"], standings[t]["gf"]),
             reverse=True
-        )[0]
+        )[:4]
         
-        semifinalists = [
-            group_winners["Group A"],
-            group_winners["Group B"],
-            group_winners["Group C"],
-            best_runner_up
-        ]
+        semifinalists = top_4_winners
         
         # Schedule Semifinals
         # Match 1: Winner A vs Winner B
