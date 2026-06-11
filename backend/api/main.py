@@ -136,12 +136,12 @@ def get_elo():
 # --- PROBABILITY & SIMULATION ENDPOINTS ---
 
 @app.get("/predict/{match_id}")
-def get_match_prediction(match_id: str):
+def get_match_prediction(match_id: str, algorithm: str = Query("ensemble", description="Algorithm to use (ensemble or mcmf)")):
     """
     Get win/draw/loss probabilities, expected goals, most likely scoreline,
     confidence, H2H context, and form breakdown for a match.
     """
-    prediction = prob_service.predict_match_outcome(match_id)
+    prediction = prob_service.predict_match_outcome(match_id, algorithm=algorithm)
     if not prediction:
         raise HTTPException(status_code=404, detail=f"Prediction features for match {match_id} not found")
     return prediction
@@ -179,11 +179,12 @@ def get_team_features(team_id: str):
 @app.post("/simulate/phase")
 def simulate_phase(
     tournament_id: str = Query(..., description="Tournament ID, e.g. WC26"),
-    phase: str = Query(..., description="Phase to simulate, e.g. Group, Semifinals, Final")
+    phase: str = Query(..., description="Phase to simulate, e.g. Group, Semifinals, Final"),
+    algorithm: str = Query("ensemble", description="Algorithm to use (ensemble or mcmf)")
 ):
     """Simulate all scheduled matches of a specific phase and save results to the DB."""
     try:
-        results = simulator.simulate_phase(tournament_id, phase)
+        results = simulator.simulate_phase(tournament_id, phase, algorithm=algorithm)
         return {"message": f"Successfully simulated phase {phase}", "results": results}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -191,7 +192,8 @@ def simulate_phase(
 @app.post("/simulate/advance")
 def advance_tournament(
     tournament_id: str = Query(..., description="Tournament ID, e.g. WC26"),
-    current_phase: str = Query(..., description="Current phase that just finished, e.g. Group, Semifinals")
+    current_phase: str = Query(..., description="Current phase that just finished, e.g. Group, Semifinals"),
+    algorithm: str = Query("ensemble", description="Algorithm to use (ensemble or mcmf)")
 ):
     """Generate matchups for the next phase based on the finished phase's results."""
     try:
@@ -200,16 +202,16 @@ def advance_tournament(
             new_matches = simulator.advance_group_stage_to_round32(tournament_id)
             return {"message": "Advanced Group Stage to Round of 32", "scheduled_matches": new_matches}
         elif p == "round of 32":
-            new_matches = simulator.advance_round32_to_round16(tournament_id)
+            new_matches = simulator.advance_round32_to_round16(tournament_id, algorithm=algorithm)
             return {"message": "Advanced Round of 32 to Round of 16", "scheduled_matches": new_matches}
         elif p == "round of 16":
-            new_matches = simulator.advance_round16_to_quarterfinals(tournament_id)
+            new_matches = simulator.advance_round16_to_quarterfinals(tournament_id, algorithm=algorithm)
             return {"message": "Advanced Round of 16 to Quarterfinals", "scheduled_matches": new_matches}
         elif p == "quarterfinals":
-            new_matches = simulator.advance_quarterfinals_to_semifinals(tournament_id)
+            new_matches = simulator.advance_quarterfinals_to_semifinals(tournament_id, algorithm=algorithm)
             return {"message": "Advanced Quarterfinals to Semifinals", "scheduled_matches": new_matches}
         elif p == "semifinals":
-            new_matches = simulator.advance_semifinals_to_final(tournament_id)
+            new_matches = simulator.advance_semifinals_to_final(tournament_id, algorithm=algorithm)
             return {"message": "Advanced Semifinals to Final", "scheduled_matches": new_matches}
         else:
             raise HTTPException(status_code=400, detail=f"Advancing from phase '{current_phase}' is not supported or it is the Final.")

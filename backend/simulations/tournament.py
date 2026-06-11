@@ -99,8 +99,8 @@ class TournamentSimulator:
     # ------------------------------------------------------------------ #
     #  Single match simulation                                            #
     # ------------------------------------------------------------------ #
-    def simulate_match_result(self, match: Match) -> Tuple[int, int, int | None, int | None]:
-        prediction = self.prob_service.predict_match_outcome(match.match_id)
+    def simulate_match_result(self, match: Match, algorithm: str = "ensemble") -> Tuple[int, int, int | None, int | None]:
+        prediction = self.prob_service.predict_match_outcome(match.match_id, algorithm=algorithm)
         lambda_h = prediction["expected_home_goals"]
         lambda_a = prediction["expected_away_goals"]
 
@@ -128,7 +128,7 @@ class TournamentSimulator:
     # ------------------------------------------------------------------ #
     #  Phase simulation (generic)                                         #
     # ------------------------------------------------------------------ #
-    def simulate_phase(self, tournament_id: str, phase: str) -> List[Dict[str, Any]]:
+    def simulate_phase(self, tournament_id: str, phase: str, algorithm: str = "ensemble") -> List[Dict[str, Any]]:
         all_matches = self.repo.get_matches()
         phase_matches = [
             m for m in all_matches
@@ -148,11 +148,11 @@ class TournamentSimulator:
 
         results = []
         for m in phase_matches:
-            prediction = self.prob_service.predict_match_outcome(m.match_id)
+            prediction = self.prob_service.predict_match_outcome(m.match_id, algorithm=algorithm)
             lambda_h = prediction["expected_home_goals"]
             lambda_a = prediction["expected_away_goals"]
 
-            h_score, a_score, h_pen, a_pen = self.simulate_match_result(m)
+            h_score, a_score, h_pen, a_pen = self.simulate_match_result(m, algorithm=algorithm)
             m.home_score = h_score
             m.away_score = a_score
             m.home_penalty_score = h_pen
@@ -344,16 +344,16 @@ class TournamentSimulator:
         print(f"Scheduled {len(new_matches)} {to_phase} matches for {tournament_id}")
         return new_matches
 
-    def advance_round32_to_round16(self, tournament_id: str) -> List[Match]:
+    def advance_round32_to_round16(self, tournament_id: str, **kwargs) -> List[Match]:
         return self._advance_knockout_phase(tournament_id, "Round of 32", "Round of 16", "R16_M")
 
-    def advance_round16_to_quarterfinals(self, tournament_id: str) -> List[Match]:
+    def advance_round16_to_quarterfinals(self, tournament_id: str, **kwargs) -> List[Match]:
         return self._advance_knockout_phase(tournament_id, "Round of 16", "Quarterfinals", "QF_M")
 
-    def advance_quarterfinals_to_semifinals(self, tournament_id: str) -> List[Match]:
+    def advance_quarterfinals_to_semifinals(self, tournament_id: str, **kwargs) -> List[Match]:
         return self._advance_knockout_phase(tournament_id, "Quarterfinals", "Semifinals", "SF_M")
 
-    def advance_semifinals_to_final(self, tournament_id: str) -> List[Match]:
+    def advance_semifinals_to_final(self, tournament_id: str, **kwargs) -> List[Match]:
         return self._advance_knockout_phase(tournament_id, "Semifinals", "Final", "F_M")
 
     # ------------------------------------------------------------------ #

@@ -105,6 +105,7 @@ export default function App() {
   const [fifaRankings, setFifaRankings] = useState<FifaRanking[]>([]);
   const [selectedMatchId, setSelectedMatchId] = useState<string | null>(null);
   const [prediction, setPrediction] = useState<PredictionData | null>(null);
+  const [predictionAlgorithm, setPredictionAlgorithm] = useState<'ensemble' | 'mcmf'>('ensemble');
 
   const [loading, setLoading] = useState(true);
   const [simulating, setSimulating] = useState(false);
@@ -174,7 +175,7 @@ export default function App() {
     setSelectedMatchId(matchId);
     setPrediction(null);
     try {
-      const res = await fetch(`${API_URL}/predict/${matchId}`);
+      const res = await fetch(`${API_URL}/predict/${matchId}?algorithm=${predictionAlgorithm}`);
       if (!res.ok) throw new Error('No se pudo obtener la predicción');
       const data = await res.json();
       setPrediction(data);
@@ -186,7 +187,7 @@ export default function App() {
   const handleSimulatePhase = async (phase: string) => {
     try {
       setSimulating(true);
-      const res = await fetch(`${API_URL}/simulate/phase?tournament_id=WC26&phase=${phase}`, {
+      const res = await fetch(`${API_URL}/simulate/phase?tournament_id=WC26&phase=${phase}&algorithm=${predictionAlgorithm}`, {
         method: 'POST'
       });
       if (!res.ok) {
@@ -207,7 +208,7 @@ export default function App() {
   const handleAdvanceTournament = async (currentPhase: string) => {
     try {
       setSimulating(true);
-      const res = await fetch(`${API_URL}/simulate/advance?tournament_id=WC26&current_phase=${currentPhase}`, {
+      const res = await fetch(`${API_URL}/simulate/advance?tournament_id=WC26&current_phase=${currentPhase}&algorithm=${predictionAlgorithm}`, {
         method: 'POST'
       });
       if (!res.ok) {
@@ -420,6 +421,23 @@ export default function App() {
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div className="glass-panel" style={{ padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
+            <span style={{ color: 'var(--text-secondary)' }}>Motor Lógico:</span>
+            <select 
+              value={predictionAlgorithm}
+              onChange={(e) => {
+                setPredictionAlgorithm(e.target.value as 'ensemble' | 'mcmf');
+                if (selectedMatchId) handleSelectMatch(selectedMatchId); // refresh
+              }}
+              style={{
+                background: 'rgba(0,0,0,0.3)', color: '#fff', border: '1px solid var(--border-color)', 
+                borderRadius: '4px', padding: '4px 8px', fontSize: '0.85rem', outline: 'none', cursor: 'pointer'
+              }}
+            >
+              <option value="ensemble">Ensemble Estadístico (Poisson + ELO)</option>
+              <option value="mcmf">Monte Carlo Match Flow (MCMF)</option>
+            </select>
+          </div>
           <div className="glass-panel" style={{ padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
             <span className={`pulse-indicator ${groupsCompleted ? (finalCompleted ? 'simulated' : 'live') : 'scheduled'}`}></span>
             <span style={{ color: 'var(--text-secondary)' }}>
@@ -769,6 +787,9 @@ export default function App() {
                           <>
                             {prediction ? (
                               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                <div style={{ textAlign: 'center', fontSize: '0.8rem', color: 'var(--accent-neon)' }}>
+                                  Algoritmo utilizado: {predictionAlgorithm === 'ensemble' ? 'Ensemble Estadístico' : 'Monte Carlo Match Flow'}
+                                </div>
                                 {/* Prediction donut chart */}
                                 <PredictionChart
                                   homeName={selectedMatch.home_team?.team_name || 'TBD'}

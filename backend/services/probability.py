@@ -69,7 +69,7 @@ class MatchProbabilityService:
     #  Main prediction method                                              #
     # ------------------------------------------------------------------ #
 
-    def predict_match_outcome(self, match_id: str) -> Dict[str, Any]:
+    def predict_match_outcome(self, match_id: str, algorithm: str = "ensemble") -> Dict[str, Any]:
         """
         Predict win/draw/loss probabilities and expected goals for a match using
         an ensemble of Bivariate Poisson + ELO probability + form/rank adjustment.
@@ -126,6 +126,16 @@ class MatchProbabilityService:
         # Player rating delta factor (-0.2 to +0.2 roughly)
         player_edge = (h_rating - a_rating) / 100.0
 
+        # Route to requested algorithm
+        if algorithm.lower() == "mcmf":
+            return self._predict_mcmf(
+                match_id, home_team, away_team, h_elo, a_elo, h_att, a_att, h_def, a_def,
+                elo_diff, h_form, a_form, h_wc_att, a_wc_att, h_wc_def, a_wc_def,
+                h_squad, a_squad, h2h_hw, h2h_aw, h2h_d, h2h_hg, h2h_ag, h_rating, a_rating
+            )
+
+        # -------------------------------------------------------------- #
+        # ENSEMBLE ALGORITHM (Classic)
         # -------------------------------------------------------------- #
         # 1. BIVARIATE POISSON COMPONENT                                  #
         # -------------------------------------------------------------- #
@@ -251,5 +261,144 @@ class MatchProbabilityService:
                 "h2h_home_wins": h2h_hw or 0,
                 "h2h_away_wins": h2h_aw or 0,
                 "h2h_draws": h2h_d or 0,
+            }
+        }
+
+    # ------------------------------------------------------------------ #
+    #  Monte Carlo Match Flow (MCMF) Engine                               #
+    # ------------------------------------------------------------------ #
+    def _predict_mcmf(self, match_id, home_team, away_team, h_elo, a_elo, 
+                      h_att, a_att, h_def, a_def, elo_diff, h_form, a_form, 
+                      h_wc_att, a_wc_att, h_wc_def, a_wc_def, h_squad, a_squad, 
+                      h2h_hw, h2h_aw, h2h_d, h2h_hg, h2h_ag, h_rating, a_rating) -> Dict[str, Any]:
+        """
+        Minute-by-minute Monte Carlo Simulator for football matches.
+        Simulates 10,000 matches simultaneously across 90 minutes using numpy vectorization.
+        Accounts for fatigue (decay over time) and psychological momentum (scoring boost).
+        """
+        N_SIMS = 10000
+        N_MINS = 90
+        
+        h_elo = h_elo or 1500
+        a_elo = a_elo or 1500
+
+        # Base intensities (similar to Poisson lambda but scaled for per-minute probability)
+        base_goals_wc = 1.3
+        h_blended_att = 0.6 * (h_wc_att or 1.0) + 0.4 * (h_att or 1.0)
+        a_blended_att = 0.6 * (a_wc_att or 1.0) + 0.4 * (a_att or 1.0)
+        h_blended_def = 0.6 * (h_wc_def or 1.0) + 0.4 * (h_def or 1.0)
+        a_blended_def = 0.6 * (a_wc_def or 1.0) + 0.4 * (a_def or 1.0)
+
+        elo_scale = (elo_diff or 0) / 800.0
+        elo_factor_h = 1.0 + max(-0.4, min(0.4, elo_scale))
+        elo_factor_a = 1.0 - max(-0.4, min(0.4, elo_scale))
+        
+        # Player rating delta factor (-0.2 to +0.2 roughly)
+        player_edge = (h_rating - a_rating) / 100.0
+        player_factor_h = 1.0 + player_edge
+        player_factor_a = 1.0 - player_edge
+
+        # Base lambda (expected goals for entire match)
+        lambda_h = base_goals_wc * h_blended_att * a_blended_def * elo_factor_h * player_factor_h
+        lambda_a = base_goals_wc * a_blended_att * h_blended_def * elo_factor_a * player_factor_a
+
+        # Base probability of scoring in any given minute (lambda / 90)
+        p_h_base = max(0.001, lambda_h / N_MINS)
+        p_a_base = max(0.001, lambda_a / N_MINS)
+
+        # Fatigue parameters: how much performance decays by minute 90
+        # Squad size and form dictate fatigue resistance
+        h_stamina_factor = ((h_squad or 23) / 23.0) * (0.8 + 0.2 * (h_form or 0.5))
+        a_stamina_factor = ((a_squad or 23) / 23.0) * (0.8 + 0.2 * (a_form or 0.5))
+        
+        # At minute 90, probability drops to this percentage of base
+        decay_h_end = max(0.6, min(1.0, 0.75 * h_stamina_factor))
+        decay_a_end = max(0.6, min(1.0, 0.75 * a_stamina_factor))
+
+        # Matrices to hold simulation state: (N_SIMS,)
+        h_goals = np.zeros(N_SIMS, dtype=int)
+        a_goals = np.zeros(N_SIMS, dtype=int)
+        
+        # Momentum state (how many minutes of boost left)
+        h_momentum = np.zeros(N_SIMS, dtype=int)
+        a_momentum = np.zeros(N_SIMS, dtype=int)
+        MOMENTUM_BOOST = 1.5  # 50% increase in scoring chance
+        MOMENTUM_DURATION = 8 # Lasts 8 minutes
+        
+        # Pre-generate random numbers for speed: (N_MINS, 2, N_SIMS)
+        rands = np.random.random((N_MINS, 2, N_SIMS))
+
+        for minute in range(N_MINS):
+            progress = minute / N_MINS
+            
+            # Current fatigue multiplier (linear interpolation from 1.0 to decay_end)
+            current_fatigue_h = 1.0 - progress * (1.0 - decay_h_end)
+            current_fatigue_a = 1.0 - progress * (1.0 - decay_a_end)
+            
+            # Calculate current probability for this minute
+            # Base * Fatigue * Momentum
+            p_h_current = p_h_base * current_fatigue_h * np.where(h_momentum > 0, MOMENTUM_BOOST, 1.0)
+            p_a_current = p_a_base * current_fatigue_a * np.where(a_momentum > 0, MOMENTUM_BOOST, 1.0)
+            
+            # Did they score?
+            scored_h = rands[minute, 0] < p_h_current
+            scored_a = rands[minute, 1] < p_a_current
+            
+            h_goals += scored_h
+            a_goals += scored_a
+            
+            # Update momentum: If scored, reset momentum duration. Otherwise, decrement.
+            h_momentum = np.where(scored_h, MOMENTUM_DURATION, np.maximum(0, h_momentum - 1))
+            a_momentum = np.where(scored_a, MOMENTUM_DURATION, np.maximum(0, a_momentum - 1))
+            
+            # If a team gets scored on, they lose their momentum
+            h_momentum = np.where(scored_a, 0, h_momentum)
+            a_momentum = np.where(scored_h, 0, a_momentum)
+
+        # Aggregate Results
+        h_wins = np.sum(h_goals > a_goals)
+        a_wins = np.sum(a_goals > h_goals)
+        draws = np.sum(h_goals == a_goals)
+        
+        home_win_prob = h_wins / N_SIMS
+        away_win_prob = a_wins / N_SIMS
+        draw_prob = draws / N_SIMS
+        
+        exp_h_goals = float(np.mean(h_goals))
+        exp_a_goals = float(np.mean(a_goals))
+
+        # Most likely score
+        # Create a 2D histogram of scores
+        max_h = max(10, np.max(h_goals) + 1)
+        max_a = max(10, np.max(a_goals) + 1)
+        hist, _, _ = np.histogram2d(h_goals, a_goals, bins=[range(max_h+1), range(max_a+1)])
+        
+        most_likely_idx = tuple(np.unravel_index(np.argmax(hist), hist.shape))
+        most_likely_score = f"{most_likely_idx[0]} - {most_likely_idx[1]}"
+        most_likely_prob = float(hist[most_likely_idx] / N_SIMS)
+
+        max_p = max(home_win_prob, draw_prob, away_win_prob)
+        confidence = round((max_p - 0.333) / 0.667 * 100, 1)
+
+        return {
+            "match_id": match_id,
+            "home_team_id": home_team,
+            "away_team_id": away_team,
+            "home_win_prob": round(home_win_prob, 4),
+            "draw_prob":     round(draw_prob, 4),
+            "away_win_prob": round(away_win_prob, 4),
+            "expected_home_goals": round(exp_h_goals, 3),
+            "expected_away_goals": round(exp_a_goals, 3),
+            "most_likely_score": most_likely_score,
+            "most_likely_score_prob": round(most_likely_prob, 4),
+            "confidence_pct": confidence,
+            "components": {
+                "mcmf_engine": {"status": "Active", "iterations": N_SIMS, "fatigue_model": "Active"}
+            },
+            "inputs": {
+                "elo_diff": round(elo_diff or 0, 1),
+                "home_form": round(h_form or 0.5, 3),
+                "away_form": round(a_form or 0.5, 3),
+                "h2h_meetings": h2h_hw or 0 + (h2h_aw or 0) + (h2h_d or 0),
             }
         }
