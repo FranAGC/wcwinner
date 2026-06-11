@@ -62,7 +62,7 @@ export const EloChart: React.FC<EloChartProps> = ({ eloData, teamsMap }) => {
         },
         gridcolor: 'rgba(255,255,255,0.05)',
         zeroline: false,
-        range: [1300, 1950]
+        range: [1300, Math.max(...yData) + 50]
       },
       margin: { t: 50, b: 60, l: 60, r: 20 },
       autosize: true

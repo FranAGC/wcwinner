@@ -23,7 +23,7 @@ def run_pipeline():
     init_db()
     
     print("\nStep 2: Restoring Tables from CSV files...")
-    tables = ['teams', 'competitions', 'tournaments', 'matches', 'team_features', 'team_match_stats']
+    tables = ['teams', 'competitions', 'tournaments', 'matches', 'team_features', 'team_match_stats', 'elo_history', 'fifa_rankings']
     
     conn = duckdb.connect(db_path, read_only=False)
     conn.execute("BEGIN TRANSACTION")
