@@ -18,7 +18,7 @@ so NO home-field advantage is added to the expected goals.
 """
 import numpy as np
 from scipy.stats import poisson
-from typing import Dict, Any
+from typing import Dict, Any, List
 
 from backend.database.repository import FootballRepository
 
@@ -69,10 +69,10 @@ class MatchProbabilityService:
     #  Main prediction method                                              #
     # ------------------------------------------------------------------ #
 
-    def predict_match_outcome(self, match_id: str, algorithm: str = "ensemble") -> Dict[str, Any]:
+    def predict_match_outcome(self, match_id: str, algorithm: str = "ensemble", ata_weights: List[float] = None) -> Dict[str, Any]:
         """
         Predict win/draw/loss probabilities and expected goals for a match using
-        an ensemble of Bivariate Poisson + ELO probability + form/rank adjustment.
+        an ensemble, mcmf or ata algorithm.
         Returns a rich dict including confidence and breakdown of each component.
         """
         with self.repo.conn_factory(read_only=True) as conn:
@@ -132,6 +132,12 @@ class MatchProbabilityService:
                 match_id, home_team, away_team, h_elo, a_elo, h_att, a_att, h_def, a_def,
                 elo_diff, h_form, a_form, h_wc_att, a_wc_att, h_wc_def, a_wc_def,
                 h_squad, a_squad, h2h_hw, h2h_aw, h2h_d, h2h_hg, h2h_ag, h_rating, a_rating
+            )
+        elif algorithm.lower() == "ata":
+            return self._predict_ata(
+                match_id, home_team, away_team, h_elo, a_elo, h_att, a_att, h_def, a_def,
+                elo_diff, h_form, a_form, h_wc_att, a_wc_att, h_wc_def, a_wc_def,
+                h_squad, a_squad, h2h_hw, h2h_aw, h2h_d, h_rating, a_rating, ata_weights
             )
 
         # -------------------------------------------------------------- #
@@ -400,5 +406,103 @@ class MatchProbabilityService:
                 "home_form": round(h_form or 0.5, 3),
                 "away_form": round(a_form or 0.5, 3),
                 "h2h_meetings": h2h_hw or 0 + (h2h_aw or 0) + (h2h_d or 0),
+            }
+        }
+
+    # ------------------------------------------------------------------ #
+    #  Adaptive Tuning Algorithm (ATA) Engine                             #
+    # ------------------------------------------------------------------ #
+    def _predict_ata(self, match_id, home_team, away_team, h_elo, a_elo, 
+                     h_att, a_att, h_def, a_def, elo_diff, h_form, a_form, 
+                     h_wc_att, a_wc_att, h_wc_def, a_wc_def, h_squad, a_squad, 
+                     h2h_hw, h2h_aw, h2h_d, h_rating, a_rating, ata_weights: List[float]) -> Dict[str, Any]:
+        """
+        A parametric ensemble that uses machine-learned weights to scale factors.
+        ata_weights = [w_elo, w_att, w_form, w_h2h, w_squad, w_rating]
+        """
+        if not ata_weights or len(ata_weights) < 6:
+            ata_weights = [1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+            
+        w_elo, w_att, w_form, w_h2h, w_squad, w_rating = ata_weights
+        
+        base_goals_wc = 1.3
+        
+        # 1. Attack / Defense Interaction (Weighted by w_att)
+        h_blended_att = (0.6 * (h_wc_att or 1.0) + 0.4 * (h_att or 1.0)) ** w_att
+        a_blended_att = (0.6 * (a_wc_att or 1.0) + 0.4 * (a_att or 1.0)) ** w_att
+        h_blended_def = (0.6 * (h_wc_def or 1.0) + 0.4 * (h_def or 1.0)) ** w_att
+        a_blended_def = (0.6 * (a_wc_def or 1.0) + 0.4 * (a_def or 1.0)) ** w_att
+        
+        # 2. ELO Scaling (Weighted by w_elo)
+        elo_scale = (elo_diff or 0) / 800.0 * w_elo
+        elo_factor_h = 1.0 + max(-0.4, min(0.4, elo_scale))
+        elo_factor_a = 1.0 - max(-0.4, min(0.4, elo_scale))
+        
+        # 3. Form Scaling (Weighted by w_form)
+        form_diff = ((h_form or 0.5) - (a_form or 0.5)) * w_form
+        form_factor_h = 1.0 + max(-0.15, min(0.15, form_diff))
+        form_factor_a = 1.0 - max(-0.15, min(0.15, form_diff))
+        
+        # Calculate expected goals (lambda)
+        lambda_h = base_goals_wc * h_blended_att * a_blended_def * elo_factor_h * form_factor_h
+        lambda_a = base_goals_wc * a_blended_att * h_blended_def * elo_factor_a * form_factor_a
+        
+        # Modify by H2H
+        total_meetings = (h2h_hw or 0) + (h2h_aw or 0) + (h2h_d or 0)
+        if total_meetings >= 3:
+            h2h_h_win_rate = (h2h_hw or 0) / total_meetings
+            h2h_a_win_rate = (h2h_aw or 0) / total_meetings
+            lambda_h *= 1.0 + (h2h_h_win_rate - 0.33) * 0.3 * w_h2h
+            lambda_a *= 1.0 + (h2h_a_win_rate - 0.33) * 0.3 * w_h2h
+            
+        score_matrix = self._poisson_score_matrix(lambda_h, lambda_a)
+        p_hw, p_d, p_aw = self._probs_from_matrix(score_matrix)
+        
+        # Micro Edge (Rating and Squad)
+        player_edge = ((h_rating - a_rating) / 100.0) * w_rating
+        squad_edge = (((h_squad or 23) - (a_squad or 23)) / 26.0) * w_squad
+        micro_edge = player_edge + squad_edge
+        
+        # Apply micro edge directly to probabilities
+        p_hw = max(0.01, min(0.99, p_hw + micro_edge * 0.2))
+        p_aw = max(0.01, min(0.99, p_aw - micro_edge * 0.2))
+        
+        # Normalize
+        total_p = p_hw + p_d + p_aw
+        p_hw /= total_p
+        p_d /= total_p
+        p_aw /= total_p
+        
+        # Most likely score
+        max_prob = -1.0
+        best_h, best_a = 0, 0
+        for h in range(7):
+            for a in range(7):
+                if score_matrix[h, a] > max_prob:
+                    max_prob = score_matrix[h, a]
+                    best_h = h
+                    best_a = a
+                    
+        confidence = round((max(p_hw, p_d, p_aw) - 0.333) / 0.667 * 100, 1)
+        
+        return {
+            "match_id": match_id,
+            "home_team_id": home_team,
+            "away_team_id": away_team,
+            "home_win_prob": round(p_hw, 4),
+            "draw_prob":     round(p_d, 4),
+            "away_win_prob": round(p_aw, 4),
+            "expected_home_goals": round(lambda_h, 3),
+            "expected_away_goals": round(lambda_a, 3),
+            "most_likely_score": f"{best_h} - {best_a}",
+            "most_likely_score_prob": round(max_prob, 4),
+            "confidence_pct": confidence,
+            "components": {
+                "ata_engine": {"weights": [round(w, 2) for w in ata_weights]}
+            },
+            "inputs": {
+                "elo_diff": round(elo_diff or 0, 1),
+                "home_form": round(h_form or 0.5, 3),
+                "away_form": round(a_form or 0.5, 3),
             }
         }

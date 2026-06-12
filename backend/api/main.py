@@ -8,6 +8,7 @@ from backend.database.repository import FootballRepository
 from backend.models.domain import Team, Match, FifaRanking, EloHistory, MatchDetail, TeamMatchStats
 from backend.services.probability import MatchProbabilityService
 from backend.simulations.tournament import TournamentSimulator
+from backend.services.ml_optimizer import GeneticOptimizer
 
 app = FastAPI(
     title="Football Probability API",
@@ -27,6 +28,7 @@ app.add_middleware(
 repo = FootballRepository()
 prob_service = MatchProbabilityService(repo)
 simulator = TournamentSimulator(repo)
+optimizer = GeneticOptimizer(repo, prob_service, simulator)
 
 @app.get("/")
 def read_root():
@@ -136,12 +138,13 @@ def get_elo():
 # --- PROBABILITY & SIMULATION ENDPOINTS ---
 
 @app.get("/predict/{match_id}")
-def get_match_prediction(match_id: str, algorithm: str = Query("ensemble", description="Algorithm to use (ensemble or mcmf)")):
+def get_match_prediction(match_id: str, algorithm: str = Query("ensemble", description="Algorithm to use (ensemble, mcmf, ata)")):
     """
     Get win/draw/loss probabilities, expected goals, most likely scoreline,
     confidence, H2H context, and form breakdown for a match.
     """
-    prediction = prob_service.predict_match_outcome(match_id, algorithm=algorithm)
+    weights = optimizer.get_weights() if algorithm.lower() == "ata" else None
+    prediction = prob_service.predict_match_outcome(match_id, algorithm=algorithm, ata_weights=weights)
     if not prediction:
         raise HTTPException(status_code=404, detail=f"Prediction features for match {match_id} not found")
     return prediction
@@ -178,13 +181,14 @@ def get_team_features(team_id: str):
 
 @app.post("/simulate/phase")
 def simulate_phase(
-    tournament_id: str = Query(..., description="Tournament ID, e.g. WC26"),
+    tournament_id: str = Query(..., description="Tournament ID, e.g. WC26 or WC26_SIM"),
     phase: str = Query(..., description="Phase to simulate, e.g. Group, Semifinals, Final"),
-    algorithm: str = Query("ensemble", description="Algorithm to use (ensemble or mcmf)")
+    algorithm: str = Query("ensemble", description="Algorithm to use (ensemble, mcmf, ata)")
 ):
     """Simulate all scheduled matches of a specific phase and save results to the DB."""
     try:
-        results = simulator.simulate_phase(tournament_id, phase, algorithm=algorithm)
+        weights = optimizer.get_weights() if algorithm.lower() == "ata" else None
+        results = simulator.simulate_phase(tournament_id, phase, algorithm=algorithm, ata_weights=weights)
         return {"message": f"Successfully simulated phase {phase}", "results": results}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -225,6 +229,37 @@ def reset_wc26_database():
         from backend.scripts.seed_wc26 import seed_wc26
         seed_wc26()
         return {"message": "WC26 tournament data successfully reset to initial schedule"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/reset/wc26_sim")
+def reset_wc26_sim_database():
+    """Reset only the WC26_SIM parallel tournament matches and stats."""
+    try:
+        from backend.scripts.seed_wc26_sim import seed_wc26_sim
+        seed_wc26_sim()
+        return {"message": "WC26_SIM parallel tournament data successfully reset"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/algorithm/optimize")
+def optimize_algorithm(
+    generations: int = Query(3, description="Number of generations to evolve")
+):
+    """Run Genetic Algorithm to tune ATA parameters based on real results."""
+    try:
+        result = optimizer.run_generation(population_size=10, generations=generations)
+        if "error" in result.get("status", ""):
+            raise HTTPException(status_code=400, detail=result["message"])
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/analysis/compare")
+def compare_analysis():
+    """Compare real WC26 vs simulated WC26_SIM results."""
+    try:
+        return optimizer.compare_real_vs_simulated()
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

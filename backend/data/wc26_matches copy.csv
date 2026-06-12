@@ -1,6 +1,6 @@
 match_id,tournament_id,match_date,home_team_id,away_team_id,home_score,away_score,home_penalty_score,away_penalty_score,match_phase,status
-WC26_A1,WC26,2026-06-11,MEX,RSA,,,,,Group,Scheduled
-WC26_A2,WC26,2026-06-11,KOR,CZE,,,,,Group,Scheduled
+WC26_A1,WC26,2026-06-11,MEX,RSA,2,0,,,Group,Completed
+WC26_A2,WC26,2026-06-11,KOR,CZE,2,1,,,Group,Completed
 WC26_A3,WC26,2026-06-18,CZE,RSA,,,,,Group,Scheduled
 WC26_A4,WC26,2026-06-18,MEX,KOR,,,,,Group,Scheduled
 WC26_A5,WC26,2026-06-24,MEX,CZE,,,,,Group,Scheduled

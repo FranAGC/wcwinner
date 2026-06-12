@@ -99,8 +99,8 @@ class TournamentSimulator:
     # ------------------------------------------------------------------ #
     #  Single match simulation                                            #
     # ------------------------------------------------------------------ #
-    def simulate_match_result(self, match: Match, algorithm: str = "ensemble") -> Tuple[int, int, int | None, int | None]:
-        prediction = self.prob_service.predict_match_outcome(match.match_id, algorithm=algorithm)
+    def simulate_match_result(self, match: Match, algorithm: str = "ensemble", ata_weights: List[float] = None) -> Tuple[int, int, int | None, int | None]:
+        prediction = self.prob_service.predict_match_outcome(match.match_id, algorithm=algorithm, ata_weights=ata_weights)
         lambda_h = prediction["expected_home_goals"]
         lambda_a = prediction["expected_away_goals"]
 
@@ -128,7 +128,7 @@ class TournamentSimulator:
     # ------------------------------------------------------------------ #
     #  Phase simulation (generic)                                         #
     # ------------------------------------------------------------------ #
-    def simulate_phase(self, tournament_id: str, phase: str, algorithm: str = "ensemble") -> List[Dict[str, Any]]:
+    def simulate_phase(self, tournament_id: str, phase: str, algorithm: str = "ensemble", ata_weights: List[float] = None) -> List[Dict[str, Any]]:
         all_matches = self.repo.get_matches()
         phase_matches = [
             m for m in all_matches
@@ -148,11 +148,11 @@ class TournamentSimulator:
 
         results = []
         for m in phase_matches:
-            prediction = self.prob_service.predict_match_outcome(m.match_id, algorithm=algorithm)
+            prediction = self.prob_service.predict_match_outcome(m.match_id, algorithm=algorithm, ata_weights=ata_weights)
             lambda_h = prediction["expected_home_goals"]
             lambda_a = prediction["expected_away_goals"]
 
-            h_score, a_score, h_pen, a_pen = self.simulate_match_result(m, algorithm=algorithm)
+            h_score, a_score, h_pen, a_pen = self.simulate_match_result(m, algorithm=algorithm, ata_weights=ata_weights)
             m.home_score = h_score
             m.away_score = a_score
             m.home_penalty_score = h_pen

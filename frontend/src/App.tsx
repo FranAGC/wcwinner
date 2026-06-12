@@ -9,7 +9,12 @@ import {
   Award,
   ChevronRight,
   Settings,
-  Download
+  Download,
+  Users,
+  Shield,
+  TrendingUp,
+  Zap,
+  Cpu
 } from 'lucide-react';
 import './App.css';
 import { EloChart } from './charts/EloChart';
@@ -98,7 +103,7 @@ interface PredictionData {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'matches' | 'rankings' | 'standings' | 'config'>('matches');
+  const [activeTab, setActiveTab] = useState<'matches' | 'rankings' | 'standings' | 'config' | 'parallel'>('matches');
   const [teams, setTeams] = useState<Team[]>([]);
   const [matches, setMatches] = useState<MatchDetail[]>([]);
   const [eloRankings, setEloRankings] = useState<EloHistory[]>([]);
@@ -110,8 +115,9 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [simulating, setSimulating] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [phaseFilter, setPhaseFilter] = useState<string>('All');
+  const [phaseFilter, setPhaseFilter] = useState<string>('Group');
   const [selectedTeamId, setSelectedTeamId] = useState<string | null>(null);
+  const [mlAnalysis, setMlAnalysis] = useState<any>(null);
 
   const teamToEmoji: Record<string, string> = {
     MEX: '🇲🇽', RSA: '🇿🇦', KOR: '🇰🇷', CZE: '🇨🇿',
@@ -145,7 +151,7 @@ export default function App() {
 
       const [teamsRes, matchesRes, eloRes, fifaRes] = await Promise.all([
         fetch(`${API_URL}/teams`).then(r => r.json()),
-        fetch(`${API_URL}/matches?tournament_id=WC26`).then(r => r.json()),
+        fetch(`${API_URL}/matches`).then(r => r.json()), // Fetch all matches
         fetch(`${API_URL}/elo`).then(r => r.json()),
         fetch(`${API_URL}/ranking`).then(r => r.json())
       ]);
@@ -187,7 +193,8 @@ export default function App() {
   const handleSimulatePhase = async (phase: string) => {
     try {
       setSimulating(true);
-      const res = await fetch(`${API_URL}/simulate/phase?tournament_id=WC26&phase=${phase}&algorithm=${predictionAlgorithm}`, {
+      const tid = activeTab === 'parallel' ? 'WC26_SIM' : 'WC26';
+      const res = await fetch(`${API_URL}/simulate/phase?tournament_id=${tid}&phase=${phase}&algorithm=${predictionAlgorithm}`, {
         method: 'POST'
       });
       if (!res.ok) {
@@ -208,7 +215,8 @@ export default function App() {
   const handleAdvanceTournament = async (currentPhase: string) => {
     try {
       setSimulating(true);
-      const res = await fetch(`${API_URL}/simulate/advance?tournament_id=WC26&current_phase=${currentPhase}&algorithm=${predictionAlgorithm}`, {
+      const tid = activeTab === 'parallel' ? 'WC26_SIM' : 'WC26';
+      const res = await fetch(`${API_URL}/simulate/advance?tournament_id=${tid}&current_phase=${currentPhase}&algorithm=${predictionAlgorithm}`, {
         method: 'POST'
       });
       if (!res.ok) {
@@ -240,6 +248,20 @@ export default function App() {
     }
   };
 
+  const handleResetWc26Sim = async () => {
+    if (!confirm('¿Desea reiniciar el torneo paralelo WC26_SIM?')) return;
+    try {
+      setSimulating(true);
+      const res = await fetch(`${API_URL}/reset/wc26_sim`, { method: 'POST' });
+      if (!res.ok) throw new Error('Error al reiniciar WC26_SIM');
+      await fetchAllData(true);
+    } catch (err: any) {
+      alert(`Error al reiniciar: ${err.message}`);
+    } finally {
+      setSimulating(false);
+    }
+  };
+
   const handleResetAll = async () => {
     if (!confirm('ADVERTENCIA: Esto borrará TODOS los datos y volverá a descargar y procesar todo el historial mundial. Puede tomar varios minutos. ¿Desea continuar?')) {
       return;
@@ -249,13 +271,44 @@ export default function App() {
       const res = await fetch(`${API_URL}/reset/all`, { method: 'POST' });
       if (!res.ok) throw new Error('Error al restaurar base de datos completa');
       await fetchAllData(true);
-      alert('Base de datos histórica restablecida correctamente.');
     } catch (err: any) {
-      alert(`Error crítico al restaurar BD: ${err.message}`);
+      alert(`Error: ${err.message}`);
     } finally {
       setSimulating(false);
     }
   };
+
+  const handleFetchAnalysis = async () => {
+    try {
+      const res = await fetch(`${API_URL}/analysis/compare`);
+      if (res.ok) {
+        const data = await res.json();
+        setMlAnalysis(data);
+      }
+    } catch (err) {
+      console.error('Error fetching analysis:', err);
+    }
+  };
+
+  const handleOptimizeAlgorithm = async () => {
+    try {
+      setSimulating(true);
+      const res = await fetch(`${API_URL}/algorithm/optimize?generations=3`, { method: 'POST' });
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.detail || 'Error al optimizar algoritmo');
+      }
+      const data = await res.json();
+      alert(`Algoritmo entrenado!\nGeneraciones: ${data.generations}\nMejor MAE: ${data.fitness_mae}\nNuevos pesos aplicados a futuras predicciones ATA.`);
+      handleFetchAnalysis();
+    } catch (err: any) {
+      alert(`Error al optimizar: ${err.message}`);
+    } finally {
+      setSimulating(false);
+    }
+  };
+
+
 
   const handleDownloadCSV = () => {
     const validMatches = matches.filter(m => m.status === 'Simulated' || m.status === 'Completed');
@@ -296,7 +349,7 @@ export default function App() {
       ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
     ].join('\n');
 
-    const blob = new Blob(['\\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' }); // Added BOM for Excel
+    const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' }); // Added BOM for Excel
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.setAttribute('href', url);
@@ -307,12 +360,16 @@ export default function App() {
   };
 
   // Determine current phase status for simulation panel
-  const groupMatches = matches.filter(m => m.match_phase === 'Group');
-  const r32Matches = matches.filter(m => m.match_phase === 'Round of 32');
-  const r16Matches = matches.filter(m => m.match_phase === 'Round of 16');
-  const qfMatches = matches.filter(m => m.match_phase === 'Quarterfinals');
-  const sfMatches = matches.filter(m => m.match_phase === 'Semifinals');
-  const finalMatches = matches.filter(m => m.match_phase === 'Final');
+  const displayMatches = useMemo(() => {
+    return matches.filter(m => m.tournament_id === (activeTab === 'parallel' ? 'WC26_SIM' : 'WC26'));
+  }, [matches, activeTab]);
+
+  const groupMatches = displayMatches.filter(m => m.match_phase === 'Group');
+  const r32Matches = displayMatches.filter(m => m.match_phase === 'Round of 32');
+  const r16Matches = displayMatches.filter(m => m.match_phase === 'Round of 16');
+  const qfMatches = displayMatches.filter(m => m.match_phase === 'Quarterfinals');
+  const sfMatches = displayMatches.filter(m => m.match_phase === 'Semifinals');
+  const finalMatches = displayMatches.filter(m => m.match_phase === 'Final');
 
   const groupsCompleted = groupMatches.length > 0 && groupMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
   const r32Exists = r32Matches.length > 0 && r32Matches.some(m => m.home_team && m.away_team);
@@ -325,6 +382,12 @@ export default function App() {
   const sfCompleted = sfExists && sfMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
   const finalExists = finalMatches.length > 0 && finalMatches.some(m => m.home_team && m.away_team);
   const finalCompleted = finalExists && finalMatches.every(m => m.status === 'Simulated' || m.status === 'Completed');
+
+  useEffect(() => {
+    if (activeTab === 'parallel' && groupsCompleted) {
+      handleFetchAnalysis();
+    }
+  }, [activeTab, groupsCompleted]);
 
   // Compute standings
   const standings = useMemo(() => {
@@ -401,9 +464,8 @@ export default function App() {
 
   // Filtered matches
   const filteredMatches = useMemo(() => {
-    if (phaseFilter === 'All') return matches;
-    return matches.filter(m => m.match_phase === phaseFilter);
-  }, [matches, phaseFilter]);
+    return displayMatches.filter(m => m.match_phase === phaseFilter);
+  }, [displayMatches, phaseFilter]);
 
   // Selected match detail helper
   const selectedMatch = useMemo(() => {
@@ -436,6 +498,7 @@ export default function App() {
             >
               <option value="ensemble">Ensemble Estadístico (Poisson + ELO)</option>
               <option value="mcmf">Monte Carlo Match Flow (MCMF)</option>
+              {activeTab === 'parallel' && <option value="ata">Sintonización Adaptativa (ATA - ML)</option>}
             </select>
           </div>
           <div className="glass-panel" style={{ padding: '6px 12px', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem' }}>
@@ -444,8 +507,8 @@ export default function App() {
               Estado: {groupsCompleted ? (finalCompleted ? 'Completado' : 'Fases Eliminatorias') : 'Fase de Grupos'}
             </span>
           </div>
-          <button onClick={handleResetWc26} className="glow-btn" style={{ background: 'rgba(239, 68, 68, 0.2)', border: '1px solid rgba(239, 68, 68, 0.4)', color: '#ef4444', boxShadow: 'none' }} disabled={simulating}>
-            <RotateCcw size={16} /> Reiniciar BD
+          <button onClick={activeTab === 'parallel' ? handleResetWc26Sim : handleResetWc26} className="glow-btn" style={{ background: 'rgba(239, 68, 68, 0.2)', border: '1px solid rgba(239, 68, 68, 0.4)', color: '#ef4444', boxShadow: 'none' }} disabled={simulating}>
+            <RotateCcw size={16} /> Reiniciar {activeTab === 'parallel' ? 'Torneo Simulado' : 'BD'}
           </button>
         </div>
       </header>
@@ -467,6 +530,9 @@ export default function App() {
             <button className={`tab-btn ${activeTab === 'matches' ? 'active' : ''}`} onClick={() => setActiveTab('matches')}>
               <Layers size={16} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} /> Partidos y Simulación
             </button>
+            <button className={`tab-btn ${activeTab === 'parallel' ? 'active' : ''}`} onClick={() => setActiveTab('parallel')}>
+              <Cpu size={16} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} /> Predicción Paralela (ML)
+            </button>
             <button className={`tab-btn ${activeTab === 'standings' ? 'active' : ''}`} onClick={() => setActiveTab('standings')}>
               <BarChart2 size={16} style={{ display: 'inline', marginRight: '6px', verticalAlign: 'text-bottom' }} /> Clasificación de Grupos
             </button>
@@ -483,9 +549,54 @@ export default function App() {
             {/* LEFT SIDE: Active tab view */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
 
-              {/* Tab 1: Matches & Simulation */}
-              {activeTab === 'matches' && (
+              {/* Tab 1 & Parallel: Matches & Simulation */}
+              {(activeTab === 'matches' || activeTab === 'parallel') && (
                 <>
+                  {/* ML Dashboard for Parallel Tab */}
+                  {activeTab === 'parallel' && (
+                    <div className="glass-panel" style={{ padding: '20px', border: '1px solid var(--accent-neon)', background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(0, 119, 255, 0.05))' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', color: 'var(--accent-neon)', margin: 0 }}>
+                          <Cpu size={20} style={{ display: 'inline', verticalAlign: 'text-bottom', marginRight: '8px' }}/>
+                          Panel de Sintonización Adaptativa (ATA)
+                        </h2>
+                        <button className="glow-btn" onClick={handleOptimizeAlgorithm} disabled={simulating} style={{ background: 'linear-gradient(135deg, #00f0ff, #0077ff)' }}>
+                          Entrenar Algoritmo Genético
+                        </button>
+                      </div>
+                      <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '16px' }}>
+                        El torneo WC26_SIM corre en paralelo. Este panel compara sus resultados simulados contra los resultados del torneo oficial WC26 para calcular el Margen de Error. Al entrenar, el Algoritmo Genético mutará sus pesos probabilísticos para minimizar ese error.
+                      </p>
+                      
+                      {mlAnalysis && !mlAnalysis.error ? (
+                        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+                          <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', flex: 1, minWidth: '150px' }}>
+                            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Margen Error Goles (MAE)</div>
+                            <div style={{ fontSize: '2rem', fontFamily: 'var(--font-display)', color: mlAnalysis.mae_goals < 1.0 ? '#00ffa0' : '#ffaa00' }}>
+                              {mlAnalysis.mae_goals.toFixed(3)}
+                            </div>
+                          </div>
+                          <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', flex: 1, minWidth: '150px' }}>
+                            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Precisión Global (W/D/L)</div>
+                            <div style={{ fontSize: '2rem', fontFamily: 'var(--font-display)', color: '#00f0ff' }}>
+                              {mlAnalysis.outcome_accuracy_pct}%
+                            </div>
+                          </div>
+                          <div style={{ background: 'rgba(0,0,0,0.3)', padding: '16px', borderRadius: '8px', flex: 1, minWidth: '150px' }}>
+                            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>Partidos Comparados</div>
+                            <div style={{ fontSize: '2rem', fontFamily: 'var(--font-display)', color: '#fff' }}>
+                              {mlAnalysis.total_matches_compared}
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div style={{ background: 'rgba(255,255,255,0.05)', padding: '12px', borderRadius: '4px', fontSize: '0.85rem', color: '#ffaa00' }}>
+                          {mlAnalysis?.error || "Aún no hay suficientes resultados comparables. Asegúrate de tener partidos completados tanto en la fase oficial (WC26) como en la paralela (WC26_SIM)."}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {/* Simulation flow controller */}
                   <div className="glass-panel" style={{ padding: '20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid var(--border-color)', paddingBottom: '10px' }}>
@@ -948,7 +1059,7 @@ export default function App() {
             )}
           </div>
           {/* Full width Matches list (Calendario de Partidos) */}
-          {activeTab === 'matches' && (
+          {(activeTab === 'matches' || activeTab === 'parallel') && (
             <div style={{ marginTop: '24px' }}>
               {/* Matches list */}
               <div className="glass-panel" style={{ padding: '20px' }}>
@@ -957,8 +1068,8 @@ export default function App() {
                     Calendario de Partidos
                   </h2>
                   <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                    {['All', 'Group', 'Round of 32', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Final'].map(f => {
-                      let label = f === 'All' ? 'Todos' : f === 'Group' ? 'Grupos' : f === 'Round of 32' ? '16avos' : f === 'Round of 16' ? 'Octavos' : f === 'Quarterfinals' ? 'Cuartos' : f === 'Semifinals' ? 'Semis' : 'Final';
+                    {['Group', 'Round of 32', 'Round of 16', 'Quarterfinals', 'Semifinals', 'Final'].map(f => {
+                      let label = f === 'Group' ? 'Grupos' : f === 'Round of 32' ? '16avos' : f === 'Round of 16' ? 'Octavos' : f === 'Quarterfinals' ? 'Cuartos' : f === 'Semifinals' ? 'Semis' : 'Final';
                       return (
                         <button
                           key={f}
