@@ -179,6 +179,22 @@ def get_team_features(team_id: str):
     ]
     return dict(zip(keys, res))
 
+@app.post("/simulate/match/{match_id}")
+def simulate_match(
+    match_id: str,
+    tournament_id: str = Query(..., description="Tournament ID, e.g. WC26 or WC26_SIM"),
+    algorithm: str = Query("ensemble", description="Algorithm to use (ensemble, mcmf, ata)")
+):
+    """Simulate a single match and save results to the DB."""
+    try:
+        weights = optimizer.get_weights() if algorithm.lower() == "ata" else None
+        result = simulator.simulate_match_single(tournament_id, match_id, algorithm=algorithm, ata_weights=weights)
+        return {"message": f"Successfully simulated match {match_id}", "result": result}
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=400, detail=str(e))
+
 @app.post("/simulate/phase")
 def simulate_phase(
     tournament_id: str = Query(..., description="Tournament ID, e.g. WC26 or WC26_SIM"),

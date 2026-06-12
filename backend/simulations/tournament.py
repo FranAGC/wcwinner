@@ -126,6 +126,49 @@ class TournamentSimulator:
         return home_score, away_score, home_penalty, away_penalty
 
     # ------------------------------------------------------------------ #
+    #  Single match simulation                                           #
+    # ------------------------------------------------------------------ #
+    def simulate_match_single(self, tournament_id: str, match_id: str, algorithm: str = "ensemble", ata_weights: List[float] = None) -> Dict[str, Any]:
+        all_matches = self.repo.get_matches()
+        m = next((m for m in all_matches if m.match_id == match_id and m.tournament_id == tournament_id), None)
+        if not m:
+            raise ValueError(f"Match {match_id} not found in {tournament_id}")
+        if m.status != "Scheduled":
+            raise ValueError(f"Match {match_id} is already {m.status}")
+
+        prediction = self.prob_service.predict_match_outcome(m.match_id, algorithm=algorithm, ata_weights=ata_weights)
+        lambda_h = prediction["expected_home_goals"]
+        lambda_a = prediction["expected_away_goals"]
+
+        h_score, a_score, h_pen, a_pen = self.simulate_match_result(m, algorithm=algorithm, ata_weights=ata_weights)
+        m.home_score = h_score
+        m.away_score = a_score
+        m.home_penalty_score = h_pen
+        m.away_penalty_score = a_pen
+        m.status = "Simulated"
+        self.repo.save_match(m)
+
+        h_stats = self._generate_stats(m.home_team_id, m.match_id, h_score, lambda_h, lambda_a)
+        a_stats = self._generate_stats(m.away_team_id, m.match_id, a_score, lambda_a, lambda_h)
+        self.repo.save_team_match_stats(h_stats)
+        self.repo.save_team_match_stats(a_stats)
+        
+        # Dynamic ELO & Form Update
+        self.elo_updater.update_after_match(m)
+        self._upsert_match_features([m])
+
+        return {
+            "match_id": m.match_id,
+            "home_team_id": m.home_team_id,
+            "away_team_id": m.away_team_id,
+            "home_score": h_score,
+            "away_score": a_score,
+            "home_penalty": h_pen,
+            "away_penalty": a_pen,
+            "status": m.status
+        }
+
+    # ------------------------------------------------------------------ #
     #  Phase simulation (generic)                                         #
     # ------------------------------------------------------------------ #
     def simulate_phase(self, tournament_id: str, phase: str, algorithm: str = "ensemble", ata_weights: List[float] = None) -> List[Dict[str, Any]]:

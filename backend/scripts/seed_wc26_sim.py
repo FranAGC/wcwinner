@@ -32,6 +32,9 @@ def seed_wc26_sim():
         conn.execute("UPDATE temp_wc26_sim SET tournament_id = 'WC26_SIM'")
         conn.execute("UPDATE temp_wc26_sim SET match_id = REPLACE(match_id, 'WC26', 'WC26_SIM')")
         
+        # Reset scores and statuses to ensure we simulate from scratch
+        conn.execute("UPDATE temp_wc26_sim SET home_score = NULL, away_score = NULL, home_penalty_score = NULL, away_penalty_score = NULL, status = 'Scheduled'")
+        
         conn.execute("INSERT INTO matches SELECT * FROM temp_wc26_sim")
         conn.execute("DROP TABLE temp_wc26_sim")
         

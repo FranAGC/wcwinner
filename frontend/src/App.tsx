@@ -212,6 +212,27 @@ export default function App() {
     }
   };
 
+  const handleSimulateSingleMatch = async (matchId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      setSimulating(true);
+      const tid = activeTab === 'parallel' ? 'WC26_SIM' : 'WC26';
+      const res = await fetch(`${API_URL}/simulate/match/${matchId}?tournament_id=${tid}&algorithm=${predictionAlgorithm}`, {
+        method: 'POST'
+      });
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.detail || 'Error en simulación individual');
+      }
+      await fetchAllData();
+      handleSelectMatch(matchId);
+    } catch (err: any) {
+      alert(`Error en simulación: ${err.message}`);
+    } finally {
+      setSimulating(false);
+    }
+  };
+
   const handleAdvanceTournament = async (currentPhase: string) => {
     try {
       setSimulating(true);
@@ -1108,6 +1129,8 @@ export default function App() {
                   ) : (
                     filteredMatches.map(m => {
                       const isSelected = m.match_id === selectedMatchId;
+                      const realMatch = activeTab === 'parallel' ? matches.find(rm => rm.match_id === m.match_id.replace('_SIM', '')) : null;
+
                       return (
                         <div
                           key={m.match_id}
@@ -1123,7 +1146,7 @@ export default function App() {
                           } as React.CSSProperties}
                           onClick={() => handleSelectMatch(m.match_id)}
                         >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '30%' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '25%' }}>
                             <Calendar size={14} style={{ color: 'var(--text-muted)' }} />
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                               <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.match_date}</span>
@@ -1131,45 +1154,82 @@ export default function App() {
                             </div>
                           </div>
 
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', width: '50%' }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%', justifyContent: 'flex-end' }}>
-                              <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.home_team?.team_name || 'TBD'}</span>
-                              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.home_team?.team_code || '---'}</span>
-                            </div>
-
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'var(--bg-primary)', padding: '4px 12px', borderRadius: '8px', border: '1px solid var(--border-color)', minWidth: '60px', justifyContent: 'center' }}>
-                              {m.status === 'Scheduled' ? (
-                                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>VS</span>
-                              ) : (
-                                <>
-                                  <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--accent-neon)' }}>{m.home_score}</span>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '55%' }}>
+                            {/* REAL MATCH ROW (Only if parallel tab and real match has score) */}
+                            {realMatch && (realMatch.status === 'Completed' || realMatch.status === 'Simulated') && (
+                              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', width: '100%', opacity: 0.7 }}>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%', justifyContent: 'flex-end' }}>
+                                  <span style={{ fontSize: '0.7rem', color: '#4ade80', marginRight: '4px', border: '1px solid #4ade80', padding: '1px 4px', borderRadius: '4px' }}>Real</span>
+                                  <span style={{ fontWeight: 500, fontSize: '0.85rem' }}>{realMatch.home_team?.team_name || 'TBD'}</span>
+                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{realMatch.home_team?.team_code || '---'}</span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'rgba(74, 222, 128, 0.05)', padding: '2px 8px', borderRadius: '4px', border: '1px solid rgba(74, 222, 128, 0.2)', minWidth: '50px', justifyContent: 'center' }}>
+                                  <span style={{ fontWeight: 600, fontSize: '0.9rem', color: '#4ade80' }}>{realMatch.home_score}</span>
                                   <span style={{ color: 'var(--text-muted)' }}>-</span>
-                                  <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--accent-neon)' }}>{m.away_score}</span>
-                                </>
-                              )}
-                            </div>
+                                  <span style={{ fontWeight: 600, fontSize: '0.9rem', color: '#4ade80' }}>{realMatch.away_score}</span>
+                                </div>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%' }}>
+                                  <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{realMatch.away_team?.team_code || '---'}</span>
+                                  <span style={{ fontWeight: 500, fontSize: '0.85rem' }}>{realMatch.away_team?.team_name || 'TBD'}</span>
+                                </div>
+                              </div>
+                            )}
 
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%' }}>
-                              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.away_team?.team_code || '---'}</span>
-                              <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.away_team?.team_name || 'TBD'}</span>
+                            {/* SIMULATED / MAIN MATCH ROW */}
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', width: '100%' }}>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%', justifyContent: 'flex-end' }}>
+                                {activeTab === 'parallel' && <span style={{ fontSize: '0.7rem', color: 'var(--accent-neon)', marginRight: '4px', border: '1px solid var(--accent-neon)', padding: '1px 4px', borderRadius: '4px' }}>SIM</span>}
+                                <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.home_team?.team_name || 'TBD'}</span>
+                                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.home_team?.team_code || '---'}</span>
+                              </div>
+
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: 'var(--bg-primary)', padding: '4px 12px', borderRadius: '8px', border: '1px solid var(--border-color)', minWidth: '60px', justifyContent: 'center' }}>
+                                {m.status === 'Scheduled' ? (
+                                  <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>VS</span>
+                                ) : (
+                                  <>
+                                    <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--accent-neon)' }}>{m.home_score}</span>
+                                    <span style={{ color: 'var(--text-muted)' }}>-</span>
+                                    <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--accent-neon)' }}>{m.away_score}</span>
+                                  </>
+                                )}
+                              </div>
+
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '40%' }}>
+                                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{m.away_team?.team_code || '---'}</span>
+                                <span style={{ fontWeight: 600, fontSize: '0.95rem' }}>{m.away_team?.team_name || 'TBD'}</span>
+                              </div>
                             </div>
                           </div>
 
-                          <div style={{ width: '20%', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '8px' }}>
-                            {m.home_penalty_score !== null && m.home_penalty_score !== undefined && (
-                              <span style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', marginRight: '6px' }}>
-                                (Pen: {m.home_penalty_score}-{m.away_penalty_score})
+                          <div style={{ width: '20%', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '6px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              {m.home_penalty_score !== null && m.home_penalty_score !== undefined && (
+                                <span style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', marginRight: '6px' }}>
+                                  (Pen: {m.home_penalty_score}-{m.away_penalty_score})
+                                </span>
+                              )}
+                              <span style={{
+                                fontSize: '0.7rem',
+                                padding: '2px 6px',
+                                borderRadius: '4px',
+                                background: m.status === 'Completed' ? (m.tournament_id === 'WC26' ? 'rgba(74, 222, 128, 0.1)' : 'rgba(255,255,255,0.05)') : m.status === 'Simulated' ? 'rgba(255,215,0,0.1)' : 'rgba(0,240,255,0.1)',
+                                color: m.status === 'Completed' ? (m.tournament_id === 'WC26' ? '#4ade80' : 'var(--text-secondary)') : m.status === 'Simulated' ? 'var(--accent-gold)' : 'var(--accent-cyan)'
+                              }}>
+                                {m.status === 'Completed' ? (m.tournament_id === 'WC26' ? 'Real' : 'Histórico') : m.status === 'Simulated' ? 'Simulado' : 'Predicción'}
                               </span>
+                            </div>
+                            
+                            {m.status === 'Scheduled' && (m.home_team && m.away_team) && (
+                              <button 
+                                className="glow-btn" 
+                                style={{ padding: '4px 8px', fontSize: '0.75rem', marginTop: '4px', background: 'rgba(0, 240, 255, 0.1)' }}
+                                onClick={(e) => handleSimulateSingleMatch(m.match_id, e)}
+                                disabled={simulating}
+                              >
+                                <Play size={10} style={{ marginRight: '4px' }} /> Simular Partido
+                              </button>
                             )}
-                            <span style={{
-                              fontSize: '0.7rem',
-                              padding: '2px 6px',
-                              borderRadius: '4px',
-                              background: m.status === 'Completed' ? (m.tournament_id === 'WC26' ? 'rgba(74, 222, 128, 0.1)' : 'rgba(255,255,255,0.05)') : m.status === 'Simulated' ? 'rgba(255,215,0,0.1)' : 'rgba(0,240,255,0.1)',
-                              color: m.status === 'Completed' ? (m.tournament_id === 'WC26' ? '#4ade80' : 'var(--text-secondary)') : m.status === 'Simulated' ? 'var(--accent-gold)' : 'var(--accent-cyan)'
-                            }}>
-                              {m.status === 'Completed' ? (m.tournament_id === 'WC26' ? 'Real' : 'Histórico') : m.status === 'Simulated' ? 'Simulado' : 'Predicción'}
-                            </span>
                           </div>
                         </div>
                       );
